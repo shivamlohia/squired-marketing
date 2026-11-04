@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" width="240" height="40" fill="none">
+  <!-- Geometric S Mark with Orange Accent -->
+  <g transform="translate(2, 4)">
+    <rect width="32" height="32" rx="4" fill="#100558"/>
+    <path d="M10 11C10 9.89543 10.8954 9 12 9H20C21.1046 9 22 9.89543 22 11V14C22 15.1046 21.1046 16 20 16H14C12.8954 16 12 16.8954 12 18V21C12 22.1046 12.8954 23 14 23H22" stroke="#E56315" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="23" cy="9" r="2.5" fill="#E56315"/>
+  </g>
+  <!-- Brand Typography -->
+  <text x="46" y="24" font-family="'Manrope', -apple-system, sans-serif" font-weight="800" font-size="19" fill="#100558" letter-spacing="-0.03em">Squired</text>
+  <text x="123" y="24" font-family="'Manrope', -apple-system, sans-serif" font-weight="500" font-size="19" fill="#4E4975" letter-spacing="-0.02em">Marketing</text>
+</svg>

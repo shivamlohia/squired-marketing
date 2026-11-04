@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Squired Marketing</title>
+  <meta name="description" content="Explore Squired Marketing's specialist growth services: Paid Social, Marketplaces, Retention & Lifecycle, Creative Strategy & CRO, and Growth Analytics.">
+  <meta name="theme-color" content="#100558">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- CRITICAL: Inline Head Script to resolve variant BEFORE first paint (zero-flicker) -->
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var campaign = (params.get('utm_campaign') || '').toLowerCase().trim();
+        var term = (params.get('utm_term') || '').toLowerCase().trim();
+        var source = (params.get('utm_source') || '').toLowerCase().trim();
+        var v = null;
+
+        if (campaign === 'marketplace') v = 'marketplace';
+        else if (campaign === 'd2c') v = 'd2c';
+        else if (campaign === 'retention') v = 'retention';
+
+        if (!v && term) {
+          var mk = ['amazon','flipkart','acos','tacos','listing','marketplace'];
+          var d2c = ['shopify','meta','facebook','roas','cpa','creative'];
+          var ret = ['whatsapp','email flow','repeat','retention'];
+          for (var i=0; i<mk.length; i++) { if (term.indexOf(mk[i]) !== -1) { v = 'marketplace'; break; } }
+          if (!v) { for (var j=0; j<d2c.length; j++) { if (term.indexOf(d2c[j]) !== -1) { v = 'd2c'; break; } } }
+          if (!v) { for (var k=0; k<ret.length; k++) { if (term.indexOf(ret[k]) !== -1) { v = 'retention'; break; } } }
+        }
+
+        if (!v) {
+          var stored = sessionStorage.getItem('squired_variant');
+          if (stored && ['default','marketplace','d2c','retention'].indexOf(stored) !== -1) {
+            v = stored;
+          }
+        }
+
+        v = v || 'default';
+        sessionStorage.setItem('squired_variant', v);
+        document.documentElement.setAttribute('data-variant', v);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Squired Marketing Home">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="4" fill="#100558"/>
+          <path d="M10 11C10 9.89543 10.8954 9 12 9H20C21.1046 9 22 9.89543 22 11V14C22 15.1046 21.1046 16 20 16H14C12.8954 16 12 16.8954 12 18V21C12 22.1046 12.8954 23 14 23H22" stroke="#E56315" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="23" cy="9" r="2.5" fill="#E56315"/>
+        </svg>
+        <span>Squired Marketing</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary js-cta-btn">
+          <span class="js-cta-text">Book a Growth Audit</span>
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+        <li><a href="services.html" class="mobile-menu-link">Services</a></li>
+        <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        <li><a href="contact.html" class="mobile-menu-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary js-cta-btn">
+        <span class="js-cta-text">Book a Growth Audit</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Intro Section -->
+    <section class="section" style="padding-bottom: var(--space-2xl);">
+      <div class="container container-narrow" style="text-align: center;">
+        <span class="section-tag">Specialist Capabilities</span>
+        <h1 class="section-title">Execution Scopes Built for Margin</h1>
+        <p class="section-lead">
+          We operate as an integrated growth unit. Every service scope is engineered to expand contribution margin, eliminate customer acquisition waste, and protect cash flow.
+        </p>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Five Service Blocks (Ordered dynamically by active variant) -->
+    <section class="section" id="services-list-section" aria-label="Detailed Services">
+      <div class="container">
+        <div class="services-list" id="services-list-container">
+          <!-- Rendered dynamically by engine.js based on variant.servicesOrder -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Band -->
+    <section class="section section-navy" id="services-closing-band" aria-labelledby="closing-band-title">
+      <div class="container container-narrow" style="text-align: center;">
+        <span class="section-tag" style="color:#c0b9f0;">Tailored Growth Scope</span>
+        <h2 class="section-title" id="closing-band-title" style="color:#ffffff;">Not sure which scope fits your brand right now?</h2>
+        <p class="section-lead" style="color:#d8d4fc; margin-bottom: var(--space-2xl);">
+          We conduct a comprehensive media and unit-economic diagnostic before recommending any service tier. Let our senior team audit your storefront.
+        </p>
+        <a href="contact.html" class="btn btn-primary js-cta-btn" style="padding: 16px 36px; font-size: 1.05rem;">
+          <span class="js-cta-text">Book a Growth Audit</span>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Bottom CTA Bar on Mobile -->
+  <aside class="mobile-sticky-cta-bar" id="mobile-sticky-cta-bar" aria-label="Mobile Call to Action">
+    <a href="contact.html" class="btn btn-primary js-cta-btn">
+      <span class="js-cta-text">Book a Growth Audit</span>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="brand-logo" style="color:#ffffff;" aria-label="Squired Marketing">
+            <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <rect width="32" height="32" rx="4" fill="#E56315"/>
+              <path d="M10 11C10 9.89543 10.8954 9 12 9H20C21.1046 9 22 9.89543 22 11V14C22 15.1046 21.1046 16 20 16H14C12.8954 16 12 16.8954 12 18V21C12 22.1046 12.8954 23 14 23H22" stroke="#100558" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Squired Marketing</span>
+          </a>
+          <p>
+            Specialist performance &amp; retention growth consultancy. Built for commerce brands that value contribution margin over empty vanity metrics.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services</a></li>
+            <li><a href="about.html" class="footer-nav-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact &amp; Brief</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Direct Contact</h4>
+          <ul class="footer-nav-list">
+            <li><a href="mailto:growth@squiredmarketing.com" class="footer-nav-link">growth@squiredmarketing.com</a></li>
+            <li><a href="tel:+919830000000" class="footer-nav-link">+91 98300 00000</a></li>
+            <li style="color:#c0b9f0; font-size: 0.9rem; margin-top: 6px;">Kolkata, West Bengal, India</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 Squired Marketing. All rights reserved.</div>
+        <div style="display:flex; gap: 16px;">
+          <span>Sector V, Salt Lake, Kolkata</span>
+          <span>·</span>
+          <span>Performance &amp; Margin Engineering</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squired Marketing | Performance &amp; Retention Growth Partner</title>
+  <meta name="description" content="Squired Marketing is a specialist performance, marketplace, and retention growth consultancy for modern commerce brands. We engineer profitable contribution margins.">
+  <meta name="theme-color" content="#100558">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://squiredmarketing.com/">
+  <meta property="og:title" content="Squired Marketing | Performance &amp; Margin Partner">
+  <meta property="og:description" content="Profitable scaling for modern commerce brands. We engineer aggressive media buying, creative testing, and retention systems.">
+  <meta property="og:image" content="https://squiredmarketing.com/assets/logo.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Typography: Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- CRITICAL: Inline Head Script to resolve variant BEFORE first paint (zero-flicker) -->
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var campaign = (params.get('utm_campaign') || '').toLowerCase().trim();
+        var term = (params.get('utm_term') || '').toLowerCase().trim();
+        var source = (params.get('utm_source') || '').toLowerCase().trim();
+        var v = null;
+
+        if (campaign === 'marketplace') v = 'marketplace';
+        else if (campaign === 'd2c') v = 'd2c';
+        else if (campaign === 'retention') v = 'retention';
+
+        if (!v && term) {
+          var mk = ['amazon','flipkart','acos','tacos','listing','marketplace'];
+          var d2c = ['shopify','meta','facebook','roas','cpa','creative'];
+          var ret = ['whatsapp','email flow','repeat','retention'];
+          for (var i=0; i<mk.length; i++) { if (term.indexOf(mk[i]) !== -1) { v = 'marketplace'; break; } }
+          if (!v) { for (var j=0; j<d2c.length; j++) { if (term.indexOf(d2c[j]) !== -1) { v = 'd2c'; break; } } }
+          if (!v) { for (var k=0; k<ret.length; k++) { if (term.indexOf(ret[k]) !== -1) { v = 'retention'; break; } } }
+        }
+
+        if (!v) {
+          var stored = sessionStorage.getItem('squired_variant');
+          if (stored && ['default','marketplace','d2c','retention'].indexOf(stored) !== -1) {
+            v = stored;
+          }
+        }
+
+        v = v || 'default';
+        sessionStorage.setItem('squired_variant', v);
+        document.documentElement.setAttribute('data-variant', v);
+
+        // Source for mechanism visual
+        var s = (source || sessionStorage.getItem('squired_utm_source') || '').toLowerCase().trim();
+        var isCreative = ['meta','facebook','instagram','tiktok'].indexOf(s) !== -1;
+        document.documentElement.setAttribute('data-source', isCreative ? 'creative' : 'dashboard');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Sticky Site Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Squired Marketing Home">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="4" fill="#100558"/>
+          <path d="M10 11C10 9.89543 10.8954 9 12 9H20C21.1046 9 22 9.89543 22 11V14C22 15.1046 21.1046 16 20 16H14C12.8954 16 12 16.8954 12 18V21C12 22.1046 12.8954 23 14 23H22" stroke="#E56315" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="23" cy="9" r="2.5" fill="#E56315"/>
+        </svg>
+        <span>Squired Marketing</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary js-cta-btn" id="nav-cta-btn">
+          <span class="js-cta-text">Book a Growth Audit</span>
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <ul class="mobile-menu-links">
+        <li><a href="index.html" class="mobile-menu-link">Home</a></li>
+        <li><a href="services.html" class="mobile-menu-link">Services</a></li>
+        <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        <li><a href="contact.html" class="mobile-menu-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary js-cta-btn">
+        <span class="js-cta-text">Book a Growth Audit</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. Hero Section -->
+    <section class="hero-section" id="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="hero-eyebrow" id="hero-eyebrow">Specialist Performance &amp; Margin Partner</span>
+            <h1 class="hero-headline" id="hero-headline">Profitable scaling for modern commerce brands.</h1>
+            <p class="hero-subhead" id="hero-subhead">
+              We combine aggressive media buying, creative science, and retention engineering to build sustainable contribution margin — not just vanity top-line GMV.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#quick-form-card" class="btn btn-primary js-cta-btn" id="hero-primary-cta">
+                <span class="js-cta-text">Book a Growth Audit</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="services.html" class="btn-text" id="hero-secondary-link">
+                View service scopes <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="hero-microcopy" id="hero-microcopy">
+              Zero junior account reps. Transparent live sheets. 48-hour response SLA.
+            </div>
+
+            <!-- Proof Bar: Hidden until filled. Directly under hero next to CTA -->
+            <div class="proof-bar" id="proof-bar" style="display: none;" aria-hidden="true">
+              <div class="proof-item">
+                <span class="proof-value" data-token="VERIFIED_METRIC_1"></span>
+                <span class="proof-label" id="proof-label-1">Capital Managed</span>
+                <span class="proof-dates" data-token="VERIFIED_METRIC_1_DATES"></span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-value" data-token="VERIFIED_METRIC_2"></span>
+                <span class="proof-label" id="proof-label-2">Blended Return</span>
+                <span class="proof-dates" data-token="VERIFIED_METRIC_2_DATES"></span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-value" data-token="VERIFIED_METRIC_3"></span>
+                <span class="proof-label" id="proof-label-3">Retention Lift</span>
+                <span class="proof-dates" data-token="VERIFIED_METRIC_3_DATES"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: Inline Quick Form (Desktop) + Core Visual Mechanism -->
+          <div class="hero-right-col">
+            <div class="hero-form-card" id="quick-form-card">
+              <h2 class="hero-form-title">Request Storefront Audit</h2>
+              <p class="hero-form-subtitle">Receive actionable margin observations in 48 hours.</p>
+
+              <form class="js-quick-form" id="hero-quick-form" novalidate>
+                <!-- Spam Honeypot -->
+                <div class="hp-field" aria-hidden="true">
+                  <label for="website_url_hp">Leave empty</label>
+                  <input type="text" name="website_url_hp" id="website_url_hp" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="js-form-body">
+                  <div class="form-group">
+                    <label for="hero-name" class="form-label">Full Name</label>
+                    <input type="text" id="hero-name" name="client_name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="hero-contact" class="form-label">WhatsApp or Work Email</label>
+                    <input type="text" id="hero-contact" name="client_contact" class="form-input" placeholder="rahul@brand.com or +91 98..." required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="hero-brand" class="form-label js-dynamic-brand-label">Brand link or store URL</label>
+                    <input type="text" id="hero-brand" name="brand_link" class="form-input js-dynamic-brand-input" placeholder="yourbrand.com or store link" required>
+                    <p class="form-help js-dynamic-brand-help">Where can our analysts review your storefront?</p>
+                  </div>
+
+                  <div class="form-error js-form-error" role="alert"></div>
+
+                  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+                    <span class="js-cta-text">Book a Growth Audit</span>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+
+                <div class="js-form-success" style="display: none;"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Trust Strip -->
+    <section class="trust-strip" aria-label="Platforms and Technology Partners">
+      <div class="container trust-strip-inner">
+        <span class="trust-strip-label">Supported Commerce Ecosystem</span>
+        <div class="trust-pills-wrap" id="trust-strip-list">
+          <!-- Rendered dynamically by engine based on Geo -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why D2C / Commerce Growth Stalls (3 Columns) -->
+    <section class="section" id="problem-trio" aria-labelledby="problem-trio-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Economics Diagnostic</span>
+          <h2 class="section-title" id="problem-trio-title">Why Commerce Growth Stalls</h2>
+          <p class="section-lead" id="problem-trio-subtitle">Scaling ad spend without fixing unit economics breaks the business. Here is what we diagnose first:</p>
+        </div>
+        <div class="problem-grid" id="problem-trio-grid">
+          <!-- Rendered dynamically by engine based on variant -->
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- 4. What We Do (4 Columns, ordered by variant) -->
+    <section class="section section-tint" id="services-preview" aria-labelledby="services-preview-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Specialist Capabilities</span>
+          <h2 class="section-title" id="services-preview-title">What We Do</h2>
+          <p class="section-lead">Integrated growth execution across media buying, creative velocity, and customer lifetime value.</p>
+        </div>
+        <div class="services-preview-grid" id="home-services-grid">
+          <!-- Rendered dynamically by engine in variant order -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. How We Work (4 Numbered Steps) -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Operating Model</span>
+          <h2 class="section-title" id="process-title">How We Work</h2>
+          <p class="section-lead">A rigorous 4-step framework engineered to defend margins and compound cash flow.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-step">
+            <span class="step-num-large">01</span>
+            <h3 class="process-title">Deep-Dive Diagnostic &amp; Margin Audit</h3>
+            <p class="process-desc">We audit ad accounts, creative archives, tracking, and unit economics to find capital leaks and profitable SKU opportunities.</p>
+          </article>
+          <article class="process-step">
+            <span class="step-num-large">02</span>
+            <h3 class="process-title">Growth Blueprint &amp; Unit Economics</h3>
+            <p class="process-desc">We set strict targets for CAC, MER, and contribution margin, mapping a 90-day creative, media, and retention sprint.</p>
+          </article>
+          <article class="process-step">
+            <span class="step-num-large">03</span>
+            <h3 class="process-title">Sprint Execution &amp; High-Velocity Testing</h3>
+            <p class="process-desc">We rebuild campaign architectures, launch fresh creative angles, deploy conversion landers, and activate retention automations.</p>
+          </article>
+          <article class="process-step">
+            <span class="step-num-large">04</span>
+            <h3 class="process-title">Scale, Defend &amp; Compounding Margin</h3>
+            <p class="process-desc">As clear winners emerge, we allocate capital to expand volume while defending blended contribution margin and cohort retention.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. What We Measure (Consulting Metrics Framework) -->
+    <section class="section section-tint" id="metrics" aria-labelledby="metrics-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Accountability Matrix</span>
+          <h2 class="section-title" id="metrics-title">What We Measure</h2>
+          <p class="section-lead">We reject vanity platform screenshots. Our performance is measured against real commercial viability.</p>
+        </div>
+        <div class="metrics-framework-grid">
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">Contribution Margin (CM)</h3>
+            <p class="metric-framework-def">Net revenue minus COGS, shipping, payment gateway fees, and ad spend. Our primary compass for true business viability.</p>
+          </div>
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">Marketing Efficiency Ratio (MER)</h3>
+            <p class="metric-framework-def">Total top-line revenue divided by total marketing spend. Eliminates cross-channel attribution double-counting.</p>
+          </div>
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">New Customer CAC (nCAC)</h3>
+            <p class="metric-framework-def">Total paid ad spend divided strictly by new, non-repeat buyers. Ensures acquisition isn't secretly relying on existing customers.</p>
+          </div>
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">60-Day &amp; 90-Day Cohort LTV</h3>
+            <p class="metric-framework-def">Cumulative gross margin generated by a customer cohort over time. Dictates how aggressively we can bid upfront.</p>
+          </div>
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">Total ACOS / TACoS</h3>
+            <p class="metric-framework-def">Total ad spend on marketplaces divided by total marketplace revenue. The truest indicator of organic momentum.</p>
+          </div>
+          <div class="metric-framework-item">
+            <h3 class="metric-framework-name">Return-To-Origin (RTO) Rate</h3>
+            <p class="metric-framework-def">Percentage of shipped COD orders that fail delivery. Monitored closely to protect cash flow and fulfillment overhead.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Growth Economics Calculator -->
+    <section class="section" id="calculator-module" aria-labelledby="calc-title">
+      <div class="container">
+        <div class="section-header section-header-centered">
+          <span class="section-tag">Economics Modeling</span>
+          <h2 class="section-title" id="calc-title">Model Your Efficiency Lift</h2>
+          <p class="section-lead">Calculate the compounding impact of a conservative 10% efficiency gain across your current ad spend.</p>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-grid">
+            <div class="calc-inputs-col">
+              <div class="calc-input-group">
+                <div class="calc-label-row">
+                  <label for="calc-spend-input" class="form-label" style="margin:0;">Monthly Ad Spend</label>
+                  <input type="number" id="calc-spend-input" class="calc-input-num" aria-label="Monthly ad spend amount">
+                </div>
+                <input type="range" id="calc-spend-slider" class="range-slider" aria-label="Adjust monthly ad spend">
+              </div>
+
+              <div class="calc-input-group">
+                <div class="calc-label-row">
+                  <label for="calc-metric-input" class="form-label" style="margin:0;" id="calc-metric-label">Current Blended ROAS</label>
+                  <div style="display:flex; align-items:center; gap:4px;">
+                    <input type="number" id="calc-metric-input" step="0.1" class="calc-input-num" style="width:80px;" aria-label="Current metric value">
+                    <span id="calc-metric-unit" style="font-weight:700;">x</span>
+                  </div>
+                </div>
+                <input type="range" id="calc-metric-slider" class="range-slider" aria-label="Adjust current ROAS or ACOS">
+              </div>
+            </div>
+
+            <div class="calc-results-card">
+              <span class="calc-result-header">Estimated Monthly Efficiency Lift</span>
+              <div class="calc-result-lift" id="calc-output-lift">₹30,000</div>
+              
+              <div>
+                <span class="calc-result-rev-label">Projected Total Revenue (Post-Optimization):</span>
+                <div class="calc-result-rev-val" id="calc-output-revenue">₹3,30,000</div>
+              </div>
+
+              <p class="calc-note" id="calc-note">
+                Illustrative estimate based on a conservative 10% efficiency gain on spend efficiency and contribution margin. Squired validates full economics during the diagnostic audit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Results / Verified Case Studies (Hidden until filled) -->
+    <section class="section section-tint" id="results-section" style="display: none;" aria-hidden="true">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Verified Commercial Results</span>
+          <h2 class="section-title">Case Studies &amp; Outcomes</h2>
+        </div>
+        <div id="results-container"></div>
+      </div>
+    </section>
+
+    <!-- 9. Founder & Leadership Section -->
+    <section class="section" id="founder" aria-labelledby="founder-heading">
+      <div class="container">
+        <div class="founder-card">
+          <div class="founder-avatar-box">
+            <span class="founder-initials">SM</span>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--color-navy-muted); text-transform:uppercase;">Senior Operators</span>
+          </div>
+          <div class="founder-details">
+            <span class="section-tag">Senior-Led Partnership</span>
+            <h2 class="founder-name" id="founder-heading">Direct Senior Leadership</h2>
+            <div class="founder-role">Growth Architects &amp; Performance Directors</div>
+            <p class="founder-bio">
+              At Squired Marketing, you never get passed off to a junior coordinator. We are hands-on operators with over a decade of combined experience deploying millions in profitable ad spend across Shopify, Amazon, Flipkart, Meta, and Google. We remain deeply embedded in daily media execution, creative direction, and unit-economic modeling.
+            </p>
+            <div class="founder-loc">
+              <strong>Headquarters:</strong> Kolkata, West Bengal — Partnering with brands nationwide and globally.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Accessible FAQ Accordion -->
+    <section class="section section-tint" id="faq" aria-labelledby="faq-title">
+      <div class="container container-narrow">
+        <div class="section-header section-header-centered">
+          <span class="section-tag">Clarity &amp; Terms</span>
+          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+          <p class="section-lead">Everything you need to know about our partnership model, economics, and engagement structure.</p>
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion-container">
+          <!-- Rendered dynamically by components.js + FAQPage Schema -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Final CTA Section with Quick Form -->
+    <section class="section section-navy" id="final-cta" aria-labelledby="final-cta-heading">
+      <div class="container">
+        <div class="hero-grid" style="align-items: center;">
+          <div>
+            <span class="section-tag" style="color:#c0b9f0;">Ready to Eliminate Margin Waste?</span>
+            <h2 class="section-title" id="final-cta-heading" style="color:#ffffff;">Stop paying high acquisition costs for fragile revenue.</h2>
+            <p class="section-lead" style="color:#d8d4fc; margin-bottom: var(--space-xl);">
+              Get an actionable teardown of your paid media, ad creative fatigue, and retention leaks from a senior growth partner.
+            </p>
+            <div class="hero-microcopy" style="color:#c0b9f0;">
+              No sales pitch. 45-minute growth diagnostic session. 100% confidential.
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-form-card" style="box-shadow: 0 12px 40px rgba(0,0,0,0.3);">
+              <h3 class="hero-form-title">Start Your Audit</h3>
+              <p class="hero-form-subtitle">Enter your storefront details below.</p>
+
+              <form class="js-quick-form" id="final-quick-form" novalidate>
+                <div class="hp-field" aria-hidden="true">
+                  <label for="website_url_hp2">Leave blank</label>
+                  <input type="text" name="website_url_hp" id="website_url_hp2" tabindex="-1">
+                </div>
+
+                <div class="js-form-body">
+                  <div class="form-group">
+                    <label for="final-name" class="form-label">Full Name</label>
+                    <input type="text" id="final-name" name="client_name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="final-contact" class="form-label">WhatsApp or Work Email</label>
+                    <input type="text" id="final-contact" name="client_contact" class="form-input" placeholder="rahul@brand.com or +91 98..." required>
+                  </div>
+                  <div class="form-group">
+                    <label for="final-brand" class="form-label js-dynamic-brand-label">Brand link or store URL</label>
+                    <input type="text" id="final-brand" name="brand_link" class="form-input js-dynamic-brand-input" placeholder="yourbrand.com or store link" required>
+                  </div>
+
+                  <div class="form-error js-form-error" role="alert"></div>
+
+                  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+                    <span class="js-cta-text">Book a Growth Audit</span>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+
+                <div class="js-form-success" style="display: none;"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Bottom CTA Bar on Mobile -->
+  <aside class="mobile-sticky-cta-bar" id="mobile-sticky-cta-bar" aria-label="Mobile Call to Action">
+    <a href="#quick-form-card" class="btn btn-primary js-cta-btn js-sticky-cta-btn">
+      <span class="js-cta-text">Book a Growth Audit</span>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="brand-logo" style="color:#ffffff;" aria-label="Squired Marketing">
+            <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <rect width="32" height="32" rx="4" fill="#E56315"/>
+              <path d="M10 11C10 9.89543 10.8954 9 12 9H20C21.1046 9 22 9.89543 22 11V14C22 15.1046 21.1046 16 20 16H14C12.8954 16 12 16.8954 12 18V21C12 22.1046 12.8954 23 14 23H22" stroke="#100558" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Squired Marketing</span>
+          </a>
+          <p>
+            Specialist performance &amp; retention growth consultancy. Built for commerce brands that value contribution margin over empty vanity metrics.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services</a></li>
+            <li><a href="about.html" class="footer-nav-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact &amp; Brief</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4>Direct Contact</h4>
+          <ul class="footer-nav-list">
+            <li><a href="mailto:growth@squiredmarketing.com" class="footer-nav-link">growth@squiredmarketing.com</a></li>
+            <li><a href="tel:+919830000000" class="footer-nav-link">+91 98300 00000</a></li>
+            <li style="color:#c0b9f0; font-size: 0.9rem; margin-top: 6px;">Kolkata, West Bengal, India</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 Squired Marketing. All rights reserved.</div>
+        <div style="display:flex; gap: 16px;">
+          <span>Sector V, Salt Lake, Kolkata</span>
+          <span>·</span>
+          <span>Performance &amp; Margin Engineering</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>
