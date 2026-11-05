@@ -289,13 +289,16 @@
           return;
         }
 
-        // Payload
+        // Form Payload with FormSubmit integration fields
         const payload = {
           name: nameInput.value.trim(),
           contact: contactVal,
           brandLink: brandInput.value.trim(),
           formType: 'quick_form',
           submittedAt: new Date().toISOString(),
+          _subject: `New Squired Growth Audit: ${brandInput.value.trim()} (${nameInput.value.trim()})`,
+          _template: 'table',
+          _captcha: 'false',
           ...getHiddenFieldData()
         };
 
@@ -307,11 +310,14 @@
 
         try {
           // Attempt POST to configured endpoint
-          const endpoint = window.SQUIRED_CONFIG?.formEndpoint || '/api/enquiry';
+          const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/anirban@squiredmarketing.com';
           try {
             await fetch(endpoint, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
               body: JSON.stringify(payload)
             });
           } catch (postErr) {
@@ -339,15 +345,20 @@
                 <h3>Audit Request Received</h3>
                 <p>Thank you, <strong>${payload.name}</strong>. Here is what happens next:</p>
                 <div class="next-steps-list">
-                  <div class="step-row"><span class="step-num">01</span><span>Our senior lead audits your storefront & ad presence within 24 hours.</span></div>
-                  <div class="step-row"><span class="step-num">02</span><span>We email/WhatsApp you with initial observations and schedule a 45-min diagnostic call.</span></div>
+                  <div class="step-row"><span class="step-num">01</span><span>Anirban Roy reviews your storefront & ad presence within 24 hours.</span></div>
+                  <div class="step-row"><span class="step-num">02</span><span>We email/WhatsApp you with initial margin observations and schedule a 45-min diagnostic call.</span></div>
                   <div class="step-row"><span class="step-num">03</span><span>You receive a transparent margin roadmap and execution scope.</span></div>
+                </div>
+                <div style="margin-top: 18px;">
+                  <a href="https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20growth%20audit%20request%20for%20my%20brand." target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.85rem; padding:8px 14px; width:100%;">
+                    <span>Connect directly on WhatsApp &rarr;</span>
+                  </a>
                 </div>
               </div>
             `;
           }
         } catch (err) {
-          showError(errorEl, 'Something went wrong. Please reach out directly to growth@squiredmarketing.com');
+          showError(errorEl, 'Something went wrong. Please reach out directly to anirban@squiredmarketing.com or +91 98365 78989');
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = submitBtn.dataset.originalText;
@@ -514,6 +525,9 @@
         ...briefData,
         formType: 'detailed_brief',
         submittedAt: new Date().toISOString(),
+        _subject: `New Detailed Squired Brief: ${briefData.brandName} (${briefData.contactName})`,
+        _template: 'table',
+        _captcha: 'false',
         ...getHiddenFieldData()
       };
 
@@ -524,11 +538,14 @@
       }
 
       try {
-        const endpoint = window.SQUIRED_CONFIG?.formEndpoint || '/api/enquiry';
+        const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/anirban@squiredmarketing.com';
         try {
           await fetch(endpoint, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
             body: JSON.stringify(payload)
           });
         } catch (fetchErr) {
@@ -554,15 +571,20 @@
               <h3>Comprehensive Brief Received</h3>
               <p>Thank you, <strong>${payload.contactName}</strong>. We have logged your brief for <strong>${payload.brandName}</strong>.</p>
               <div class="next-steps-list">
-                <div class="step-row"><span class="step-num">01</span><span>Our senior growth architect is reviewing your storefront and channels.</span></div>
+                <div class="step-row"><span class="step-num">01</span><span>Anirban Roy is reviewing your storefront and channels.</span></div>
                 <div class="step-row"><span class="step-num">02</span><span>We will prepare a customized 45-minute growth diagnostic session.</span></div>
                 <div class="step-row"><span class="step-num">03</span><span>Expect a personal message within 24–48 hours at <strong>${payload.contactEmail}</strong>.</span></div>
+              </div>
+              <div style="margin-top: 18px;">
+                <a href="https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20detailed%20growth%20brief%20for%20my%20brand." target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.85rem; padding:8px 14px; width:100%;">
+                  <span>Connect directly on WhatsApp &rarr;</span>
+                </a>
               </div>
             </div>
           `;
         }
       } catch (err) {
-        showError(errorEl, 'Unable to submit brief. Please contact us directly at growth@squiredmarketing.com');
+        showError(errorEl, 'Unable to submit brief. Please contact us directly at anirban@squiredmarketing.com or +91 98365 78989');
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.innerHTML = submitBtn.dataset.originalText;
@@ -675,7 +697,6 @@
         "@type": "PostalAddress",
         "addressLocality": "Kolkata",
         "addressRegion": "West Bengal",
-        "postalCode": "700091",
         "addressCountry": "IN"
       },
       "sameAs": [

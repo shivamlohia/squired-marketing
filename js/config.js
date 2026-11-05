@@ -12,9 +12,9 @@ const CONFIG = {
     name: "Squired Marketing",
     tagline: "Performance & Retention Growth Partner for Modern Brands",
     founded: "Kolkata, India",
-    email: "growth@squiredmarketing.com",
-    phone: "+91 98300 00000",
-    location: "Kolkata, West Bengal, India",
+    email: "anirban@squiredmarketing.com",
+    phone: "+91 98365 78989",
+    location: "Kolkata, India",
     copyrightYear: 2026,
     socials: {
       linkedin: "https://linkedin.com/company/squired-marketing",
@@ -22,8 +22,8 @@ const CONFIG = {
     }
   },
 
-  // Form endpoint (Overridden by environment or config)
-  formEndpoint: "/api/enquiry", // can point to Formspree, custom backend, or webhook
+  // Form endpoint (Direct FormSubmit AJAX endpoint delivering straight to Anirban's inbox)
+  formEndpoint: "https://formsubmit.co/ajax/anirban@squiredmarketing.com",
 
   // Calculator Configuration
   calculator: {
@@ -472,15 +472,15 @@ const CONFIG = {
       }
     ],
     founder: {
-      name: "Senior Leadership Team",
-      role: "Growth Architects & Performance Directors",
-      bio: "Squired Marketing is led by hands-on growth operators with over a decade of combined experience deploying millions in profitable ad spend across Shopify, Amazon, Flipkart, Meta, and Google. We remain deeply embedded in daily account execution, creative direction, and margin modeling.",
-      location: "Operating from Kolkata, West Bengal with a global reach."
+      name: "Anirban Roy",
+      role: "Founder & Lead Growth Architect",
+      bio: "Anirban Roy is the Founder and Lead Growth Architect at Squired Marketing with over a decade of hands-on experience deploying millions in profitable ad spend across Shopify, Amazon, Flipkart, Meta, and Google. He remains deeply embedded in daily account execution, creative direction, and margin modeling.",
+      location: "Operating from Kolkata with a global reach."
     },
     whereWeWork: {
       title: "Where We Work",
-      description: "Based in Kolkata, West Bengal, India. We serve D2C brands, marketplace merchants, and omnichannel retail brands across Mumbai, Delhi NCR, Bengaluru, Kolkata, and international commerce hubs across North America, the UK, and Southeast Asia.",
-      address: "Squired Marketing, Sector V, Salt Lake, Kolkata, West Bengal 700091, India"
+      description: "Based in Kolkata, India. We serve D2C brands, marketplace merchants, and omnichannel retail brands across Mumbai, Delhi NCR, Bengaluru, Kolkata, and international commerce hubs across North America, the UK, and Southeast Asia.",
+      address: "Squired Marketing, Kolkata, India"
     }
   },
 
@@ -510,9 +510,9 @@ const CONFIG = {
     ],
     directDetails: {
       title: "Direct Contact",
-      email: "growth@squiredmarketing.com",
-      phone: "+91 98300 00000",
-      headquarters: "Kolkata, West Bengal, India",
+      email: "anirban@squiredmarketing.com",
+      phone: "+91 98365 78989",
+      headquarters: "Kolkata, India",
       hours: "Monday to Friday: 10:00 AM – 7:00 PM IST"
     }
   },
