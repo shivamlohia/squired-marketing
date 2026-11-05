@@ -1,0 +1,8 @@
+<!-- Option 1B: Crisp White Background with Navy 'S' and Orange Corner -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Subtle border for light tabs -->
+  <rect width="64" height="64" rx="14" fill="#FFFFFF" stroke="#E4E7F4" stroke-width="2"/>
+  <text x="17" y="45" font-family="'Manrope', -apple-system, sans-serif" font-weight="800" font-size="36" fill="#0A034C">S</text>
+  <!-- Squired Orange Corner Accent -->
+  <path d="M42 12H52V22" stroke="#E56315" stroke-width="6" stroke-linecap="square"/>
+</svg>

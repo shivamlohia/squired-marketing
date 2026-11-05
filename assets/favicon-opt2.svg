@@ -1,0 +1,9 @@
+<!-- Option 2: Squired Geometric Frame with Orange Breakout Corner -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Navy base rounded background -->
+  <rect width="64" height="64" rx="14" fill="#0A034C"/>
+  <!-- Minimalist Square Frame with open top-right -->
+  <path d="M40 16H18C15.79 16 14 17.79 14 20V46C14 48.21 15.79 50 18 50H46C48.21 50 50 48.21 50 46V26" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  <!-- Signature Orange Corner Accent breaking out -->
+  <path d="M42 12H54V24" stroke="#E56315" stroke-width="6" stroke-linecap="square"/>
+</svg>

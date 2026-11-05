@@ -1,0 +1,7 @@
+<!-- Option 4: "SQ" Monogram with Orange Corner on Deep Navy -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0A034C"/>
+  <text x="9" y="44" font-family="'Manrope', -apple-system, sans-serif" font-weight="800" font-size="28" fill="#FFFFFF" letter-spacing="-1">SQ</text>
+  <!-- Orange corner -->
+  <path d="M46 12H54V20" stroke="#E56315" stroke-width="5" stroke-linecap="square"/>
+</svg>
