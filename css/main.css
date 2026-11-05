@@ -294,20 +294,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--color-navy);
-  letter-spacing: -0.03em;
+  text-decoration: none;
 }
 
-.brand-mark {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
+.site-logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.site-logo-footer {
+  height: 42px;
 }
 
 .nav-links {

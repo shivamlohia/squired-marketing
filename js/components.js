@@ -668,7 +668,7 @@
       "@type": "Organization",
       "name": config.brand.name,
       "url": "https://squiredmarketing.com",
-      "logo": "https://squiredmarketing.com/assets/logo.svg",
+      "logo": "https://squiredmarketing.com/assets/logo.png",
       "email": config.brand.email,
       "telephone": config.brand.phone,
       "address": {
