@@ -348,72 +348,82 @@
         if (foundIdx !== -1) activeIdx = foundIdx;
       }
 
+      const activeService = ordered[activeIdx] || ordered[0];
+
       explorerContainer.innerHTML = `
-        <!-- Desktop: Hover-Reveal Service Blocks (Zero Cards) -->
-        <div class="services-desktop-list" id="services-desktop-list">
-          <div class="services-actions-bar">
-            <span class="services-count-badge">5 Dedicated Scopes</span>
-            <button type="button" class="btn-toggle-all-services" id="btn-toggle-all-services" aria-expanded="false">
-              <span id="toggle-all-text">Expand all scopes</span>
-              <svg class="toggle-all-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-          <div class="services-list">
-            ${ordered.map((srv, idx) => `
-              <article class="service-block" id="${srv.id}" tabindex="0">
-                <div class="service-block-header">
-                  <span class="service-block-num">0${idx + 1}</span>
-                  <div class="service-block-header-info">
-                    <h2 class="service-block-title">${srv.title}</h2>
-                    <div class="service-block-badge">${srv.shortTitle}</div>
+        <!-- Desktop: Row layout on left with 5 options; hovering any option expands its details on the right -->
+        <div class="services-desktop-explorer" id="services-desktop-explorer">
+          <div class="services-explorer-layout">
+            <!-- Left Tabs Menu (5 option rows) -->
+            <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
+              ${ordered.map((srv, idx) => {
+                const isActive = idx === activeIdx;
+                return `
+                  <button type="button" 
+                          class="service-tab-btn ${isActive ? 'active' : ''}" 
+                          data-service-id="${srv.id}" 
+                          data-index="${idx}"
+                          role="tab" 
+                          aria-selected="${isActive ? 'true' : 'false'}"
+                          id="tab-${srv.id}">
+                    <span class="service-tab-num">0${idx + 1}</span>
+                    <div class="service-tab-info">
+                      <span class="service-tab-title">${srv.title}</span>
+                      <span class="service-tab-badge">${srv.shortTitle}</span>
+                    </div>
+                    <svg class="service-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                `;
+              }).join('')}
+            </nav>
+
+            <!-- Right Detail Showcase (whichever row is hovered expands here) -->
+            <div class="services-detail-col" role="tabpanel" aria-labelledby="tab-${activeService.id}" id="desktop-detail-col">
+              <article class="service-detail-card">
+                <div class="service-detail-header">
+                  <div>
+                    <span class="service-detail-badge">${activeService.shortTitle}</span>
+                    <h2 class="service-detail-title">${activeService.title}</h2>
                   </div>
-                </div>
-                
-                <p class="service-block-lead">${srv.description}</p>
-
-                <div class="service-block-trigger" role="button" aria-expanded="false" tabindex="0">
-                  <span class="trigger-label">Execution Scope &amp; Deliverables</span>
-                  <span class="trigger-action">
-                    <svg class="trigger-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                  </span>
+                  <span class="service-detail-num">0${activeIdx + 1}</span>
                 </div>
 
-                <div class="service-block-drawer">
-                  <div class="service-block-details">
-                    <div class="service-includes-col">
-                      <h3 class="service-subheading">Scope Deliverables</h3>
-                      <ul class="service-includes-list">
-                        ${srv.includes.map(inc => `
-                          <li>
-                            <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>${inc}</span>
-                          </li>
-                        `).join('')}
-                      </ul>
+                <p class="service-detail-lead">${activeService.description}</p>
+
+                <div class="service-detail-grid">
+                  <div class="service-scope-col">
+                    <h3 class="service-subheading">Scope Deliverables</h3>
+                    <ul class="service-includes-list">
+                      ${activeService.includes.map(inc => `
+                        <li>
+                          <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                          <span>${inc}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+
+                  <div class="service-meta-col">
+                    <div class="service-meta-card">
+                      <h4 class="meta-card-title">Best For</h4>
+                      <p class="meta-card-text">${activeService.bestFor}</p>
                     </div>
 
-                    <div class="service-meta-col">
-                      <div class="service-meta-card">
-                        <h4 class="meta-card-title">Best For</h4>
-                        <p class="meta-card-text">${srv.bestFor}</p>
-                      </div>
+                    <div class="service-meta-card">
+                      <h4 class="meta-card-title">Measures</h4>
+                      <p class="meta-card-text">${activeService.weMeasure}</p>
+                    </div>
 
-                      <div class="service-meta-card">
-                        <h4 class="meta-card-title">Measures</h4>
-                        <p class="meta-card-text">${srv.weMeasure}</p>
-                      </div>
-
-                      <div class="service-cta-wrap">
-                        <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                          <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                      </div>
+                    <div class="service-cta-wrap">
+                      <a href="contact.html?service=${activeService.id}" class="btn btn-primary js-cta-btn">
+                        <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </a>
                     </div>
                   </div>
                 </div>
               </article>
-            `).join('')}
+            </div>
           </div>
         </div>
 
@@ -550,44 +560,84 @@
         </div>
       `;
 
-      // ---------------- Desktop Interactions ----------------
-      const desktopBlocks = explorerContainer.querySelectorAll('.services-desktop-list .service-block');
-      desktopBlocks.forEach(block => {
-        const trigger = block.querySelector('.service-block-trigger');
-        const toggleBlock = (e) => {
-          if (e.target.closest('a') || (e.target.closest('button') && !e.target.closest('.service-block-trigger'))) return;
-          block.classList.toggle('is-expanded');
-          const isExp = block.classList.contains('is-expanded');
-          if (trigger) trigger.setAttribute('aria-expanded', isExp ? 'true' : 'false');
-        };
+      // ---------------- Desktop Hover-to-Expand Interactions ----------------
+      const desktopTabs = explorerContainer.querySelectorAll('#services-desktop-explorer .service-tab-btn');
+      const desktopDetailCol = document.getElementById('desktop-detail-col');
+      let activeDesktopId = activeService.id;
 
-        if (trigger) {
-          trigger.addEventListener('click', toggleBlock);
-          trigger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggleBlock(e);
-            }
-          });
-        }
-      });
+      function updateDesktopDetail(selectedId) {
+        activeDesktopId = selectedId;
+        const srv = ordered.find(s => s.id === selectedId) || ordered[0];
+        const srvIdx = ordered.indexOf(srv);
 
-      const toggleAllBtn = document.getElementById('btn-toggle-all-services');
-      const toggleAllText = document.getElementById('toggle-all-text');
-      if (toggleAllBtn && desktopBlocks.length > 0) {
-        let allExpanded = false;
-        toggleAllBtn.addEventListener('click', () => {
-          allExpanded = !allExpanded;
-          desktopBlocks.forEach(b => {
-            b.classList.toggle('is-expanded', allExpanded);
-            const trig = b.querySelector('.service-block-trigger');
-            if (trig) trig.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
-          });
-          toggleAllBtn.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
-          toggleAllBtn.classList.toggle('active', allExpanded);
-          if (toggleAllText) toggleAllText.textContent = allExpanded ? 'Collapse all scopes' : 'Expand all scopes';
+        desktopTabs.forEach(btn => {
+          const isAct = btn.getAttribute('data-service-id') === selectedId;
+          btn.classList.toggle('active', isAct);
+          btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
         });
+
+        if (desktopDetailCol) {
+          desktopDetailCol.setAttribute('aria-labelledby', `tab-${srv.id}`);
+          desktopDetailCol.innerHTML = `
+            <article class="service-detail-card">
+              <div class="service-detail-header">
+                <div>
+                  <span class="service-detail-badge">${srv.shortTitle}</span>
+                  <h2 class="service-detail-title">${srv.title}</h2>
+                </div>
+                <span class="service-detail-num">0${srvIdx + 1}</span>
+              </div>
+
+              <p class="service-detail-lead">${srv.description}</p>
+
+              <div class="service-detail-grid">
+                <div class="service-scope-col">
+                  <h3 class="service-subheading">Scope Deliverables</h3>
+                  <ul class="service-includes-list">
+                    ${srv.includes.map(inc => `
+                      <li>
+                        <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>${inc}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+
+                <div class="service-meta-col">
+                  <div class="service-meta-card">
+                    <h4 class="meta-card-title">Best For</h4>
+                    <p class="meta-card-text">${srv.bestFor}</p>
+                  </div>
+
+                  <div class="service-meta-card">
+                    <h4 class="meta-card-title">Measures</h4>
+                    <p class="meta-card-text">${srv.weMeasure}</p>
+                  </div>
+
+                  <div class="service-cta-wrap">
+                    <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
+                      <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }
       }
+
+      desktopTabs.forEach(btn => {
+        const sid = btn.getAttribute('data-service-id');
+        // HOVER: Instant expand on hover
+        btn.addEventListener('mouseenter', () => {
+          if (sid !== activeDesktopId) updateDesktopDetail(sid);
+        });
+        // CLICK / KEYBOARD: Instant expand on click
+        btn.addEventListener('click', () => {
+          if (sid !== activeDesktopId) updateDesktopDetail(sid);
+        });
+      });
 
       // ---------------- Mobile Card Deck Interactions ----------------
       const cards = explorerContainer.querySelectorAll('.services-mobile-deck .diagonal-card');
@@ -762,15 +812,11 @@
       function handleHashChange() {
         if (window.location.hash) {
           const hashId = window.location.hash.substring(1);
-          const targetDesktop = document.getElementById(hashId);
-          if (targetDesktop && targetDesktop.classList.contains('service-block')) {
-            targetDesktop.classList.add('is-expanded');
-            const trig = targetDesktop.querySelector('.service-block-trigger');
-            if (trig) trig.setAttribute('aria-expanded', 'true');
-            targetDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (ordered.some(s => s.id === hashId)) {
+            updateDesktopDetail(hashId);
+            const foundIdx = ordered.findIndex(s => s.id === hashId);
+            if (foundIdx !== -1) updateDeck(foundIdx);
           }
-          const foundIdx = ordered.findIndex(s => s.id === hashId);
-          if (foundIdx !== -1) updateDeck(foundIdx);
         }
       }
 
