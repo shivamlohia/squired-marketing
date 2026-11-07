@@ -331,7 +331,7 @@
       `).join('');
     }
 
-    // Full Services Explorer (services.html)
+    // Full Services Explorer with 3D Diagonal Peeking Card Deck (services.html)
     const explorerContainer = document.getElementById('services-explorer') || document.getElementById('services-list-container');
     if (explorerContainer && allServices.length > 0) {
       const ordered = [...allServices].sort((a, b) => {
@@ -340,254 +340,294 @@
         return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
       });
 
-      let activeId = ordered[0].id;
+      const total = ordered.length;
+      let activeIdx = 0;
       if (window.location.hash) {
         const hashId = window.location.hash.substring(1);
-        if (ordered.some(s => s.id === hashId)) {
-          activeId = hashId;
-        }
+        const foundIdx = ordered.findIndex(s => s.id === hashId);
+        if (foundIdx !== -1) activeIdx = foundIdx;
       }
 
-      function renderExplorer(selectedId, direction) {
-        activeId = selectedId;
-        const activeService = ordered.find(s => s.id === selectedId) || ordered[0];
-        const activeIdx = ordered.indexOf(activeService);
-        const prevIdx = (activeIdx - 1 + ordered.length) % ordered.length;
-        const nextIdx = (activeIdx + 1) % ordered.length;
-        const prevService = ordered[prevIdx];
-        const nextService = ordered[nextIdx];
+      // Initial Render: build all cards into the stage once for 60fps CSS transitions
+      explorerContainer.innerHTML = `
+        <div class="services-explorer-layout">
+          <!-- Left Tabs Menu (Direct Selection Options) -->
+          <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
+            ${ordered.map((srv, idx) => `
+              <button type="button" 
+                      class="service-tab-btn ${idx === activeIdx ? 'active' : ''}" 
+                      data-index="${idx}" 
+                      role="tab" 
+                      aria-selected="${idx === activeIdx ? 'true' : 'false'}"
+                      id="tab-${srv.id}">
+                <span class="service-tab-num">0${idx + 1}</span>
+                <div class="service-tab-info">
+                  <span class="service-tab-title">${srv.title}</span>
+                  <span class="service-tab-badge">${srv.shortTitle}</span>
+                </div>
+                <svg class="service-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            `).join('')}
+          </nav>
 
-        const animClass = direction === 'next' ? 'slide-next' : (direction === 'prev' ? 'slide-prev' : '');
-
-        explorerContainer.innerHTML = `
-          <div class="services-explorer-layout">
-            <!-- Left Tabs Menu (Direct Selection) -->
-            <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
+          <!-- Right Showcase: 3D Diagonal Peeking Card Deck -->
+          <div class="services-detail-col">
+            <div class="diagonal-deck-stage" id="diagonal-deck-stage" tabindex="0" aria-label="Services card deck. Use arrow keys or swipe to navigate.">
               ${ordered.map((srv, idx) => {
-                const isActive = srv.id === activeService.id;
+                const prevIdx = (idx - 1 + total) % total;
+                const nextIdx = (idx + 1) % total;
+                const prevService = ordered[prevIdx];
+                const nextService = ordered[nextIdx];
+
+                let posClass = 'card-pos-hidden';
+                if (idx === activeIdx) posClass = 'card-pos-active';
+                else if (idx === (activeIdx + 1) % total) posClass = 'card-pos-next';
+                else if (idx === (activeIdx - 1 + total) % total) posClass = 'card-pos-prev';
+
                 return `
-                  <button type="button" 
-                          class="service-tab-btn ${isActive ? 'active' : ''}" 
-                          data-service-id="${srv.id}" 
-                          role="tab" 
-                          aria-selected="${isActive ? 'true' : 'false'}"
-                          id="tab-${srv.id}">
-                    <span class="service-tab-num">0${idx + 1}</span>
-                    <div class="service-tab-info">
-                      <span class="service-tab-title">${srv.title}</span>
-                      <span class="service-tab-badge">${srv.shortTitle}</span>
-                    </div>
-                    <svg class="service-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                  </button>
-                `;
-              }).join('')}
-            </nav>
+                  <article class="diagonal-card ${posClass}" 
+                           data-card-index="${idx}" 
+                           data-service-id="${srv.id}"
+                           id="card-${srv.id}"
+                           role="tabpanel" 
+                           aria-labelledby="tab-${srv.id}">
+                    
+                    <!-- Card Top Bar: Chip Badge, Progress Dots & Arrows -->
+                    <div class="service-card-top-nav">
+                      <div class="card-indicator">
+                        <span class="card-chip">
+                          <span class="chip-pulse"></span>
+                          <strong>SCOPE 0${idx + 1} / 0${total}</strong>
+                        </span>
+                        <div class="card-indicator-dots" role="group" aria-label="Service scopes">
+                          ${ordered.map((_, dotIdx) => `
+                            <button type="button" 
+                                    class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
+                                    data-index="${dotIdx}" 
+                                    aria-label="Switch to scope 0${dotIdx + 1}">
+                            </button>
+                          `).join('')}
+                        </div>
+                      </div>
 
-            <!-- Right Detail Showcase Card with 3D Card Stack Illusion & Next/Prev Navigation -->
-            <div class="services-detail-col" role="tabpanel" aria-labelledby="tab-${activeService.id}" id="${activeService.id}">
-              <div class="services-deck-stage">
-                <!-- Stacked Card Depth Illusion Layers -->
-                <div class="deck-shadow-card layer-2" aria-hidden="true"></div>
-                <div class="deck-shadow-card layer-1" aria-hidden="true"></div>
-
-                <article class="service-detail-card ${animClass}" tabindex="0" aria-label="Service scope ${activeIdx + 1} of ${ordered.length}: ${activeService.title}">
-                  
-                  <!-- Card Top Bar: Chip Badge, Progress Dots & Arrows -->
-                  <div class="service-card-top-nav">
-                    <div class="card-indicator">
-                      <span class="card-chip">
-                        <span class="chip-pulse"></span>
-                        <strong>SCOPE 0${activeIdx + 1} / 0${ordered.length}</strong>
-                      </span>
-                      <div class="card-indicator-dots" role="group" aria-label="Service scopes">
-                        ${ordered.map((_, dotIdx) => `
-                          <button type="button" 
-                                  class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
-                                  data-index="${dotIdx}" 
-                                  aria-label="Switch to scope 0${dotIdx + 1}">
-                          </button>
-                        `).join('')}
+                      <div class="card-nav-arrows">
+                        <button type="button" class="card-arrow-btn js-btn-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button type="button" class="card-arrow-btn js-btn-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
                       </div>
                     </div>
 
-                    <div class="card-nav-arrows">
-                      <button type="button" class="card-arrow-btn" id="service-card-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
+                    <!-- Card Header -->
+                    <div class="service-detail-header">
+                      <div>
+                        <span class="service-detail-badge">${srv.shortTitle}</span>
+                        <h2 class="service-detail-title">${srv.title}</h2>
+                      </div>
+                      <span class="service-detail-num">0${idx + 1}</span>
+                    </div>
+
+                    <p class="service-detail-lead">${srv.description}</p>
+
+                    <!-- Card Body -->
+                    <div class="service-detail-grid">
+                      <div class="service-scope-col service-card-tile">
+                        <h3 class="service-subheading">Scope Deliverables</h3>
+                        <ul class="service-includes-list">
+                          ${srv.includes.map(inc => `
+                            <li>
+                              <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                              <span>${inc}</span>
+                            </li>
+                          `).join('')}
+                        </ul>
+                      </div>
+
+                      <div class="service-meta-col">
+                        <div class="service-meta-card service-card-tile">
+                          <h4 class="meta-card-title">Best For</h4>
+                          <p class="meta-card-text">${srv.bestFor}</p>
+                        </div>
+
+                        <div class="service-meta-card service-card-tile">
+                          <h4 class="meta-card-title">Measures</h4>
+                          <p class="meta-card-text">${srv.weMeasure}</p>
+                        </div>
+
+                        <div class="service-cta-wrap">
+                          <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
+                            <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card Footer Stepper (Next & Previous Scope Links) -->
+                    <div class="service-card-stepper-footer">
+                      <button type="button" class="stepper-nav-btn prev js-btn-prev" aria-label="Go to ${prevService.title}">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                        <span class="stepper-text">
+                          <small>Previous</small>
+                          <strong>${prevService.shortTitle}</strong>
+                        </span>
                       </button>
-                      <button type="button" class="card-arrow-btn" id="service-card-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
+
+                      
+
+                      <button type="button" class="stepper-nav-btn next js-btn-next" aria-label="Go to ${nextService.title}">
+                        <span class="stepper-text text-right">
+                          <small>Next</small>
+                          <strong>${nextService.shortTitle}</strong>
+                        </span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                       </button>
                     </div>
-                  </div>
 
-                  <!-- Card Header -->
-                  <div class="service-detail-header">
-                    <div>
-                      <span class="service-detail-badge">${activeService.shortTitle}</span>
-                      <h2 class="service-detail-title">${activeService.title}</h2>
-                    </div>
-                    <span class="service-detail-num">0${activeIdx + 1}</span>
-                  </div>
-
-                  <p class="service-detail-lead">${activeService.description}</p>
-
-                  <!-- Card Body -->
-                  <div class="service-detail-grid">
-                    <div class="service-scope-col service-card-tile">
-                      <h3 class="service-subheading">Scope Deliverables</h3>
-                      <ul class="service-includes-list">
-                        ${activeService.includes.map(inc => `
-                          <li>
-                            <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>${inc}</span>
-                          </li>
-                        `).join('')}
-                      </ul>
-                    </div>
-
-                    <div class="service-meta-col">
-                      <div class="service-meta-card service-card-tile">
-                        <h4 class="meta-card-title">Best For</h4>
-                        <p class="meta-card-text">${activeService.bestFor}</p>
-                      </div>
-
-                      <div class="service-meta-card service-card-tile">
-                        <h4 class="meta-card-title">Measures</h4>
-                        <p class="meta-card-text">${activeService.weMeasure}</p>
-                      </div>
-
-                      <div class="service-cta-wrap">
-                        <a href="contact.html?service=${activeService.id}" class="btn btn-primary js-cta-btn">
-                          <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card Footer Stepper (Next & Previous Scope Links) -->
-                  <div class="service-card-stepper-footer">
-                    <button type="button" class="stepper-nav-btn prev" id="stepper-prev-btn" aria-label="Go to ${prevService.title}">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-                      <span class="stepper-text">
-                        <small>Previous</small>
-                        <strong>${prevService.shortTitle}</strong>
-                      </span>
-                    </button>
-
-                    <span class="card-swipe-hint" aria-hidden="true">Swipe or arrows to flip card</span>
-
-                    <button type="button" class="stepper-nav-btn next" id="stepper-next-btn" aria-label="Go to ${nextService.title}">
-                      <span class="stepper-text text-right">
-                        <small>Next</small>
-                        <strong>${nextService.shortTitle}</strong>
-                      </span>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
-                  </div>
-
-                </article>
-              </div>
+                  </article>
+                `;
+              }).join('')}
             </div>
           </div>
-        `;
+        </div>
+      `;
 
-        // Smoothly scroll active tab into view in horizontal mobile bar
-        const activeTab = explorerContainer.querySelector(`.service-tab-btn[data-service-id="${selectedId}"]`);
-        if (activeTab && typeof activeTab.scrollIntoView === 'function') {
-          activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
+      const cards = explorerContainer.querySelectorAll('.diagonal-card');
+      const tabBtns = explorerContainer.querySelectorAll('.service-tab-btn');
+      const stage = document.getElementById('diagonal-deck-stage');
 
-        // 1. Tab buttons click/hover
-        const tabBtns = explorerContainer.querySelectorAll('.service-tab-btn');
-        tabBtns.forEach(btn => {
-          const sid = btn.getAttribute('data-service-id');
-          btn.addEventListener('mouseenter', () => {
-            if (sid !== activeId) {
-              const targetIdx = ordered.findIndex(s => s.id === sid);
-              renderExplorer(sid, targetIdx > activeIdx ? 'next' : 'prev');
-            }
-          });
-          btn.addEventListener('click', () => {
-            if (sid !== activeId) {
-              const targetIdx = ordered.findIndex(s => s.id === sid);
-              renderExplorer(sid, targetIdx > activeIdx ? 'next' : 'prev');
-            }
-          });
+      function updateDeck(newIdx) {
+        activeIdx = (newIdx + total) % total;
+
+        cards.forEach((card, i) => {
+          card.classList.remove('card-pos-active', 'card-pos-next', 'card-pos-prev', 'card-pos-hidden');
+
+          if (i === activeIdx) {
+            card.classList.add('card-pos-active');
+            card.setAttribute('aria-hidden', 'false');
+            card.setAttribute('tabindex', '0');
+          } else if (i === (activeIdx + 1) % total) {
+            card.classList.add('card-pos-next');
+            card.setAttribute('aria-hidden', 'true');
+            card.setAttribute('tabindex', '-1');
+          } else if (i === (activeIdx - 1 + total) % total) {
+            card.classList.add('card-pos-prev');
+            card.setAttribute('aria-hidden', 'true');
+            card.setAttribute('tabindex', '-1');
+          } else {
+            card.classList.add('card-pos-hidden');
+            card.setAttribute('aria-hidden', 'true');
+            card.setAttribute('tabindex', '-1');
+          }
         });
 
-        // 2. Next / Prev Arrow buttons
-        const prevArrowBtn = document.getElementById('service-card-prev');
-        const nextArrowBtn = document.getElementById('service-card-next');
-        const prevStepperBtn = document.getElementById('stepper-prev-btn');
-        const nextStepperBtn = document.getElementById('stepper-next-btn');
-
-        if (prevArrowBtn) prevArrowBtn.addEventListener('click', () => renderExplorer(prevService.id, 'prev'));
-        if (nextArrowBtn) nextArrowBtn.addEventListener('click', () => renderExplorer(nextService.id, 'next'));
-        if (prevStepperBtn) prevStepperBtn.addEventListener('click', () => renderExplorer(prevService.id, 'prev'));
-        if (nextStepperBtn) nextStepperBtn.addEventListener('click', () => renderExplorer(nextService.id, 'next'));
-
-        // 3. Dot indicators click
-        const dotBtns = explorerContainer.querySelectorAll('.card-dot');
-        dotBtns.forEach(dot => {
-          dot.addEventListener('click', () => {
-            const dotIdx = parseInt(dot.getAttribute('data-index'), 10);
-            if (!isNaN(dotIdx) && dotIdx !== activeIdx) {
-              renderExplorer(ordered[dotIdx].id, dotIdx > activeIdx ? 'next' : 'prev');
-            }
-          });
+        // Sync option tabs
+        tabBtns.forEach((btn, i) => {
+          const isAct = i === activeIdx;
+          btn.classList.toggle('active', isAct);
+          btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
         });
 
-        // 4. Touch swipe gestures on mobile
-        const cardElement = explorerContainer.querySelector('.service-detail-card');
-        if (cardElement) {
-          let touchStartX = 0;
-          let touchStartY = 0;
-          cardElement.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-          }, { passive: true });
-
-          cardElement.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
-            const diffX = touchEndX - touchStartX;
-            const diffY = touchEndY - touchStartY;
-
-            // Only trigger if horizontal swipe is prominent and > 45px
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
-              if (diffX < 0) {
-                // Swiped Left -> Move Next
-                renderExplorer(nextService.id, 'next');
-              } else {
-                // Swiped Right -> Move Prev
-                renderExplorer(prevService.id, 'prev');
-              }
-            }
-          }, { passive: true });
-
-          // 5. Keyboard arrow navigation when card is focused
-          cardElement.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-              e.preventDefault();
-              renderExplorer(nextService.id, 'next');
-            } else if (e.key === 'ArrowLeft') {
-              e.preventDefault();
-              renderExplorer(prevService.id, 'prev');
-            }
-          });
+        if (tabBtns[activeIdx] && typeof tabBtns[activeIdx].scrollIntoView === 'function') {
+          tabBtns[activeIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
+
+        // Sync dots on all cards
+        cards.forEach(card => {
+          const dots = card.querySelectorAll('.card-dot');
+          dots.forEach((dot, dotIdx) => {
+            dot.classList.toggle('active', dotIdx === activeIdx);
+          });
+        });
       }
 
-      renderExplorer(activeId);
+      // 1. Direct tab clicks
+      tabBtns.forEach((btn, i) => {
+        btn.addEventListener('click', () => updateDeck(i));
+      });
+
+      // 2. Direct click on peeking diagonal cards (click right card to go next, left to go prev)
+      cards.forEach((card, i) => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a') || e.target.closest('button')) return;
+          if (card.classList.contains('card-pos-next')) {
+            updateDeck(activeIdx + 1);
+          } else if (card.classList.contains('card-pos-prev')) {
+            updateDeck(activeIdx - 1);
+          }
+        });
+      });
+
+      // 3. Arrow & stepper buttons inside all cards
+      cards.forEach(card => {
+        card.querySelectorAll('.js-btn-prev').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateDeck(activeIdx - 1);
+          });
+        });
+        card.querySelectorAll('.js-btn-next').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateDeck(activeIdx + 1);
+          });
+        });
+        card.querySelectorAll('.card-dot').forEach(dot => {
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dIdx = parseInt(dot.getAttribute('data-index'), 10);
+            if (!isNaN(dIdx)) updateDeck(dIdx);
+          });
+        });
+      });
+
+      // 4. Touch swipe gestures
+      if (stage) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        stage.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+          touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        stage.addEventListener('touchend', (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const touchEndY = e.changedTouches[0].screenY;
+          const diffX = touchEndX - touchStartX;
+          const diffY = touchEndY - touchStartY;
+
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+            if (diffX < 0) {
+              updateDeck(activeIdx + 1); // Swiped Left -> Move Next
+            } else {
+              updateDeck(activeIdx - 1); // Swiped Right -> Move Prev
+            }
+          }
+        }, { passive: true });
+
+        // 5. Keyboard arrows
+        stage.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            updateDeck(activeIdx + 1);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            updateDeck(activeIdx - 1);
+          }
+        });
+      }
+
+      // Initialize
+      updateDeck(activeIdx);
 
       // Listen for hash changes if user clicks an anchor link
       window.addEventListener('hashchange', () => {
         if (window.location.hash) {
           const hashId = window.location.hash.substring(1);
-          if (ordered.some(s => s.id === hashId)) {
-            renderExplorer(hashId);
-          }
+          const foundIdx = ordered.findIndex(s => s.id === hashId);
+          if (foundIdx !== -1) updateDeck(foundIdx);
         }
       });
     }

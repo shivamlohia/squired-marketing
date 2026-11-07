@@ -1252,100 +1252,99 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-orange);
 }
 
-/* Right Detail Showcase: 3D Physical Card Deck Visual */
+/* Right Detail Showcase: 3D Diagonal Peeking Card Deck */
 .services-detail-col {
   position: sticky;
   top: calc(var(--header-height) + 20px);
 }
 
-.services-deck-stage {
+.diagonal-deck-stage {
+  display: grid;
+  grid-template-columns: 1fr;
   position: relative;
-  width: 100%;
-  perspective: 1200px;
+  perspective: 1400px;
+  perspective-origin: center center;
+  padding: 12px 52px 36px 52px;
+  min-height: 540px;
+  outline: none;
 }
 
-/* Layered Card Silhouettes Behind Active Card */
-.deck-shadow-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 20px;
-  pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-}
-
-.deck-shadow-card.layer-1 {
-  transform: translate(6px, 10px) scale(0.99);
-  background: #fbfbfd;
-  border: 1px solid rgba(16, 5, 88, 0.1);
-  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.07);
-  z-index: 1;
-}
-
-.deck-shadow-card.layer-2 {
-  transform: translate(12px, 20px) scale(0.98);
-  background: #f3f1fa;
-  border: 1px solid rgba(16, 5, 88, 0.08);
-  box-shadow: 0 10px 24px rgba(16, 5, 88, 0.05);
-  z-index: 0;
-}
-
-/* Master Active Service Card */
+/* Base Diagonal Card */
+.diagonal-card,
 .service-detail-card {
+  grid-area: 1 / 1;
+  width: 100%;
   position: relative;
-  z-index: 2;
   background: linear-gradient(180deg, #ffffff 0%, #fafaff 100%);
   border: 1px solid rgba(16, 5, 88, 0.12);
   border-top: 5px solid var(--color-orange);
   border-radius: 20px;
   padding: var(--space-2xl);
-  box-shadow: 0 24px 60px -10px rgba(16, 5, 88, 0.14), 0 6px 18px rgba(16, 5, 88, 0.04);
-  animation: fadeInCard 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 16px 40px rgba(16, 5, 88, 0.08);
   outline: none;
   touch-action: pan-y;
+  user-select: none;
+  backface-visibility: hidden;
+  transform-origin: center bottom;
+  will-change: transform, opacity, box-shadow;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.35s ease, 
+              box-shadow 0.35s ease, 
+              filter 0.35s ease;
 }
 
-.service-detail-card.slide-next {
-  animation: slideNextCard 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Front & Center Active Card */
+.diagonal-card.card-pos-active {
+  transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  z-index: 10;
+  opacity: 1;
+  pointer-events: auto;
+  box-shadow: 0 28px 64px -8px rgba(16, 5, 88, 0.18), 0 8px 22px rgba(16, 5, 88, 0.06);
+  filter: none;
 }
 
-.service-detail-card.slide-prev {
-  animation: slidePrevCard 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Next Card: Peeking Diagonally to the Right */
+.diagonal-card.card-pos-next {
+  transform: translate3d(46px, 16px, -20px) scale(0.94) rotate(4.2deg);
+  z-index: 5;
+  opacity: 0.78;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.12);
+  filter: contrast(0.97) brightness(0.98);
 }
 
-@keyframes fadeInCard {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.diagonal-card.card-pos-next:hover {
+  transform: translate3d(54px, 12px, -10px) scale(0.96) rotate(3.2deg);
+  opacity: 0.94;
+  filter: none;
+  box-shadow: 0 20px 44px rgba(16, 5, 88, 0.15);
 }
 
-@keyframes slideNextCard {
-  from {
-    opacity: 0;
-    transform: translateX(36px) rotate(1.2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) rotate(0deg);
-  }
+/* Previous Card: Peeking Diagonally to the Left */
+.diagonal-card.card-pos-prev {
+  transform: translate3d(-46px, 16px, -20px) scale(0.94) rotate(-4.2deg);
+  z-index: 4;
+  opacity: 0.78;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.12);
+  filter: contrast(0.97) brightness(0.98);
 }
 
-@keyframes slidePrevCard {
-  from {
-    opacity: 0;
-    transform: translateX(-36px) rotate(-1.2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) rotate(0deg);
-  }
+.diagonal-card.card-pos-prev:hover {
+  transform: translate3d(-54px, 12px, -10px) scale(0.96) rotate(-3.2deg);
+  opacity: 0.94;
+  filter: none;
+  box-shadow: 0 20px 44px rgba(16, 5, 88, 0.15);
+}
+
+/* Hidden Cards Waiting in Deck */
+.diagonal-card.card-pos-hidden {
+  transform: translate3d(0, 36px, -60px) scale(0.85);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Card Top Navigation Bar (Chip Badge, Dots & Arrows) */
@@ -1610,7 +1609,8 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
   }
-  .service-detail-card {
+  .service-detail-card,
+  .diagonal-card {
     padding: var(--space-xl);
   }
 }
@@ -1660,6 +1660,26 @@ h1, h2, h3, h4, h5, h6 {
   }
   .service-tab-btn .service-tab-num {
     font-size: 0.88rem;
+  }
+
+  .diagonal-deck-stage {
+    padding: 8px 24px 24px 24px;
+    perspective: 1000px;
+    min-height: auto;
+  }
+  .diagonal-card.card-pos-next {
+    transform: translate3d(24px, 12px, -10px) scale(0.95) rotate(2.8deg);
+    opacity: 0.75;
+  }
+  .diagonal-card.card-pos-prev {
+    transform: translate3d(-24px, 12px, -10px) scale(0.95) rotate(-2.8deg);
+    opacity: 0.75;
+  }
+  .diagonal-card.card-pos-next:hover {
+    transform: translate3d(28px, 10px, -5px) scale(0.96) rotate(2.2deg);
+  }
+  .diagonal-card.card-pos-prev:hover {
+    transform: translate3d(-28px, 10px, -5px) scale(0.96) rotate(-2.2deg);
   }
 
   /* On mobile cards, show key execution bullets cleanly */
