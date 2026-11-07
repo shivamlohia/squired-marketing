@@ -390,15 +390,16 @@
                              aria-hidden="${isActive ? 'false' : 'true'}"
                              data-service-id="${srv.id}"
                              data-index="${idx}">
-                      <div class="service-detail-header">
-                        <div>
-                          <span class="service-detail-badge">${srv.shortTitle}</span>
-                          <h2 class="service-detail-title">${srv.title}</h2>
+                      <div class="desktop-panel-head">
+                        <div class="service-detail-header">
+                          <div>
+                            <span class="service-detail-badge">${srv.shortTitle}</span>
+                            <h2 class="service-detail-title">${srv.title}</h2>
+                          </div>
+                          <span class="service-detail-num">0${idx + 1}</span>
                         </div>
-                        <span class="service-detail-num">0${idx + 1}</span>
+                        <p class="service-detail-lead">${srv.description}</p>
                       </div>
-
-                      <p class="service-detail-lead">${srv.description}</p>
 
                       <div class="service-detail-grid">
                         <div class="service-scope-col">
