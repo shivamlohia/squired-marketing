@@ -379,25 +379,27 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-md);
 }
 
-/* Header Nav CTA Auto-Reveal & Tactile Pop-in */
-.nav-actions #nav-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              box-shadow 0.3s ease,
-              visibility 0.3s ease;
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  visibility: visible;
-  will-change: opacity, transform;
-}
+/* Header Nav CTA Auto-Reveal & Tactile Pop-in (Desktop Only) */
+@media (min-width: 901px) {
+  .nav-actions #nav-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.3s ease,
+                visibility 0.3s ease;
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    will-change: opacity, transform;
+  }
 
-.nav-actions #nav-cta-btn.nav-cta-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(-8px) scale(0.9);
+  .nav-actions #nav-cta-btn.nav-cta-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.9);
+  }
 }
 
 /* Suppress nav CTA button on Contact page completely */
@@ -458,8 +460,10 @@ body.page-contact .nav-actions #nav-cta-btn {
 }
 
 @media (max-width: 900px) {
-  .nav-links, .nav-actions .btn-primary {
-    display: none;
+  .nav-links, 
+  .nav-actions .btn-primary,
+  .nav-actions #nav-cta-btn {
+    display: none !important;
   }
   .mobile-nav-toggle {
     display: flex;
