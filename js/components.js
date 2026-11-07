@@ -349,6 +349,7 @@
           _subject: `New Squired Growth Audit: ${brandInput.value.trim()} (${nameInput.value.trim()})`,
           _template: 'table',
           _captcha: 'false',
+          _cc: window.SQUIRED_CONFIG?.formCc || 'shivam@squiredmarketing.com',
           ...getHiddenFieldData()
         };
 
@@ -573,6 +574,7 @@
         _subject: `New Detailed Squired Brief: ${briefData.brandName} (${briefData.contactName})`,
         _template: 'table',
         _captcha: 'false',
+        _cc: window.SQUIRED_CONFIG?.formCc || 'shivam@squiredmarketing.com',
         ...getHiddenFieldData()
       };
 
