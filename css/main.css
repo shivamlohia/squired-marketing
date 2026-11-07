@@ -2868,9 +2868,56 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ---------------- Mobile Sticky Bottom CTA Bar ---------------- */
-/* Disabled completely to eliminate aggressive CTA clutter and allow mobile screens to breathe */
 .mobile-sticky-cta-bar {
-  display: none !important;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta-bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 990;
+    background: var(--color-white);
+    padding: 10px var(--space-md);
+    border-top: 1px solid var(--color-navy-divider);
+    box-shadow: 0 -4px 16px rgba(16, 5, 88, 0.08);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    will-change: transform, opacity;
+  }
+
+  .mobile-sticky-cta-bar.is-hidden {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-sticky-cta-bar .btn-primary {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  /* Offset body so sticky bar does not cover footer content */
+  body {
+    padding-bottom: 72px;
+  }
+
+  body.page-contact {
+    padding-bottom: 0;
+  }
+
+  body.page-contact .mobile-sticky-cta-bar {
+    display: none !important;
+  }
+
+  .services-mobile-deck .service-cta-wrap {
+    display: none !important;
+  }
 }
 
 /* ---------------- Responsive Breakpoints ---------------- */

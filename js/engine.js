@@ -450,7 +450,7 @@
 
                           <div class="service-cta-wrap">
                             <a href="/contact?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                              <span class="js-cta-text">Request ${srv.shortTitle} Scope</span>
+                              <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
                               <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                           </div>
@@ -560,13 +560,6 @@
                       <div class="service-meta-card service-card-tile">
                         <h4 class="meta-card-title">Measures</h4>
                         <p class="meta-card-text">${srv.weMeasure}</p>
-                      </div>
-
-                      <div class="service-cta-wrap">
-                        <a href="/contact?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                          <span class="js-cta-text">Request ${srv.shortTitle} Scope</span>
-                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
                       </div>
                     </div>
                   </div>
@@ -710,6 +703,12 @@
             nextStepper.style.pointerEvents = (activeIdx === total - 1) ? 'none' : 'auto';
           }
         });
+
+        // Sync sticky bar target to active service
+        const stickyBarLink = document.querySelector('#mobile-sticky-cta-bar a');
+        if (stickyBarLink && ordered[activeIdx]) {
+          stickyBarLink.href = `/contact?service=${ordered[activeIdx].id}`;
+        }
       }
 
       // 1. Direct tab clicks

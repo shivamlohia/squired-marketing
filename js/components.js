@@ -748,7 +748,7 @@
 
     // Auto-hide sticky bar whenever Hero or an on-page CTA / audit form is in view
     const inPageCtaTargets = document.querySelectorAll(
-      '#hero, .hero-section, .hero-form-card, #hero-primary-cta, .hero-cta-group, #hero-cta-btn, #final-cta, .closing-band, .calc-cta-wrap, .service-stage-cta'
+      '#hero, .hero-section, .hero-form-card, #hero-primary-cta, .hero-cta-group, #hero-cta-btn, #final-cta, #about-cta, #services-closing-band, .closing-band, .calc-cta-wrap, .service-stage-cta'
     );
 
     if (inPageCtaTargets.length > 0 && 'IntersectionObserver' in window) {
