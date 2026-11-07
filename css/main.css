@@ -1308,14 +1308,14 @@ body.page-contact .nav-actions #nav-cta-btn {
 
 .service-tab-title {
   font-family: var(--font-heading);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--color-navy);
   line-height: 1.25;
 }
 
 .service-tab-badge {
-  font-size: 0.6875rem;
+  font-size: 0.71875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1350,13 +1350,14 @@ body.page-contact .nav-actions #nav-cta-btn {
 .desktop-service-panel {
   grid-area: 1 / 1;
   height: 100%;
+  min-height: 468px;
   display: flex;
   flex-direction: column;
   background: var(--color-white);
   border: 1px solid var(--color-navy-divider);
   border-top: 5px solid var(--color-orange);
   border-radius: 8px;
-  padding: 24px 28px;
+  padding: 26px 30px;
   box-shadow: 0 8px 24px rgba(16, 5, 88, 0.06);
   box-sizing: border-box;
   opacity: 0;
@@ -1375,34 +1376,39 @@ body.page-contact .nav-actions #nav-cta-btn {
 
 /* Common Head Block (Identical height & dividing line anchor across all 5 cards) */
 .desktop-panel-head {
-  height: 88px;
-  margin-bottom: 14px;
+  height: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .desktop-service-panel .service-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 3px;
+  height: 48px;
+  min-height: 48px;
+  margin-bottom: 2px;
 }
 
 .desktop-service-panel .service-detail-badge {
-  display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 700;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   color: var(--color-orange);
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   line-height: 1.2;
 }
 
 .desktop-service-panel .service-detail-title {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--color-navy);
   line-height: 1.2;
@@ -1418,23 +1424,26 @@ body.page-contact .nav-actions #nav-cta-btn {
 }
 
 .desktop-service-panel .service-detail-lead {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
   margin: 6px 0 0 0;
-  max-width: 540px;
-  min-height: 38px;
+  max-width: 580px;
+  height: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
 }
 
 /* Content Grid below dividing line: rock-solid anchor across all 5 cards */
 .desktop-service-panel .service-detail-grid {
   display: grid;
-  grid-template-columns: 1.55fr 0.85fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 28px;
-  padding-top: 16px;
+  padding-top: 20px;
   border-top: 1px dashed var(--color-navy-divider);
   flex: 1 1 auto;
-  align-items: start;
+  align-items: stretch;
+  box-sizing: border-box;
 }
 
 .desktop-service-panel .service-scope-col {
@@ -1443,13 +1452,14 @@ body.page-contact .nav-actions #nav-cta-btn {
 }
 
 .desktop-service-panel .service-subheading {
-  font-size: 0.72rem;
+  font-size: 0.78125rem;
   font-weight: 800;
   color: var(--color-navy);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   line-height: 1.2;
+  height: 16px;
 }
 
 .desktop-service-panel .service-includes-list {
@@ -1464,66 +1474,76 @@ body.page-contact .nav-actions #nav-cta-btn {
 .desktop-service-panel .service-includes-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 0.875rem;
+  gap: 11px;
+  font-size: 0.95rem;
   line-height: 1.45;
   color: var(--color-navy);
   font-weight: 500;
+  min-height: 42px;
+  box-sizing: border-box;
 }
 
 .desktop-service-panel .service-includes-list .check-icon {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   flex-shrink: 0;
   margin-top: 3px;
 }
 
-/* Right Meta Column: Sleek, compact metadata badge */
+/* Right Meta Column: Locked uniform specs box across all 5 cards (zero shift) */
 .desktop-service-panel .service-meta-col {
   display: flex;
   flex-direction: column;
-  align-self: start;
 }
 
 .desktop-service-panel .service-specs-box {
   background: var(--color-navy-tint);
   border: 1px solid rgba(16, 5, 88, 0.08);
   border-radius: 8px;
-  padding: 12px 14px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: auto;
-  min-height: auto;
+  justify-content: space-between;
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
   box-sizing: border-box;
 }
 
 .desktop-service-panel .spec-row {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  justify-content: flex-start;
+  height: 84px;
+  min-height: 84px;
+  max-height: 84px;
+  gap: 4px;
+  box-sizing: border-box;
 }
 
 .desktop-service-panel .spec-title {
-  font-size: 0.625rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   color: var(--color-navy-muted);
   line-height: 1.2;
+  flex-shrink: 0;
 }
 
 .desktop-service-panel .spec-text {
-  font-size: 0.775rem;
-  color: var(--color-text-muted);
-  line-height: 1.35;
+  font-size: 0.875rem;
+  color: var(--color-navy);
+  line-height: 1.42;
   margin: 0;
 }
 
 .desktop-service-panel .spec-divider {
   width: 100%;
   height: 1px;
-  background: rgba(16, 5, 88, 0.07);
+  background: rgba(16, 5, 88, 0.09);
+  margin: 4px 0;
+  flex-shrink: 0;
 }
 
 .desktop-service-panel .service-cta-wrap {
