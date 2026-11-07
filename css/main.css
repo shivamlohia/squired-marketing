@@ -379,11 +379,17 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-md);
 }
 
-/* Header Nav CTA Auto-Reveal (on Home Page) */
+/* Header Nav CTA Auto-Reveal & Tactile Pop-in */
 .nav-actions #nav-cta-btn {
-  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              visibility 0.28s ease;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease,
+              visibility 0.3s ease;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
   will-change: opacity, transform;
 }
 
@@ -391,7 +397,24 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(0.9);
+}
+
+/* Suppress nav CTA button on Contact page completely */
+body.page-contact .nav-actions #nav-cta-btn {
+  display: none !important;
+}
+
+/* Closing Band CTA Button Focus Pop-in */
+.section-navy .btn-primary {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.section-navy.cta-in-view .btn-primary {
+  transform: scale(1.05);
+  box-shadow: 0 10px 32px rgba(229, 99, 21, 0.45);
 }
 
 .mobile-nav-toggle {
@@ -1406,12 +1429,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Content Grid below dividing line: rock-solid anchor across all 5 cards */
 .desktop-service-panel .service-detail-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 24px;
-  padding-top: 14px;
+  grid-template-columns: 1.55fr 0.85fr;
+  gap: 28px;
+  padding-top: 16px;
   border-top: 1px dashed var(--color-navy-divider);
   flex: 1 1 auto;
-  align-items: stretch;
+  align-items: start;
 }
 
 .desktop-service-panel .service-scope-col {
@@ -1424,7 +1447,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
   color: var(--color-navy);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   margin-bottom: 12px;
   line-height: 1.2;
 }
@@ -1441,80 +1464,70 @@ h1, h2, h3, h4, h5, h6 {
 .desktop-service-panel .service-includes-list li {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
-  font-size: 0.8125rem;
-  line-height: 1.35;
+  gap: 10px;
+  font-size: 0.875rem;
+  line-height: 1.45;
   color: var(--color-navy);
-  min-height: 34px;
+  font-weight: 500;
 }
 
 .desktop-service-panel .service-includes-list .check-icon {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
-/* Right Meta Column: Single unified specification box (grounded, no weird hovering) */
+/* Right Meta Column: Sleek, compact metadata badge */
 .desktop-service-panel .service-meta-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-self: start;
 }
 
 .desktop-service-panel .service-specs-box {
   background: var(--color-navy-tint);
   border: 1px solid rgba(16, 5, 88, 0.08);
   border-radius: 8px;
-  padding: 18px 18px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 12px;
-  height: 100%;
-  min-height: 156px;
+  gap: 8px;
+  height: auto;
+  min-height: auto;
   box-sizing: border-box;
 }
 
 .desktop-service-panel .spec-row {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .desktop-service-panel .spec-title {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   color: var(--color-navy-muted);
   line-height: 1.2;
 }
 
 .desktop-service-panel .spec-text {
-  font-size: 0.8125rem;
-  color: var(--color-navy);
-  line-height: 1.4;
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  line-height: 1.35;
   margin: 0;
 }
 
 .desktop-service-panel .spec-divider {
   width: 100%;
   height: 1px;
-  background: rgba(16, 5, 88, 0.09);
+  background: rgba(16, 5, 88, 0.07);
 }
 
 .desktop-service-panel .service-cta-wrap {
   display: none !important;
-}
-  height: 38px;
-  box-sizing: border-box;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 16px;
-  font-size: 0.8125rem;
-  font-weight: 700;
 }
 
 /* Base Service Detail Card & Deck (Mobile Scoped) */

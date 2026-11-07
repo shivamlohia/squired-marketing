@@ -719,34 +719,74 @@
     // Smart Sticky Bottom Bar
     initSmartStickyCtaBar();
 
-    // Auto-reveal Header CTA when Hero CTA scrolls out of view on Home
-    initHomeHeaderCtaAutoReveal();
+    // Auto-reveal Header CTA when Hero CTA or Closing Band scrolls in/out of view
+    initSmartHeaderCtaAutoReveal();
   }
 
-  function initHomeHeaderCtaAutoReveal() {
+  function initSmartHeaderCtaAutoReveal() {
     const navCtaBtn = document.getElementById('nav-cta-btn');
-    const heroCtaBtn = document.getElementById('hero-primary-cta');
+    if (!navCtaBtn) return;
 
-    if (!navCtaBtn || !heroCtaBtn) return;
+    // Completely suppress on Contact page where form is already primary
+    const isContactPage = window.location.pathname.includes('/contact') || 
+                          document.getElementById('contact-forms-area') !== null ||
+                          document.body.classList.contains('page-contact');
+    if (isContactPage) {
+      navCtaBtn.style.display = 'none';
+      return;
+    }
+
+    // Sections or buttons that should cause the top header CTA to pop out
+    const hidingTriggers = document.querySelectorAll(
+      '#hero-primary-cta, #final-cta, #services-closing-band, #about-cta, .closing-band'
+    );
+
+    if (hidingTriggers.length === 0) return;
 
     if ('IntersectionObserver' in window) {
+      const visibleTriggers = new Set();
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+          const target = entry.target;
           if (entry.isIntersecting) {
-            navCtaBtn.classList.add('nav-cta-hidden');
+            visibleTriggers.add(target);
+            if (target.id === 'final-cta' || target.id === 'services-closing-band' || target.id === 'about-cta') {
+              target.classList.add('cta-in-view');
+            }
           } else {
-            navCtaBtn.classList.remove('nav-cta-hidden');
+            visibleTriggers.delete(target);
+            if (target.id === 'final-cta' || target.id === 'services-closing-band' || target.id === 'about-cta') {
+              target.classList.remove('cta-in-view');
+            }
           }
         });
+
+        // If any trigger is visible (Hero CTA or Closing Band CTA), pop out header button
+        if (visibleTriggers.size > 0) {
+          navCtaBtn.classList.add('nav-cta-hidden');
+        } else {
+          navCtaBtn.classList.remove('nav-cta-hidden');
+        }
       }, {
         root: null,
         threshold: 0.1
       });
 
-      observer.observe(heroCtaBtn);
+      hidingTriggers.forEach(el => observer.observe(el));
     } else {
+      // Fallback scroll check
       window.addEventListener('scroll', () => {
-        if (window.scrollY < 260) {
+        const heroCta = document.getElementById('hero-primary-cta');
+        const finalCta = document.getElementById('final-cta') || 
+                         document.getElementById('services-closing-band') || 
+                         document.getElementById('about-cta');
+        const scrollY = window.scrollY;
+        const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+        const isHeroVisible = heroCta && scrollY < 260;
+        const isFinalVisible = finalCta && (pageHeight - scrollY < 320);
+
+        if (isHeroVisible || isFinalVisible) {
           navCtaBtn.classList.add('nav-cta-hidden');
         } else {
           navCtaBtn.classList.remove('nav-cta-hidden');
