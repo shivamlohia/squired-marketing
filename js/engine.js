@@ -331,7 +331,7 @@
       `).join('');
     }
 
-    // Full Services Explorer with 3D Diagonal Peeking Card Deck (services.html)
+    // Full Services Explorer: Desktop Hover-Reveal Blocks + Mobile 3D Diagonal Deck
     const explorerContainer = document.getElementById('services-explorer') || document.getElementById('services-list-container');
     if (explorerContainer && allServices.length > 0) {
       const ordered = [...allServices].sort((a, b) => {
@@ -348,154 +348,250 @@
         if (foundIdx !== -1) activeIdx = foundIdx;
       }
 
-      // Initial Render: build all cards into the stage once for 60fps CSS transitions
       explorerContainer.innerHTML = `
-        <div class="services-explorer-layout">
-          <!-- Left Tabs Menu (Direct Selection Options) -->
-          <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
+        <!-- Desktop: Hover-Reveal Service Blocks (Zero Cards) -->
+        <div class="services-desktop-list" id="services-desktop-list">
+          <div class="services-actions-bar">
+            <span class="services-count-badge">5 Dedicated Scopes</span>
+            <button type="button" class="btn-toggle-all-services" id="btn-toggle-all-services" aria-expanded="false">
+              <span id="toggle-all-text">Expand all scopes</span>
+              <svg class="toggle-all-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+          <div class="services-list">
+            ${ordered.map((srv, idx) => `
+              <article class="service-block" id="${srv.id}" tabindex="0">
+                <div class="service-block-header">
+                  <span class="service-block-num">0${idx + 1}</span>
+                  <div class="service-block-header-info">
+                    <h2 class="service-block-title">${srv.title}</h2>
+                    <div class="service-block-badge">${srv.shortTitle}</div>
+                  </div>
+                </div>
+                
+                <p class="service-block-lead">${srv.description}</p>
+
+                <div class="service-block-trigger" role="button" aria-expanded="false" tabindex="0">
+                  <span class="trigger-label">Execution Scope &amp; Deliverables</span>
+                  <span class="trigger-action">
+                    <svg class="trigger-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                  </span>
+                </div>
+
+                <div class="service-block-drawer">
+                  <div class="service-block-details">
+                    <div class="service-includes-col">
+                      <h3 class="service-subheading">Scope Deliverables</h3>
+                      <ul class="service-includes-list">
+                        ${srv.includes.map(inc => `
+                          <li>
+                            <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>${inc}</span>
+                          </li>
+                        `).join('')}
+                      </ul>
+                    </div>
+
+                    <div class="service-meta-col">
+                      <div class="service-meta-card">
+                        <h4 class="meta-card-title">Best For</h4>
+                        <p class="meta-card-text">${srv.bestFor}</p>
+                      </div>
+
+                      <div class="service-meta-card">
+                        <h4 class="meta-card-title">Measures</h4>
+                        <p class="meta-card-text">${srv.weMeasure}</p>
+                      </div>
+
+                      <div class="service-cta-wrap">
+                        <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
+                          <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Mobile: 3D Diagonal Peeking Card Deck (Touch-Swipe Enabled) -->
+        <div class="services-mobile-deck" id="services-mobile-deck">
+          <nav class="services-tabs-col" role="tablist" aria-label="Services Mobile Navigation">
             ${ordered.map((srv, idx) => `
               <button type="button" 
                       class="service-tab-btn ${idx === activeIdx ? 'active' : ''}" 
                       data-index="${idx}" 
                       role="tab" 
                       aria-selected="${idx === activeIdx ? 'true' : 'false'}"
-                      id="tab-${srv.id}">
+                      id="mobile-tab-${srv.id}">
                 <span class="service-tab-num">0${idx + 1}</span>
-                <div class="service-tab-info">
-                  <span class="service-tab-title">${srv.title}</span>
-                  <span class="service-tab-badge">${srv.shortTitle}</span>
-                </div>
-                <svg class="service-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="service-tab-title">${srv.shortTitle}</span>
               </button>
             `).join('')}
           </nav>
 
-          <!-- Right Showcase: 3D Diagonal Peeking Card Deck -->
-          <div class="services-detail-col">
-            <div class="diagonal-deck-stage" id="diagonal-deck-stage" tabindex="0" aria-label="Services card deck. Use arrow keys or swipe to navigate.">
-              ${ordered.map((srv, idx) => {
-                const prevIdx = Math.max(0, idx - 1);
-                const nextIdx = Math.min(total - 1, idx + 1);
-                const prevService = ordered[prevIdx];
-                const nextService = ordered[nextIdx];
+          <div class="diagonal-deck-stage" id="diagonal-deck-stage" tabindex="0" aria-label="Services card deck. Use arrow keys or swipe to navigate.">
+            ${ordered.map((srv, idx) => {
+              const prevIdx = Math.max(0, idx - 1);
+              const nextIdx = Math.min(total - 1, idx + 1);
+              const prevService = ordered[prevIdx];
+              const nextService = ordered[nextIdx];
 
-                let posClass = 'card-pos-hidden';
-                if (idx === activeIdx) posClass = 'card-pos-active';
-                else if (idx === activeIdx + 1) posClass = 'card-pos-next';
-                else if (idx === activeIdx - 1) posClass = 'card-pos-prev';
+              let posClass = 'card-pos-hidden';
+              if (idx === activeIdx) posClass = 'card-pos-active';
+              else if (idx === activeIdx + 1) posClass = 'card-pos-next';
+              else if (idx === activeIdx - 1) posClass = 'card-pos-prev';
 
-                return `
-                  <article class="diagonal-card ${posClass}" 
-                           data-card-index="${idx}" 
-                           data-service-id="${srv.id}"
-                           id="card-${srv.id}"
-                           role="tabpanel" 
-                           aria-labelledby="tab-${srv.id}">
-                    
-                    <!-- Card Top Bar: Chip Badge, Progress Dots & Arrows -->
-                    <div class="service-card-top-nav">
-                      <div class="card-indicator">
-                        <span class="card-chip">
-                          <span class="chip-pulse"></span>
-                          <strong>SCOPE 0${idx + 1} / 0${total}</strong>
-                        </span>
-                        <div class="card-indicator-dots" role="group" aria-label="Service scopes">
-                          ${ordered.map((_, dotIdx) => `
-                            <button type="button" 
-                                    class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
-                                    data-index="${dotIdx}" 
-                                    aria-label="Switch to scope 0${dotIdx + 1}">
-                            </button>
-                          `).join('')}
-                        </div>
-                      </div>
-
-                      <div class="card-nav-arrows">
-                        <button type="button" class="card-arrow-btn js-btn-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-                        </button>
-                        <button type="button" class="card-arrow-btn js-btn-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                        </button>
+              return `
+                <article class="diagonal-card ${posClass}" 
+                         data-card-index="${idx}" 
+                         data-service-id="${srv.id}"
+                         id="card-${srv.id}">
+                  
+                  <!-- Card Top Bar: Chip Badge, Progress Dots & Arrows -->
+                  <div class="service-card-top-nav">
+                    <div class="card-indicator">
+                      <span class="card-chip">
+                        <span class="chip-pulse"></span>
+                        <strong>SCOPE 0${idx + 1} / 0${total}</strong>
+                      </span>
+                      <div class="card-indicator-dots" role="group" aria-label="Service scopes">
+                        ${ordered.map((_, dotIdx) => `
+                          <button type="button" 
+                                  class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
+                                  data-index="${dotIdx}" 
+                                  aria-label="Switch to scope 0${dotIdx + 1}">
+                          </button>
+                        `).join('')}
                       </div>
                     </div>
 
-                    <!-- Card Header -->
-                    <div class="service-detail-header">
-                      <div>
-                        <span class="service-detail-badge">${srv.shortTitle}</span>
-                        <h2 class="service-detail-title">${srv.title}</h2>
-                      </div>
-                      <span class="service-detail-num">0${idx + 1}</span>
-                    </div>
-
-                    <p class="service-detail-lead">${srv.description}</p>
-
-                    <!-- Card Body -->
-                    <div class="service-detail-grid">
-                      <div class="service-scope-col service-card-tile">
-                        <h3 class="service-subheading">Scope Deliverables</h3>
-                        <ul class="service-includes-list">
-                          ${srv.includes.map(inc => `
-                            <li>
-                              <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                              <span>${inc}</span>
-                            </li>
-                          `).join('')}
-                        </ul>
-                      </div>
-
-                      <div class="service-meta-col">
-                        <div class="service-meta-card service-card-tile">
-                          <h4 class="meta-card-title">Best For</h4>
-                          <p class="meta-card-text">${srv.bestFor}</p>
-                        </div>
-
-                        <div class="service-meta-card service-card-tile">
-                          <h4 class="meta-card-title">Measures</h4>
-                          <p class="meta-card-text">${srv.weMeasure}</p>
-                        </div>
-
-                        <div class="service-cta-wrap">
-                          <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                            <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Card Footer Stepper (Next & Previous Scope Links) -->
-                    <div class="service-card-stepper-footer">
-                      <button type="button" class="stepper-nav-btn prev js-btn-prev" aria-label="Go to ${prevService.title}">
+                    <div class="card-nav-arrows">
+                      <button type="button" class="card-arrow-btn js-btn-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-                        <span class="stepper-text">
-                          <small>Previous</small>
-                          <strong>${prevService.shortTitle}</strong>
-                        </span>
                       </button>
-
-                      
-
-                      <button type="button" class="stepper-nav-btn next js-btn-next" aria-label="Go to ${nextService.title}">
-                        <span class="stepper-text text-right">
-                          <small>Next</small>
-                          <strong>${nextService.shortTitle}</strong>
-                        </span>
+                      <button type="button" class="card-arrow-btn js-btn-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                       </button>
                     </div>
+                  </div>
 
-                  </article>
-                `;
-              }).join('')}
-            </div>
+                  <!-- Card Header -->
+                  <div class="service-detail-header">
+                    <div>
+                      <span class="service-detail-badge">${srv.shortTitle}</span>
+                      <h2 class="service-detail-title">${srv.title}</h2>
+                    </div>
+                    <span class="service-detail-num">0${idx + 1}</span>
+                  </div>
+
+                  <p class="service-detail-lead">${srv.description}</p>
+
+                  <!-- Card Body -->
+                  <div class="service-detail-grid">
+                    <div class="service-scope-col service-card-tile">
+                      <h3 class="service-subheading">Scope Deliverables</h3>
+                      <ul class="service-includes-list">
+                        ${srv.includes.map(inc => `
+                          <li>
+                            <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>${inc}</span>
+                          </li>
+                        `).join('')}
+                      </ul>
+                    </div>
+
+                    <div class="service-meta-col">
+                      <div class="service-meta-card service-card-tile">
+                        <h4 class="meta-card-title">Best For</h4>
+                        <p class="meta-card-text">${srv.bestFor}</p>
+                      </div>
+
+                      <div class="service-meta-card service-card-tile">
+                        <h4 class="meta-card-title">Measures</h4>
+                        <p class="meta-card-text">${srv.weMeasure}</p>
+                      </div>
+
+                      <div class="service-cta-wrap">
+                        <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
+                          <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card Footer Stepper (Next & Previous Scope Links) -->
+                  <div class="service-card-stepper-footer">
+                    <button type="button" class="stepper-nav-btn prev js-btn-prev" aria-label="Go to ${prevService.title}">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                      <span class="stepper-text">
+                        <small>Previous</small>
+                        <strong>${prevService.shortTitle}</strong>
+                      </span>
+                    </button>
+
+                    <button type="button" class="stepper-nav-btn next js-btn-next" aria-label="Go to ${nextService.title}">
+                      <span class="stepper-text text-right">
+                        <small>Next</small>
+                        <strong>${nextService.shortTitle}</strong>
+                      </span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                  </div>
+
+                </article>
+              `;
+            }).join('')}
           </div>
         </div>
       `;
 
-      const cards = explorerContainer.querySelectorAll('.diagonal-card');
-      const tabBtns = explorerContainer.querySelectorAll('.service-tab-btn');
+      // ---------------- Desktop Interactions ----------------
+      const desktopBlocks = explorerContainer.querySelectorAll('.services-desktop-list .service-block');
+      desktopBlocks.forEach(block => {
+        const trigger = block.querySelector('.service-block-trigger');
+        const toggleBlock = (e) => {
+          if (e.target.closest('a') || (e.target.closest('button') && !e.target.closest('.service-block-trigger'))) return;
+          block.classList.toggle('is-expanded');
+          const isExp = block.classList.contains('is-expanded');
+          if (trigger) trigger.setAttribute('aria-expanded', isExp ? 'true' : 'false');
+        };
+
+        if (trigger) {
+          trigger.addEventListener('click', toggleBlock);
+          trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleBlock(e);
+            }
+          });
+        }
+      });
+
+      const toggleAllBtn = document.getElementById('btn-toggle-all-services');
+      const toggleAllText = document.getElementById('toggle-all-text');
+      if (toggleAllBtn && desktopBlocks.length > 0) {
+        let allExpanded = false;
+        toggleAllBtn.addEventListener('click', () => {
+          allExpanded = !allExpanded;
+          desktopBlocks.forEach(b => {
+            b.classList.toggle('is-expanded', allExpanded);
+            const trig = b.querySelector('.service-block-trigger');
+            if (trig) trig.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+          });
+          toggleAllBtn.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+          toggleAllBtn.classList.toggle('active', allExpanded);
+          if (toggleAllText) toggleAllText.textContent = allExpanded ? 'Collapse all scopes' : 'Expand all scopes';
+        });
+      }
+
+      // ---------------- Mobile Card Deck Interactions ----------------
+      const cards = explorerContainer.querySelectorAll('.services-mobile-deck .diagonal-card');
+      const tabBtns = explorerContainer.querySelectorAll('.services-mobile-deck .service-tab-btn');
       const stage = document.getElementById('diagonal-deck-stage');
 
       function updateDeck(newIdx) {
@@ -663,13 +759,23 @@
       updateDeck(activeIdx);
 
       // Listen for hash changes if user clicks an anchor link
-      window.addEventListener('hashchange', () => {
+      function handleHashChange() {
         if (window.location.hash) {
           const hashId = window.location.hash.substring(1);
+          const targetDesktop = document.getElementById(hashId);
+          if (targetDesktop && targetDesktop.classList.contains('service-block')) {
+            targetDesktop.classList.add('is-expanded');
+            const trig = targetDesktop.querySelector('.service-block-trigger');
+            if (trig) trig.setAttribute('aria-expanded', 'true');
+            targetDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
           const foundIdx = ordered.findIndex(s => s.id === hashId);
           if (foundIdx !== -1) updateDeck(foundIdx);
         }
-      });
+      }
+
+      handleHashChange();
+      window.addEventListener('hashchange', handleHashChange);
     }
   }
 
