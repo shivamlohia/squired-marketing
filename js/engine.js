@@ -415,14 +415,16 @@
                         </div>
 
                         <div class="service-meta-col">
-                          <div class="service-meta-card">
-                            <h4 class="meta-card-title">Best For</h4>
-                            <p class="meta-card-text">${srv.bestFor}</p>
-                          </div>
-
-                          <div class="service-meta-card">
-                            <h4 class="meta-card-title">Measures</h4>
-                            <p class="meta-card-text">${srv.weMeasure}</p>
+                          <div class="service-specs-box">
+                            <div class="spec-row">
+                              <span class="spec-title">Best For</span>
+                              <p class="spec-text">${srv.bestFor}</p>
+                            </div>
+                            <div class="spec-divider"></div>
+                            <div class="spec-row">
+                              <span class="spec-title">Measures</span>
+                              <p class="spec-text">${srv.weMeasure}</p>
+                            </div>
                           </div>
 
                           <div class="service-cta-wrap">

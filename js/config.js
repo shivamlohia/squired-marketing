@@ -284,7 +284,7 @@ const CONFIG = {
       title: "Marketplace & Paid Search Media",
       shortTitle: "Marketplaces & Search",
       homeSummary: "Amazon, Flipkart and Google ads that capture intent.",
-      description: "Sponsored ads on Amazon, Flipkart and Google that capture high-intent demand and defend your brand terms.",
+      description: "Sponsored Amazon, Flipkart and Google campaigns built to capture intent and defend brand terms.",
       includes: [
         "Amazon Sponsored Products, Brands and Display",
         "Flipkart PLA and PCA campaigns",
@@ -332,7 +332,7 @@ const CONFIG = {
       title: "Growth Analytics & Margin Architecture",
       shortTitle: "Analytics & Economics",
       homeSummary: "One source of truth for margin and cash.",
-      description: "One source of truth for cash, contribution margin and cohort payback.",
+      description: "One source of truth for cash flow, contribution margin and cohort payback across channels.",
       includes: [
         "MER and contribution margin dashboards",
         "Server-side tracking and first-party attribution",
