@@ -1264,8 +1264,8 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   perspective: 1400px;
   perspective-origin: center center;
-  padding: 12px 52px 36px 52px;
-  min-height: 540px;
+  padding: 16px 68px 36px 68px;
+  min-height: 560px;
   outline: none;
 }
 
@@ -1287,10 +1287,21 @@ h1, h2, h3, h4, h5, h6 {
   backface-visibility: hidden;
   transform-origin: center bottom;
   will-change: transform, opacity, box-shadow;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
               opacity 0.35s ease, 
               box-shadow 0.35s ease, 
               filter 0.35s ease;
+}
+
+.diagonal-card .service-detail-grid {
+  flex: 1 1 auto;
+}
+
+.diagonal-card .service-card-stepper-footer {
+  margin-top: auto;
+  padding-top: var(--space-md);
 }
 
 /* Front & Center Active Card */
@@ -1305,38 +1316,34 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Next Card: Peeking Diagonally to the Right */
 .diagonal-card.card-pos-next {
-  transform: translate3d(46px, 16px, -20px) scale(0.94) rotate(4.2deg);
+  transform: translate3d(58px, 14px, -15px) scale(0.97) rotate(3.6deg);
   z-index: 5;
-  opacity: 0.78;
+  opacity: 0.88;
   cursor: pointer;
   pointer-events: auto;
-  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.12);
-  filter: contrast(0.97) brightness(0.98);
+  box-shadow: 0 18px 42px rgba(16, 5, 88, 0.14);
 }
 
 .diagonal-card.card-pos-next:hover {
-  transform: translate3d(54px, 12px, -10px) scale(0.96) rotate(3.2deg);
-  opacity: 0.94;
-  filter: none;
-  box-shadow: 0 20px 44px rgba(16, 5, 88, 0.15);
+  transform: translate3d(70px, 10px, -10px) scale(0.98) rotate(2.6deg);
+  opacity: 0.98;
+  box-shadow: 0 24px 52px rgba(16, 5, 88, 0.18);
 }
 
 /* Previous Card: Peeking Diagonally to the Left */
 .diagonal-card.card-pos-prev {
-  transform: translate3d(-46px, 16px, -20px) scale(0.94) rotate(-4.2deg);
+  transform: translate3d(-58px, 14px, -15px) scale(0.97) rotate(-3.6deg);
   z-index: 4;
-  opacity: 0.78;
+  opacity: 0.88;
   cursor: pointer;
   pointer-events: auto;
-  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.12);
-  filter: contrast(0.97) brightness(0.98);
+  box-shadow: 0 18px 42px rgba(16, 5, 88, 0.14);
 }
 
 .diagonal-card.card-pos-prev:hover {
-  transform: translate3d(-54px, 12px, -10px) scale(0.96) rotate(-3.2deg);
-  opacity: 0.94;
-  filter: none;
-  box-shadow: 0 20px 44px rgba(16, 5, 88, 0.15);
+  transform: translate3d(-70px, 10px, -10px) scale(0.98) rotate(-2.6deg);
+  opacity: 0.98;
+  box-shadow: 0 24px 52px rgba(16, 5, 88, 0.18);
 }
 
 /* Hidden Cards Waiting in Deck */
@@ -1668,18 +1675,18 @@ h1, h2, h3, h4, h5, h6 {
     min-height: auto;
   }
   .diagonal-card.card-pos-next {
-    transform: translate3d(24px, 12px, -10px) scale(0.95) rotate(2.8deg);
-    opacity: 0.75;
+    transform: translate3d(26px, 12px, -10px) scale(0.96) rotate(2.5deg);
+    opacity: 0.84;
   }
   .diagonal-card.card-pos-prev {
-    transform: translate3d(-24px, 12px, -10px) scale(0.95) rotate(-2.8deg);
-    opacity: 0.75;
+    transform: translate3d(-26px, 12px, -10px) scale(0.96) rotate(-2.5deg);
+    opacity: 0.84;
   }
   .diagonal-card.card-pos-next:hover {
-    transform: translate3d(28px, 10px, -5px) scale(0.96) rotate(2.2deg);
+    transform: translate3d(30px, 10px, -5px) scale(0.97) rotate(2deg);
   }
   .diagonal-card.card-pos-prev:hover {
-    transform: translate3d(-28px, 10px, -5px) scale(0.96) rotate(-2.2deg);
+    transform: translate3d(-30px, 10px, -5px) scale(0.97) rotate(-2deg);
   }
 
   /* On mobile cards, show key execution bullets cleanly */

@@ -270,9 +270,10 @@ const CONFIG = {
       homeSummary: "Scalable Meta and YouTube acquisition.",
       description: "Margin-disciplined acquisition on Meta and YouTube, built to scale without inflating first-order CAC.",
       includes: [
-        "Meta account structure and ASC+ setup",
-        "Weekly creative testing sprints",
-        "Direct-response scripts and hooks"
+        "Meta account structure and ASC+ orchestration",
+        "Weekly creative testing sprints (hooks, formats, angles)",
+        "Direct-response scripts and copywriting frameworks",
+        "Granular demographic and bid capping management"
       ],
       bestFor: "D2C brands spending ₹1L–₹50L+ a month that have hit a CAC plateau.",
       weMeasure: "nCAC · First-Order AOV · Contribution Margin · MER",

@@ -374,15 +374,15 @@
           <div class="services-detail-col">
             <div class="diagonal-deck-stage" id="diagonal-deck-stage" tabindex="0" aria-label="Services card deck. Use arrow keys or swipe to navigate.">
               ${ordered.map((srv, idx) => {
-                const prevIdx = (idx - 1 + total) % total;
-                const nextIdx = (idx + 1) % total;
+                const prevIdx = Math.max(0, idx - 1);
+                const nextIdx = Math.min(total - 1, idx + 1);
                 const prevService = ordered[prevIdx];
                 const nextService = ordered[nextIdx];
 
                 let posClass = 'card-pos-hidden';
                 if (idx === activeIdx) posClass = 'card-pos-active';
-                else if (idx === (activeIdx + 1) % total) posClass = 'card-pos-next';
-                else if (idx === (activeIdx - 1 + total) % total) posClass = 'card-pos-prev';
+                else if (idx === activeIdx + 1) posClass = 'card-pos-next';
+                else if (idx === activeIdx - 1) posClass = 'card-pos-prev';
 
                 return `
                   <article class="diagonal-card ${posClass}" 
@@ -499,7 +499,7 @@
       const stage = document.getElementById('diagonal-deck-stage');
 
       function updateDeck(newIdx) {
-        activeIdx = (newIdx + total) % total;
+        activeIdx = Math.max(0, Math.min(total - 1, newIdx));
 
         cards.forEach((card, i) => {
           card.classList.remove('card-pos-active', 'card-pos-next', 'card-pos-prev', 'card-pos-hidden');
@@ -508,11 +508,11 @@
             card.classList.add('card-pos-active');
             card.setAttribute('aria-hidden', 'false');
             card.setAttribute('tabindex', '0');
-          } else if (i === (activeIdx + 1) % total) {
+          } else if (i === activeIdx + 1) {
             card.classList.add('card-pos-next');
             card.setAttribute('aria-hidden', 'true');
             card.setAttribute('tabindex', '-1');
-          } else if (i === (activeIdx - 1 + total) % total) {
+          } else if (i === activeIdx - 1) {
             card.classList.add('card-pos-prev');
             card.setAttribute('aria-hidden', 'true');
             card.setAttribute('tabindex', '-1');
@@ -540,6 +540,46 @@
           dots.forEach((dot, dotIdx) => {
             dot.classList.toggle('active', dotIdx === activeIdx);
           });
+
+          // Disable or hide boundary buttons
+          const prevArrow = card.querySelector('.card-arrow-btn.js-btn-prev');
+          const nextArrow = card.querySelector('.card-arrow-btn.js-btn-next');
+          const prevStepper = card.querySelector('.stepper-nav-btn.prev');
+          const nextStepper = card.querySelector('.stepper-nav-btn.next');
+
+          if (prevArrow) {
+            if (activeIdx === 0) {
+              prevArrow.style.opacity = '0.22';
+              prevArrow.style.pointerEvents = 'none';
+              prevArrow.setAttribute('disabled', 'true');
+            } else {
+              prevArrow.style.opacity = '';
+              prevArrow.style.pointerEvents = '';
+              prevArrow.removeAttribute('disabled');
+            }
+          }
+
+          if (nextArrow) {
+            if (activeIdx === total - 1) {
+              nextArrow.style.opacity = '0.22';
+              nextArrow.style.pointerEvents = 'none';
+              nextArrow.setAttribute('disabled', 'true');
+            } else {
+              nextArrow.style.opacity = '';
+              nextArrow.style.pointerEvents = '';
+              nextArrow.removeAttribute('disabled');
+            }
+          }
+
+          if (prevStepper) {
+            prevStepper.style.visibility = (activeIdx === 0) ? 'hidden' : 'visible';
+            prevStepper.style.pointerEvents = (activeIdx === 0) ? 'none' : 'auto';
+          }
+
+          if (nextStepper) {
+            nextStepper.style.visibility = (activeIdx === total - 1) ? 'hidden' : 'visible';
+            nextStepper.style.pointerEvents = (activeIdx === total - 1) ? 'none' : 'auto';
+          }
         });
       }
 
@@ -552,9 +592,9 @@
       cards.forEach((card, i) => {
         card.addEventListener('click', (e) => {
           if (e.target.closest('a') || e.target.closest('button')) return;
-          if (card.classList.contains('card-pos-next')) {
+          if (card.classList.contains('card-pos-next') && activeIdx < total - 1) {
             updateDeck(activeIdx + 1);
-          } else if (card.classList.contains('card-pos-prev')) {
+          } else if (card.classList.contains('card-pos-prev') && activeIdx > 0) {
             updateDeck(activeIdx - 1);
           }
         });
@@ -565,13 +605,13 @@
         card.querySelectorAll('.js-btn-prev').forEach(btn => {
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            updateDeck(activeIdx - 1);
+            if (activeIdx > 0) updateDeck(activeIdx - 1);
           });
         });
         card.querySelectorAll('.js-btn-next').forEach(btn => {
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            updateDeck(activeIdx + 1);
+            if (activeIdx < total - 1) updateDeck(activeIdx + 1);
           });
         });
         card.querySelectorAll('.card-dot').forEach(dot => {
@@ -599,9 +639,9 @@
           const diffY = touchEndY - touchStartY;
 
           if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-            if (diffX < 0) {
+            if (diffX < 0 && activeIdx < total - 1) {
               updateDeck(activeIdx + 1); // Swiped Left -> Move Next
-            } else {
+            } else if (diffX > 0 && activeIdx > 0) {
               updateDeck(activeIdx - 1); // Swiped Right -> Move Prev
             }
           }
@@ -609,10 +649,10 @@
 
         // 5. Keyboard arrows
         stage.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight') {
+          if (e.key === 'ArrowRight' && activeIdx < total - 1) {
             e.preventDefault();
             updateDeck(activeIdx + 1);
-          } else if (e.key === 'ArrowLeft') {
+          } else if (e.key === 'ArrowLeft' && activeIdx > 0) {
             e.preventDefault();
             updateDeck(activeIdx - 1);
           }
