@@ -537,6 +537,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 880px;
 }
 
 .hero-eyebrow {
@@ -562,7 +563,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
   color: var(--color-text-muted);
   margin-bottom: var(--space-xl);
-  max-width: 620px;
+  max-width: 720px;
 }
 
 .hero-cta-group {
@@ -818,11 +819,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------------- Hero Merged Trust Strip ---------------- */
 .hero-trust-strip {
-  margin-top: var(--space-lg);
-  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-xl);
+  padding: 12px 18px;
   background: var(--color-navy-tint);
   border-radius: 6px;
   border: 1px solid var(--color-navy-divider);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .hero-trust-strip .trust-strip-label {
@@ -831,15 +836,16 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-navy-muted);
-  display: block;
-  margin-bottom: 8px;
+  display: inline-block;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .hero-trust-strip .trust-pills-wrap {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 8px;
+  align-items: center;
 }
 
 .hero-trust-strip .trust-pill {
@@ -3043,13 +3049,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 18px;
   }
 
-  /* On mobile, hero headline flows directly into the quick audit form card — suppress duplicate CTA button right above it */
-  #hero-primary-cta {
-    display: none !important;
-  }
-  .hero-cta-group {
-    margin-bottom: var(--space-md);
-  }
 
   .founder-avatar-box {
     max-width: 160px;
