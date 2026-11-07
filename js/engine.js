@@ -827,4 +827,10 @@
     `).join('');
   }
 
+  // Initial link normalization for repository subpaths
+  normalizeRepoLinks();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', normalizeRepoLinks);
+  }
+
 })();
