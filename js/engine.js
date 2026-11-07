@@ -331,138 +331,126 @@
       `).join('');
     }
 
-    // Full Services page (services.html)
-    const fullServicesContainer = document.getElementById('services-list-container');
-    if (fullServicesContainer && allServices.length > 0) {
+    // Full Services Explorer (services.html)
+    const explorerContainer = document.getElementById('services-explorer') || document.getElementById('services-list-container');
+    if (explorerContainer && allServices.length > 0) {
       const ordered = [...allServices].sort((a, b) => {
         const indexA = orderArray.indexOf(a.id);
         const indexB = orderArray.indexOf(b.id);
         return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
       });
 
-      fullServicesContainer.innerHTML = ordered.map((srv, idx) => `
-        <article class="service-block" id="${srv.id}" tabindex="0">
-          <div class="service-block-header">
-            <span class="service-block-num">0${idx + 1}</span>
-            <div class="service-block-header-info">
-              <h2 class="service-block-title">${srv.title}</h2>
-              <div class="service-block-badge">${srv.shortTitle}</div>
-            </div>
-          </div>
-          
-          <p class="service-block-lead">${srv.description}</p>
-
-          <div class="service-block-trigger" role="button" aria-expanded="false" tabindex="0">
-            <span class="trigger-label">Execution Scope &amp; Economics</span>
-            <span class="trigger-action">
-              <span class="trigger-hint-text">Hover or click to view full deliverables</span>
-              <svg class="trigger-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
-          </div>
-
-          <div class="service-block-drawer">
-            <div class="service-block-details">
-              <div class="service-includes-col">
-                <h3 class="service-subheading">Scope</h3>
-                <ul class="service-includes-list">
-                  ${srv.includes.map(inc => `
-                    <li>
-                      <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                      <span>${inc}</span>
-                    </li>
-                  `).join('')}
-                </ul>
-              </div>
-
-              <div class="service-meta-col">
-                <div class="service-meta-card">
-                  <h4 class="meta-card-title">Best For</h4>
-                  <p class="meta-card-text">${srv.bestFor}</p>
-                </div>
-
-                <div class="service-meta-card">
-                  <h4 class="meta-card-title">Measures</h4>
-                  <p class="meta-card-text">${srv.weMeasure}</p>
-                </div>
-
-                <div class="service-cta-wrap">
-                  <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                    <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join('');
-
-      // Setup interactive click/tap toggles for touch & persistent reading
-      const serviceBlocks = fullServicesContainer.querySelectorAll('.service-block');
-      serviceBlocks.forEach(block => {
-        const trigger = block.querySelector('.service-block-trigger');
-        const toggleExpand = (e) => {
-          if (e.target.closest('a') || (e.target.closest('button') && !e.target.closest('.service-block-trigger'))) return;
-          block.classList.toggle('is-expanded');
-          const isExp = block.classList.contains('is-expanded');
-          if (trigger) {
-            trigger.setAttribute('aria-expanded', isExp ? 'true' : 'false');
-            const hint = trigger.querySelector('.trigger-hint-text');
-            if (hint) hint.textContent = isExp ? 'Click to collapse deliverables' : 'Hover or click to view full deliverables';
-          }
-        };
-
-        if (trigger) {
-          trigger.addEventListener('click', toggleExpand);
-          trigger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggleExpand(e);
-            }
-          });
+      let activeId = ordered[0].id;
+      if (window.location.hash) {
+        const hashId = window.location.hash.substring(1);
+        if (ordered.some(s => s.id === hashId)) {
+          activeId = hashId;
         }
-      });
+      }
 
-      // Expand All / Collapse All functionality
-      const toggleAllBtn = document.getElementById('btn-toggle-all-services');
-      const toggleAllText = document.getElementById('toggle-all-text');
-      if (toggleAllBtn && serviceBlocks.length > 0) {
-        let allExpanded = false;
-        toggleAllBtn.addEventListener('click', () => {
-          allExpanded = !allExpanded;
-          serviceBlocks.forEach(b => {
-            if (allExpanded) {
-              b.classList.add('is-expanded');
-            } else {
-              b.classList.remove('is-expanded');
-            }
-            const trig = b.querySelector('.service-block-trigger');
-            if (trig) {
-              trig.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
-              const hint = trig.querySelector('.trigger-hint-text');
-              if (hint) hint.textContent = allExpanded ? 'Click to collapse deliverables' : 'Hover or click to view full deliverables';
-            }
+      function renderExplorer(selectedId) {
+        activeId = selectedId;
+        const activeService = ordered.find(s => s.id === selectedId) || ordered[0];
+        const activeIdx = ordered.indexOf(activeService);
+
+        explorerContainer.innerHTML = `
+          <div class="services-explorer-layout">
+            <!-- Left Tabs Menu -->
+            <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
+              ${ordered.map((srv, idx) => {
+                const isActive = srv.id === activeService.id;
+                return `
+                  <button type="button" 
+                          class="service-tab-btn ${isActive ? 'active' : ''}" 
+                          data-service-id="${srv.id}" 
+                          role="tab" 
+                          aria-selected="${isActive ? 'true' : 'false'}"
+                          id="tab-${srv.id}">
+                    <span class="service-tab-num">0${idx + 1}</span>
+                    <div class="service-tab-info">
+                      <span class="service-tab-title">${srv.title}</span>
+                      <span class="service-tab-badge">${srv.shortTitle}</span>
+                    </div>
+                    <svg class="service-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                `;
+              }).join('')}
+            </nav>
+
+            <!-- Right Detail Showcase -->
+            <div class="services-detail-col" role="tabpanel" aria-labelledby="tab-${activeService.id}" id="${activeService.id}">
+              <article class="service-detail-card">
+                <div class="service-detail-header">
+                  <div>
+                    <span class="service-detail-badge">${activeService.shortTitle}</span>
+                    <h2 class="service-detail-title">${activeService.title}</h2>
+                  </div>
+                  <span class="service-detail-num">0${activeIdx + 1}</span>
+                </div>
+
+                <p class="service-detail-lead">${activeService.description}</p>
+
+                <div class="service-detail-grid">
+                  <div class="service-scope-col">
+                    <h3 class="service-subheading">Scope</h3>
+                    <ul class="service-includes-list">
+                      ${activeService.includes.map(inc => `
+                        <li>
+                          <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                          <span>${inc}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+
+                  <div class="service-meta-col">
+                    <div class="service-meta-card">
+                      <h4 class="meta-card-title">Best For</h4>
+                      <p class="meta-card-text">${activeService.bestFor}</p>
+                    </div>
+
+                    <div class="service-meta-card">
+                      <h4 class="meta-card-title">Measures</h4>
+                      <p class="meta-card-text">${activeService.weMeasure}</p>
+                    </div>
+
+                    <div class="service-cta-wrap">
+                      <a href="contact.html?service=${activeService.id}" class="btn btn-primary js-cta-btn">
+                        <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        `;
+
+        // Switch on hover or click
+        const tabBtns = explorerContainer.querySelectorAll('.service-tab-btn');
+        tabBtns.forEach(btn => {
+          const sid = btn.getAttribute('data-service-id');
+          btn.addEventListener('mouseenter', () => {
+            if (sid !== activeId) renderExplorer(sid);
           });
-          toggleAllBtn.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
-          toggleAllBtn.classList.toggle('active', allExpanded);
-          if (toggleAllText) toggleAllText.textContent = allExpanded ? 'Collapse all scopes' : 'Expand all scopes';
+          btn.addEventListener('click', () => {
+            if (sid !== activeId) renderExplorer(sid);
+          });
         });
       }
 
-      // If URL hash points to a specific service, open it immediately
-      if (window.location.hash) {
-        const hashId = window.location.hash.substring(1);
-        const targetBlock = document.getElementById(hashId);
-        if (targetBlock) {
-          targetBlock.classList.add('is-expanded');
-          const trig = targetBlock.querySelector('.service-block-trigger');
-          if (trig) {
-            trig.setAttribute('aria-expanded', 'true');
-            const hint = trig.querySelector('.trigger-hint-text');
-            if (hint) hint.textContent = 'Click to collapse deliverables';
+      renderExplorer(activeId);
+
+      // Listen for hash changes if user clicks an anchor link
+      window.addEventListener('hashchange', () => {
+        if (window.location.hash) {
+          const hashId = window.location.hash.substring(1);
+          if (ordered.some(s => s.id === hashId)) {
+            renderExplorer(hashId);
           }
         }
-      }
+      });
     }
   }
 

@@ -96,29 +96,17 @@
   </header>
 
   <main id="main-content">
-    <!-- Intro Section -->
-    <section class="section" style="padding-bottom: var(--space-2xl);">
-      <div class="container container-narrow" style="text-align: center;">
-        <h1 class="section-title">Services Built for Margin</h1>
-        <p class="section-lead">
-          Five scopes, one goal: more contribution margin.
-        </p>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Five Service Blocks (Ordered dynamically by active variant) -->
+    <!-- Services Section -->
     <section class="section" id="services-list-section" aria-label="Detailed Services">
       <div class="container">
-        <div class="services-actions-bar">
-          <span class="services-count-badge">5 Dedicated Scopes</span>
-          <button type="button" class="btn-toggle-all-services" id="btn-toggle-all-services" aria-expanded="false">
-            <span id="toggle-all-text">Expand all scopes</span>
-            <svg class="toggle-all-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
+        <div class="section-header section-header-centered" style="margin-bottom: var(--space-xl);">
+          <h1 class="section-title">Services Built for Margin</h1>
+          <p class="section-lead">
+            Five scopes, one goal: more contribution margin.
+          </p>
         </div>
-        <div class="services-list" id="services-list-container">
+
+        <div class="services-explorer" id="services-explorer">
           <!-- Rendered dynamically by engine.js based on variant.servicesOrder -->
         </div>
       </div>
