@@ -383,100 +383,111 @@
               }).join('')}
             </nav>
 
-            <!-- Right Detail Showcase Card with Next/Prev Stepper Navigation -->
+            <!-- Right Detail Showcase Card with 3D Card Stack Illusion & Next/Prev Navigation -->
             <div class="services-detail-col" role="tabpanel" aria-labelledby="tab-${activeService.id}" id="${activeService.id}">
-              <article class="service-detail-card ${animClass}" tabindex="0" aria-label="Service scope ${activeIdx + 1} of ${ordered.length}: ${activeService.title}">
-                
-                <!-- Card Top Bar: Progress Indicator & Left/Right Arrows -->
-                <div class="service-card-top-nav">
-                  <div class="card-indicator">
-                    <span class="card-step-badge">Scope 0${activeIdx + 1} of 0${ordered.length}</span>
-                    <div class="card-indicator-dots" role="group" aria-label="Service scopes">
-                      ${ordered.map((_, dotIdx) => `
-                        <button type="button" 
-                                class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
-                                data-index="${dotIdx}" 
-                                aria-label="Switch to scope 0${dotIdx + 1}">
-                        </button>
-                      `).join('')}
+              <div class="services-deck-stage">
+                <!-- Stacked Card Depth Illusion Layers -->
+                <div class="deck-shadow-card layer-2" aria-hidden="true"></div>
+                <div class="deck-shadow-card layer-1" aria-hidden="true"></div>
+
+                <article class="service-detail-card ${animClass}" tabindex="0" aria-label="Service scope ${activeIdx + 1} of ${ordered.length}: ${activeService.title}">
+                  
+                  <!-- Card Top Bar: Chip Badge, Progress Dots & Arrows -->
+                  <div class="service-card-top-nav">
+                    <div class="card-indicator">
+                      <span class="card-chip">
+                        <span class="chip-pulse"></span>
+                        <strong>SCOPE 0${activeIdx + 1} / 0${ordered.length}</strong>
+                      </span>
+                      <div class="card-indicator-dots" role="group" aria-label="Service scopes">
+                        ${ordered.map((_, dotIdx) => `
+                          <button type="button" 
+                                  class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
+                                  data-index="${dotIdx}" 
+                                  aria-label="Switch to scope 0${dotIdx + 1}">
+                          </button>
+                        `).join('')}
+                      </div>
+                    </div>
+
+                    <div class="card-nav-arrows">
+                      <button type="button" class="card-arrow-btn" id="service-card-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                      </button>
+                      <button type="button" class="card-arrow-btn" id="service-card-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                      </button>
                     </div>
                   </div>
 
-                  <div class="card-nav-arrows">
-                    <button type="button" class="card-arrow-btn" id="service-card-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
+                  <!-- Card Header -->
+                  <div class="service-detail-header">
+                    <div>
+                      <span class="service-detail-badge">${activeService.shortTitle}</span>
+                      <h2 class="service-detail-title">${activeService.title}</h2>
+                    </div>
+                    <span class="service-detail-num">0${activeIdx + 1}</span>
+                  </div>
+
+                  <p class="service-detail-lead">${activeService.description}</p>
+
+                  <!-- Card Body -->
+                  <div class="service-detail-grid">
+                    <div class="service-scope-col service-card-tile">
+                      <h3 class="service-subheading">Scope Deliverables</h3>
+                      <ul class="service-includes-list">
+                        ${activeService.includes.map(inc => `
+                          <li>
+                            <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>${inc}</span>
+                          </li>
+                        `).join('')}
+                      </ul>
+                    </div>
+
+                    <div class="service-meta-col">
+                      <div class="service-meta-card service-card-tile">
+                        <h4 class="meta-card-title">Best For</h4>
+                        <p class="meta-card-text">${activeService.bestFor}</p>
+                      </div>
+
+                      <div class="service-meta-card service-card-tile">
+                        <h4 class="meta-card-title">Measures</h4>
+                        <p class="meta-card-text">${activeService.weMeasure}</p>
+                      </div>
+
+                      <div class="service-cta-wrap">
+                        <a href="contact.html?service=${activeService.id}" class="btn btn-primary js-cta-btn">
+                          <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card Footer Stepper (Next & Previous Scope Links) -->
+                  <div class="service-card-stepper-footer">
+                    <button type="button" class="stepper-nav-btn prev" id="stepper-prev-btn" aria-label="Go to ${prevService.title}">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                      <span class="stepper-text">
+                        <small>Previous</small>
+                        <strong>${prevService.shortTitle}</strong>
+                      </span>
                     </button>
-                    <button type="button" class="card-arrow-btn" id="service-card-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
+
+                    <span class="card-swipe-hint" aria-hidden="true">Swipe or arrows to flip card</span>
+
+                    <button type="button" class="stepper-nav-btn next" id="stepper-next-btn" aria-label="Go to ${nextService.title}">
+                      <span class="stepper-text text-right">
+                        <small>Next</small>
+                        <strong>${nextService.shortTitle}</strong>
+                      </span>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                     </button>
                   </div>
-                </div>
 
-                <!-- Card Header -->
-                <div class="service-detail-header">
-                  <div>
-                    <span class="service-detail-badge">${activeService.shortTitle}</span>
-                    <h2 class="service-detail-title">${activeService.title}</h2>
-                  </div>
-                  <span class="service-detail-num">0${activeIdx + 1}</span>
-                </div>
-
-                <p class="service-detail-lead">${activeService.description}</p>
-
-                <!-- Card Body -->
-                <div class="service-detail-grid">
-                  <div class="service-scope-col">
-                    <h3 class="service-subheading">Scope</h3>
-                    <ul class="service-includes-list">
-                      ${activeService.includes.map(inc => `
-                        <li>
-                          <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                          <span>${inc}</span>
-                        </li>
-                      `).join('')}
-                    </ul>
-                  </div>
-
-                  <div class="service-meta-col">
-                    <div class="service-meta-card">
-                      <h4 class="meta-card-title">Best For</h4>
-                      <p class="meta-card-text">${activeService.bestFor}</p>
-                    </div>
-
-                    <div class="service-meta-card">
-                      <h4 class="meta-card-title">Measures</h4>
-                      <p class="meta-card-text">${activeService.weMeasure}</p>
-                    </div>
-
-                    <div class="service-cta-wrap">
-                      <a href="contact.html?service=${activeService.id}" class="btn btn-primary js-cta-btn">
-                        <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Card Footer Stepper (Next & Previous Scope Links) -->
-                <div class="service-card-stepper-footer">
-                  <button type="button" class="stepper-nav-btn prev" id="stepper-prev-btn" aria-label="Go to ${prevService.title}">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-                    <span class="stepper-text">
-                      <small>Previous</small>
-                      <strong>${prevService.shortTitle}</strong>
-                    </span>
-                  </button>
-
-                  <button type="button" class="stepper-nav-btn next" id="stepper-next-btn" aria-label="Go to ${nextService.title}">
-                    <span class="stepper-text text-right">
-                      <small>Next</small>
-                      <strong>${nextService.shortTitle}</strong>
-                    </span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                  </button>
-                </div>
-
-              </article>
+                </article>
+              </div>
             </div>
           </div>
         `;

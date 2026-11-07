@@ -1252,35 +1252,73 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-orange);
 }
 
-/* Right Detail Showcase Card */
+/* Right Detail Showcase: 3D Physical Card Deck Visual */
 .services-detail-col {
   position: sticky;
   top: calc(var(--header-height) + 20px);
 }
 
+.services-deck-stage {
+  position: relative;
+  width: 100%;
+  perspective: 1200px;
+}
+
+/* Layered Card Silhouettes Behind Active Card */
+.deck-shadow-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.deck-shadow-card.layer-1 {
+  transform: translate(6px, 10px) scale(0.99);
+  background: #fbfbfd;
+  border: 1px solid rgba(16, 5, 88, 0.1);
+  box-shadow: 0 16px 36px rgba(16, 5, 88, 0.07);
+  z-index: 1;
+}
+
+.deck-shadow-card.layer-2 {
+  transform: translate(12px, 20px) scale(0.98);
+  background: #f3f1fa;
+  border: 1px solid rgba(16, 5, 88, 0.08);
+  box-shadow: 0 10px 24px rgba(16, 5, 88, 0.05);
+  z-index: 0;
+}
+
+/* Master Active Service Card */
 .service-detail-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-navy-divider);
-  border-radius: 10px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, #ffffff 0%, #fafaff 100%);
+  border: 1px solid rgba(16, 5, 88, 0.12);
+  border-top: 5px solid var(--color-orange);
+  border-radius: 20px;
   padding: var(--space-2xl);
-  box-shadow: 0 14px 36px rgba(16, 5, 88, 0.07);
-  animation: fadeInCard 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 24px 60px -10px rgba(16, 5, 88, 0.14), 0 6px 18px rgba(16, 5, 88, 0.04);
+  animation: fadeInCard 0.24s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
   touch-action: pan-y;
 }
 
 .service-detail-card.slide-next {
-  animation: slideNextCard 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideNextCard 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-detail-card.slide-prev {
-  animation: slidePrevCard 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slidePrevCard 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInCard {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -1291,32 +1329,32 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes slideNextCard {
   from {
     opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(36px) rotate(1.2deg);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) rotate(0deg);
   }
 }
 
 @keyframes slidePrevCard {
   from {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translateX(-36px) rotate(-1.2deg);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) rotate(0deg);
   }
 }
 
-/* Card Top Navigation Bar (Dots & Arrows) */
+/* Card Top Navigation Bar (Chip Badge, Dots & Arrows) */
 .service-card-top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-md);
-  padding-bottom: var(--space-xs);
+  padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--color-navy-divider);
 }
 
@@ -1324,6 +1362,28 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+}
+
+.card-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--color-navy);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chip-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  box-shadow: 0 0 6px var(--color-orange);
 }
 
 .card-step-badge {
@@ -1465,6 +1525,27 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-navy);
   flex-shrink: 0;
   transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.card-swipe-hint {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-navy-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .card-swipe-hint {
+    display: none;
+  }
+}
+
+.service-card-tile {
+  background: var(--color-navy-tint);
+  border: 1px solid rgba(16, 5, 88, 0.06);
+  border-radius: 12px;
+  padding: var(--space-lg);
 }
 
 .service-detail-header {
