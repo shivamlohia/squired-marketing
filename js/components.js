@@ -671,20 +671,38 @@
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (navToggle && mobileMenu) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !isOpen);
-        mobileMenu.classList.toggle('is-open', !isOpen);
-        document.body.classList.toggle('nav-locked', !isOpen);
+      function toggleMenu(open) {
+        const isOpen = typeof open === 'boolean' ? open : !mobileMenu.classList.contains('is-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileMenu.classList.toggle('is-open', isOpen);
+        document.body.classList.toggle('nav-locked', isOpen);
+      }
+
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
       });
 
       // Close menu on link click
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          navToggle.setAttribute('aria-expanded', 'false');
-          mobileMenu.classList.remove('is-open');
-          document.body.classList.remove('nav-locked');
+          toggleMenu(false);
         });
+      });
+
+      // Close menu on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+          toggleMenu(false);
+          navToggle.focus();
+        }
+      });
+
+      // Close menu if window is resized above mobile breakpoint
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900 && mobileMenu.classList.contains('is-open')) {
+          toggleMenu(false);
+        }
       });
     }
 
