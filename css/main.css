@@ -1261,10 +1261,20 @@ h1, h2, h3, h4, h5, h6 {
 .service-detail-card {
   background: var(--color-white);
   border: 1px solid var(--color-navy-divider);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: var(--space-2xl);
-  box-shadow: 0 12px 32px rgba(16, 5, 88, 0.06);
+  box-shadow: 0 14px 36px rgba(16, 5, 88, 0.07);
   animation: fadeInCard 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  touch-action: pan-y;
+}
+
+.service-detail-card.slide-next {
+  animation: slideNextCard 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-detail-card.slide-prev {
+  animation: slidePrevCard 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInCard {
@@ -1276,6 +1286,185 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes slideNextCard {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slidePrevCard {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Card Top Navigation Bar (Dots & Arrows) */
+.service-card-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-navy-divider);
+}
+
+.card-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.card-step-badge {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-navy-muted);
+}
+
+.card-indicator-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-navy-divider);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-dot:hover {
+  background: var(--color-navy);
+}
+
+.card-dot.active {
+  background: var(--color-orange);
+  width: 22px;
+  border-radius: 10px;
+}
+
+.card-nav-arrows {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.card-arrow-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-navy-tint);
+  border: 1px solid var(--color-navy-divider);
+  color: var(--color-navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-arrow-btn:hover {
+  background: var(--color-orange);
+  color: var(--color-white);
+  border-color: var(--color-orange);
+  transform: scale(1.08);
+}
+
+/* Card Footer Stepper (Next & Previous Scope Links) */
+.service-card-stepper-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-navy-divider);
+  gap: var(--space-md);
+}
+
+.stepper-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-navy-tint);
+  border: 1px solid var(--color-navy-divider);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--color-navy);
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepper-nav-btn:hover {
+  background: var(--color-white);
+  border-color: var(--color-orange);
+  box-shadow: 0 4px 12px rgba(16, 5, 88, 0.08);
+}
+
+.stepper-nav-btn.next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.stepper-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.stepper-text small {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-navy-muted);
+}
+
+.stepper-text strong {
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  white-space: nowrap;
+}
+
+.stepper-nav-btn:hover .stepper-text strong {
+  color: var(--color-orange);
+}
+
+.stepper-nav-btn.prev:hover svg {
+  transform: translateX(-3px);
+  color: var(--color-orange);
+}
+
+.stepper-nav-btn.next:hover svg {
+  transform: translateX(3px);
+  color: var(--color-orange);
+}
+
+.stepper-nav-btn svg {
+  color: var(--color-navy);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .service-detail-header {
@@ -1398,6 +1587,26 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     margin-top: var(--space-xs);
     margin-bottom: var(--space-sm);
+  }
+
+  .service-card-top-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .service-card-stepper-footer {
+    gap: 8px;
+  }
+
+  .stepper-nav-btn {
+    padding: 6px 10px;
+  }
+
+  .stepper-text strong {
+    font-size: 0.78rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

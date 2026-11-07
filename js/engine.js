@@ -348,14 +348,20 @@
         }
       }
 
-      function renderExplorer(selectedId) {
+      function renderExplorer(selectedId, direction) {
         activeId = selectedId;
         const activeService = ordered.find(s => s.id === selectedId) || ordered[0];
         const activeIdx = ordered.indexOf(activeService);
+        const prevIdx = (activeIdx - 1 + ordered.length) % ordered.length;
+        const nextIdx = (activeIdx + 1) % ordered.length;
+        const prevService = ordered[prevIdx];
+        const nextService = ordered[nextIdx];
+
+        const animClass = direction === 'next' ? 'slide-next' : (direction === 'prev' ? 'slide-prev' : '');
 
         explorerContainer.innerHTML = `
           <div class="services-explorer-layout">
-            <!-- Left Tabs Menu -->
+            <!-- Left Tabs Menu (Direct Selection) -->
             <nav class="services-tabs-col" role="tablist" aria-label="Services Navigation">
               ${ordered.map((srv, idx) => {
                 const isActive = srv.id === activeService.id;
@@ -377,9 +383,36 @@
               }).join('')}
             </nav>
 
-            <!-- Right Detail Showcase -->
+            <!-- Right Detail Showcase Card with Next/Prev Stepper Navigation -->
             <div class="services-detail-col" role="tabpanel" aria-labelledby="tab-${activeService.id}" id="${activeService.id}">
-              <article class="service-detail-card">
+              <article class="service-detail-card ${animClass}" tabindex="0" aria-label="Service scope ${activeIdx + 1} of ${ordered.length}: ${activeService.title}">
+                
+                <!-- Card Top Bar: Progress Indicator & Left/Right Arrows -->
+                <div class="service-card-top-nav">
+                  <div class="card-indicator">
+                    <span class="card-step-badge">Scope 0${activeIdx + 1} of 0${ordered.length}</span>
+                    <div class="card-indicator-dots" role="group" aria-label="Service scopes">
+                      ${ordered.map((_, dotIdx) => `
+                        <button type="button" 
+                                class="card-dot ${dotIdx === activeIdx ? 'active' : ''}" 
+                                data-index="${dotIdx}" 
+                                aria-label="Switch to scope 0${dotIdx + 1}">
+                        </button>
+                      `).join('')}
+                    </div>
+                  </div>
+
+                  <div class="card-nav-arrows">
+                    <button type="button" class="card-arrow-btn" id="service-card-prev" aria-label="Previous scope: ${prevService.title}" title="Previous scope: ${prevService.title}">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button type="button" class="card-arrow-btn" id="service-card-next" aria-label="Next scope: ${nextService.title}" title="Next scope: ${nextService.title}">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Card Header -->
                 <div class="service-detail-header">
                   <div>
                     <span class="service-detail-badge">${activeService.shortTitle}</span>
@@ -390,6 +423,7 @@
 
                 <p class="service-detail-lead">${activeService.description}</p>
 
+                <!-- Card Body -->
                 <div class="service-detail-grid">
                   <div class="service-scope-col">
                     <h3 class="service-subheading">Scope</h3>
@@ -422,22 +456,116 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Card Footer Stepper (Next & Previous Scope Links) -->
+                <div class="service-card-stepper-footer">
+                  <button type="button" class="stepper-nav-btn prev" id="stepper-prev-btn" aria-label="Go to ${prevService.title}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span class="stepper-text">
+                      <small>Previous</small>
+                      <strong>${prevService.shortTitle}</strong>
+                    </span>
+                  </button>
+
+                  <button type="button" class="stepper-nav-btn next" id="stepper-next-btn" aria-label="Go to ${nextService.title}">
+                    <span class="stepper-text text-right">
+                      <small>Next</small>
+                      <strong>${nextService.shortTitle}</strong>
+                    </span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                </div>
+
               </article>
             </div>
           </div>
         `;
 
-        // Switch on hover or click
+        // Smoothly scroll active tab into view in horizontal mobile bar
+        const activeTab = explorerContainer.querySelector(`.service-tab-btn[data-service-id="${selectedId}"]`);
+        if (activeTab && typeof activeTab.scrollIntoView === 'function') {
+          activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        // 1. Tab buttons click/hover
         const tabBtns = explorerContainer.querySelectorAll('.service-tab-btn');
         tabBtns.forEach(btn => {
           const sid = btn.getAttribute('data-service-id');
           btn.addEventListener('mouseenter', () => {
-            if (sid !== activeId) renderExplorer(sid);
+            if (sid !== activeId) {
+              const targetIdx = ordered.findIndex(s => s.id === sid);
+              renderExplorer(sid, targetIdx > activeIdx ? 'next' : 'prev');
+            }
           });
           btn.addEventListener('click', () => {
-            if (sid !== activeId) renderExplorer(sid);
+            if (sid !== activeId) {
+              const targetIdx = ordered.findIndex(s => s.id === sid);
+              renderExplorer(sid, targetIdx > activeIdx ? 'next' : 'prev');
+            }
           });
         });
+
+        // 2. Next / Prev Arrow buttons
+        const prevArrowBtn = document.getElementById('service-card-prev');
+        const nextArrowBtn = document.getElementById('service-card-next');
+        const prevStepperBtn = document.getElementById('stepper-prev-btn');
+        const nextStepperBtn = document.getElementById('stepper-next-btn');
+
+        if (prevArrowBtn) prevArrowBtn.addEventListener('click', () => renderExplorer(prevService.id, 'prev'));
+        if (nextArrowBtn) nextArrowBtn.addEventListener('click', () => renderExplorer(nextService.id, 'next'));
+        if (prevStepperBtn) prevStepperBtn.addEventListener('click', () => renderExplorer(prevService.id, 'prev'));
+        if (nextStepperBtn) nextStepperBtn.addEventListener('click', () => renderExplorer(nextService.id, 'next'));
+
+        // 3. Dot indicators click
+        const dotBtns = explorerContainer.querySelectorAll('.card-dot');
+        dotBtns.forEach(dot => {
+          dot.addEventListener('click', () => {
+            const dotIdx = parseInt(dot.getAttribute('data-index'), 10);
+            if (!isNaN(dotIdx) && dotIdx !== activeIdx) {
+              renderExplorer(ordered[dotIdx].id, dotIdx > activeIdx ? 'next' : 'prev');
+            }
+          });
+        });
+
+        // 4. Touch swipe gestures on mobile
+        const cardElement = explorerContainer.querySelector('.service-detail-card');
+        if (cardElement) {
+          let touchStartX = 0;
+          let touchStartY = 0;
+          cardElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+          }, { passive: true });
+
+          cardElement.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+
+            // Only trigger if horizontal swipe is prominent and > 45px
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+              if (diffX < 0) {
+                // Swiped Left -> Move Next
+                renderExplorer(nextService.id, 'next');
+              } else {
+                // Swiped Right -> Move Prev
+                renderExplorer(prevService.id, 'prev');
+              }
+            }
+          }, { passive: true });
+
+          // 5. Keyboard arrow navigation when card is focused
+          cardElement.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              renderExplorer(nextService.id, 'next');
+            } else if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              renderExplorer(prevService.id, 'prev');
+            }
+          });
+        }
       }
 
       renderExplorer(activeId);
