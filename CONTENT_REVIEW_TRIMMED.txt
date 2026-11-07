@@ -1,0 +1,668 @@
+================================================================================
+SQUIRED MARKETING — WEBSITE COPY, TRIMMED REVISION (v2)
+================================================================================
+Brand Name Rule : Always "Squired Marketing" (Never "Squared")
+Primary Contact : Anirban Roy (Founder & Lead Growth Architect)
+Email           : anirban@squiredmarketing.com
+Phone / WhatsApp: +91 98365 78989
+Headquarters    : Kolkata, India
+File Purpose    : Replacement copy for CONTENT_REVIEW.txt. Section numbers match
+                  the original so each block can be swapped one for one.
+================================================================================
+
+WRITING RULES APPLIED (hold to these for any future edit)
+--------------------------------------------------------------------------------
+  - Hero subhead: 20 words max. Section lead: one line, or none.
+  - Card, step and column body: one line, 12 words max.
+  - FAQ answer: 30 words max. No paragraph longer than two lines.
+  - No eyebrow tag unless it adds information the heading does not.
+  - Same offer, same promise, stated once: reply within 48 hours.
+  - Spelling follows the original file (US: optimize, defense, analyze).
+
+STRUCTURAL CHANGES (for whoever updates the site)
+--------------------------------------------------------------------------------
+  - 2.3 trust strip: merge into the hero, directly under the form. Names only.
+  - 2.4, 2.6, 2.7: remove paragraph bodies; keep number, heading, one line.
+  - 2.7: six metrics stay, shown as a compact grid of tiles.
+  - 2.10: FAQ cut from six questions to four.
+  - Case Studies block (live on the site, missing from the original file):
+    hide the whole section, heading included, until one verified case study
+    exists. It currently shows a heading with nothing under it.
+  - 3.x: each service shows overview, 3-4 scope bullets, best-for, and metric
+    names only. Metric definitions are removed.
+  - 4.x: origin story cut from four paragraphs to two. City lists removed.
+  - 5.5: success cards no longer repeat the "What Happens Next" steps.
+  - Removed duplicates: help text under form fields, headquarters box on About.
+
+CLAIM CHANGES (reviewed)
+--------------------------------------------------------------------------------
+  - Founder bio: "over a decade" changed to "more than five years". Confirmed.
+  - "Senior team / senior operators / senior growth architects" changed to
+    "founder-led" or "the founder". The team is small.
+  - Response time standardized to 48 hours. The original mixed 24 hours,
+    48 hours and "24-48 hours". Change it in one place if you prefer 24.
+  - Removed as unverifiable: "Direct marketplace API integration",
+    "deploying millions in profitable ad spend", "under-2s load",
+    "7 business days" onboarding, and the list of cities served.
+  - Removed "Most agencies pass your account to junior trainees" and
+    "churn-and-burn" wording about other agencies.
+  - Tone: "aggressive" and "ruthless" replaced with plain wording.
+  - TikTok removed from Paid Social (not available in India). Fine to add it
+    back if wanted.
+
+================================================================================
+1. GLOBAL SITE ELEMENTS (Present on Every Page)
+================================================================================
+
+1.1 HEADER & NAVIGATION
+--------------------------------------------------------------------------------
+NO CHANGE. Logo, Home / Services / About / Contact, "Book a Growth Audit".
+
+1.2 FOOTER & DIRECT CONTACT
+--------------------------------------------------------------------------------
+[Brand Blurb]
+  "Performance and retention growth for commerce brands. Contribution margin
+   over vanity metrics."
+
+[Navigation / Direct Contact]
+  NO CHANGE.
+
+[Bottom Bar]
+  - Left: "(c) 2026 Squired Marketing. All rights reserved."
+  - Right: "Kolkata · Performance & Margin"
+
+1.3 MOBILE STICKY BOTTOM CTA BAR
+--------------------------------------------------------------------------------
+NO CHANGE. "Book a Growth Audit" (follows the active variant's CTA).
+
+1.4 GLOBAL META & STRUCTURED DATA (SEO)
+--------------------------------------------------------------------------------
+[Meta Title (Home)]
+  "Squired Marketing | Performance & Retention Growth Partner"
+
+[Meta Description (Home)]
+  "Performance, marketplace and retention growth for commerce brands, built
+   around contribution margin."
+
+[OpenGraph]
+  - og:title: "Squired Marketing | Performance & Margin Partner"
+  - og:description: "Profitable scaling for commerce brands. Media buying,
+                     creative testing and retention built around margin."
+
+[Schema.org Organization JSON-LD]
+  NO CHANGE.
+
+================================================================================
+2. HOME PAGE (index.html)
+================================================================================
+
+2.1 HERO SECTION
+--------------------------------------------------------------------------------
+[Eyebrow Tag]
+  "Performance & Margin Partner"
+
+[Main Headline]
+  "Profitable scaling for modern commerce brands."
+
+[Subhead]
+  "Media buying, creative and retention, built around contribution margin
+   instead of vanity GMV."
+
+[Call-to-Action Group]
+  - Primary Button: "Book a Growth Audit" -> #quick-form-card
+  - Secondary Link: "View services ->" -> services.html
+
+[Microcopy Line]
+  "Founder-led. Live reporting sheets. Reply within 48 hours."
+
+[Proof Bar] (Auto-hidden until verified client data is entered)
+  NO CHANGE. Capital Managed / Blended Return / Retention Lift.
+
+2.2 INLINE QUICK AUDIT FORM (Hero Right Column & Final Band)
+--------------------------------------------------------------------------------
+[Card Heading]
+  "Request an Audit"
+
+[Card Subtitle]
+  "Reply within 48 hours."
+
+[Field 1] Label: "Name"  | Placeholder: "e.g. Rahul Sharma"
+[Field 2] Label: "WhatsApp or email" | Placeholder: "rahul@brand.com or +91 98..."
+[Field 3] Label: "Store or brand link" (adapts by variant)
+          Placeholder: "yourbrand.com or store link"
+          Help text: REMOVED
+
+[Submit Button]
+  "Book a Growth Audit"
+
+2.3 SUPPORTED COMMERCE ECOSYSTEM (TRUST STRIP)
+--------------------------------------------------------------------------------
+[Placement]
+  Merged into the hero, directly under the form. No section tag.
+
+[Label]
+  "Platforms we run"
+
+[India Geo] Shopify · Meta Ads · Google Ads · Amazon Ads · Flipkart Ads · WhatsApp
+[International Geo] Shopify · Meta Ads · Google Ads · Amazon Ads · Klaviyo
+  (Bracketed descriptors such as "(Retail Media)" are removed.)
+
+2.4 WHY COMMERCE GROWTH STALLS (3 COLUMNS)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "Why Commerce Growth Stalls"
+  - Tag and lead: REMOVED
+
+[Column 01]
+  - Heading: "CPA Escalation & Creative Fatigue"
+  - Line: "Audiences tire fast. Costs rise faster than margin."
+
+[Column 02]
+  - Heading: "Channel Silos & Blind ROAS"
+  - Line: "Every platform claims the sale. The bank balance disagrees."
+
+[Column 03]
+  - Heading: "One-Time Buyers, No Retention"
+  - Line: "Acquisition costs never earn back without repeat orders."
+
+2.5 WHAT WE DO (4-COLUMN CAPABILITIES PREVIEW)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "What We Do"
+  - Lead: "One growth unit across media, creative and retention."
+  - Tag: REMOVED
+
+(Top 4 services, ordered by variant. Each card: number, title, one-line
+ summary from section 3, link "View scope ->". Category tag and metric line
+ removed from the card.)
+
+2.6 HOW WE WORK (4 STEPS)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "How We Work"
+  - Tag and lead: REMOVED
+
+[Step 01] Title: "Audit"
+          Line: "We review accounts, tracking and unit economics for leaks."
+[Step 02] Title: "Plan"
+          Line: "Targets for CAC, MER and margin, plus a 90-day sprint map."
+[Step 03] Title: "Execute"
+          Line: "Rebuild campaigns, launch creative, deploy pages and automations."
+[Step 04] Title: "Scale"
+          Line: "Back what wins while protecting margin and retention."
+
+2.7 WHAT WE MEASURE (6 TILES)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "What We Measure"
+  - Lead: "Commercial outcomes, not platform screenshots."
+  - Tag: REMOVED
+
+[Tile 1] "Contribution Margin" — "Revenue minus COGS, shipping, fees and ad spend."
+[Tile 2] "MER" — "Total revenue divided by total marketing spend."
+[Tile 3] "New Customer CAC" — "Ad spend divided by new buyers only."
+[Tile 4] "Cohort LTV" — "Gross margin per customer cohort at 60 and 90 days."
+[Tile 5] "TACoS" — "Marketplace ad spend divided by total marketplace revenue."
+[Tile 6] "RTO Rate" — "COD orders that fail delivery."
+
+2.8 GROWTH ECONOMICS CALCULATOR
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "Model Your Efficiency Lift"
+  - Lead: "See what a 10% efficiency gain is worth."
+  - Tag: REMOVED
+
+[Inputs]
+  - "Monthly Ad Spend" (slider and number; default ₹1,00,000 / $5,000)
+  - "Current Blended ROAS" (marketplace variant: "Current ACOS")
+
+[Outputs]
+  - "Monthly Lift"
+  - "Projected Revenue"
+
+[Disclaimer]
+  "Illustrative estimate. Full economics are validated in the audit."
+
+2.8A CASE STUDIES & OUTCOMES (live on site, not in original file)
+--------------------------------------------------------------------------------
+  HIDE THE ENTIRE SECTION, heading included, until a verified case study is
+  supplied. When live, each card shows: client category, platforms, one-line
+  challenge, three metrics with date range.
+
+2.9 FOUNDER CARD
+--------------------------------------------------------------------------------
+[Badge]
+  "AR — Founder & Lead"
+
+[Section Tag]
+  "Founder-Led"
+
+[Name & Role]
+  Anirban Roy
+  Founder & Lead Growth Architect
+
+[Biography]
+  "More than five years across Shopify, Amazon, Flipkart, Meta and Google.
+   Hands-on in daily execution, creative direction and margin modeling."
+
+[Location Footnote]
+  REMOVED (location appears in the footer and About).
+
+2.10 FREQUENTLY ASKED QUESTIONS (4 ITEMS)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "Frequently Asked Questions"
+  - Tag and lead: REMOVED
+
+[Q1] How is Squired different from traditional agencies?
+[A1] You work directly with the founder, not junior account managers. We
+     optimize for contribution margin and blended MER, not platform-reported ROAS.
+
+[Q2] What monthly ad spend do you work with?
+[A2] Typically ₹1,00,000+ a month (about $3,000 internationally), or brands with
+     proven product-market fit preparing to scale.
+
+[Q3] Do you manage D2C and marketplaces together?
+[A3] Yes. We coordinate search, social and marketplace campaigns to prevent
+     cannibalization and protect blended profit.
+
+[Q4] How do contracts work?
+[A4] A focused 90-day initial engagement, then a rolling 30-day notice period.
+
+[Removed from Home] Q5 (creative production) and Q6 (7-day launch). Re-add on
+the Services page, collapsed, if needed.
+
+2.11 FINAL BOTTOM CTA BAND
+--------------------------------------------------------------------------------
+[Left Column]
+  - Tag: REMOVED
+  - Heading: "Stop paying high acquisition costs for fragile revenue."
+  - Lead: "Get a founder-led teardown of your paid media, creative and
+           retention leaks."
+  - Microcopy: "Free 45-minute diagnostic. No sales pitch. Confidential."
+
+[Right Column Quick Form]
+  - Heading: "Start Your Audit"
+  - Subtitle: REMOVED
+  - Fields: Name, WhatsApp or email, Store or brand link
+  - Button: "Book a Growth Audit"
+
+================================================================================
+3. SERVICES PAGE (services.html)
+================================================================================
+
+3.1 INTRO & LEAD
+--------------------------------------------------------------------------------
+[Heading]
+  "Services Built for Margin"
+
+[Lead]
+  "Five scopes, one goal: more contribution margin."
+
+[Tag]
+  REMOVED
+
+3.2 SERVICE 01: PAID SOCIAL & DIRECT RESPONSE
+--------------------------------------------------------------------------------
+  - Badge: "Paid Social"
+  - Title: "Paid Social & Direct Response"
+  - Card summary (Home): "Scalable Meta and YouTube acquisition."
+  - Overview: "Margin-disciplined acquisition on Meta and YouTube, built to scale
+               without inflating first-order CAC."
+  - Scope:
+      * Meta account structure and ASC+ setup
+      * Weekly creative testing sprints
+      * Direct-response scripts and hooks
+  - Best For: "D2C brands spending ₹1L–₹50L+ a month that have hit a CAC plateau."
+  - Measures: nCAC · First-Order AOV · Contribution Margin · MER
+  - Link: "View scope ->"
+
+3.3 SERVICE 02: MARKETPLACE & PAID SEARCH MEDIA
+--------------------------------------------------------------------------------
+  - Badge: "Marketplaces & Search"
+  - Title: "Marketplace & Paid Search Media"
+  - Card summary (Home): "Amazon, Flipkart and Google ads that capture intent."
+  - Overview: "Sponsored ads on Amazon, Flipkart and Google that capture
+               high-intent demand and defend your brand terms."
+  - Scope:
+      * Amazon Sponsored Products, Brands and Display
+      * Flipkart PLA and PCA campaigns
+      * Google Search, Shopping and Performance Max
+      * Search-term clean-up and catalog audit
+  - Best For: "Brands selling on Amazon, Flipkart or Google Shopping who want
+               lower TACoS."
+  - Measures: ACOS · TACoS · Share of Voice · Organic Rank
+  - Link: "View scope ->"
+
+3.4 SERVICE 03: RETENTION & LIFECYCLE ENGINEERING
+--------------------------------------------------------------------------------
+  - Badge: "Retention & Lifecycle"
+  - Title: "Retention & Lifecycle Engineering"
+  - Card summary (Home): "WhatsApp and email flows that drive repeat orders."
+  - Overview: "Automated WhatsApp, email and SMS flows that turn one-time buyers
+               into repeat customers."
+  - Scope:
+      * WhatsApp flows: COD verification, abandoned checkout, reorder
+      * Klaviyo post-purchase, replenishment and VIP flows
+      * RFM segmentation and opt-in optimization
+      * Cohort repeat-rate and LTV analysis
+  - Best For: "Brands with steady traffic and a 90-day repeat rate under 25%."
+  - Measures: Repeat Rate · LTV · Flow Revenue % · WhatsApp Conversion
+  - Link: "View scope ->"
+
+3.5 SERVICE 04: CREATIVE STRATEGY & CONVERSION CRO
+--------------------------------------------------------------------------------
+  - Badge: "Creative & CRO"
+  - Title: "Creative Strategy & Conversion CRO"
+  - Card summary (Home): "Creative and landing pages that convert clicks."
+  - Overview: "Direct-response creative and mobile-first landing pages that turn
+               clicks into orders."
+  - Scope:
+      * UGC briefs, comparison and founder-story frameworks
+      * Mobile-first landing pages, PDPs and speed fixes
+      * Checkout and COD friction audit
+      * A/B tests on offers, bundles and shipping tiers
+  - Best For: "Brands with solid traffic but on-site conversion below 2.5%."
+  - Measures: CVR · AOV · Mobile Bounce Rate · Checkout Initiation
+  - Link: "View scope ->"
+
+3.6 SERVICE 05: GROWTH ANALYTICS & MARGIN ARCHITECTURE
+--------------------------------------------------------------------------------
+  - Badge: "Analytics & Economics"
+  - Title: "Growth Analytics & Margin Architecture"
+  - Card summary (Home): "One source of truth for margin and cash."
+  - Overview: "One source of truth for cash, contribution margin and cohort payback."
+  - Scope:
+      * MER and contribution margin dashboards
+      * Server-side tracking and first-party attribution
+      * SKU profitability and RTO diagnostics
+      * Weekly pacing sheets and margin reviews
+  - Best For: "Founders who need clear unit economics before spending more."
+  - Measures: Contribution Margin · Cash Flow · RTO Rate · Payback Period
+  - Link: "View scope ->"
+
+3.7 CLOSING DIAGNOSTIC BAND
+--------------------------------------------------------------------------------
+[Heading]
+  "Not sure which scope fits?"
+
+[Lead]
+  "We start with a diagnostic, then recommend."
+
+[Button]
+  "Book a Growth Audit ->" (contact.html)
+
+[Tag]
+  REMOVED
+
+================================================================================
+4. ABOUT PAGE (about.html)
+================================================================================
+
+4.1 INTRO & MANDATE
+--------------------------------------------------------------------------------
+[Heading]
+  "About Squired Marketing"
+
+[Lead]
+  "A specialist growth consultancy for commerce brands that value contribution
+   margin over vanity metrics."
+
+[Tag]
+  REMOVED
+
+4.2 ORIGIN STORY ("WHY WE BUILT SQUIRED")
+--------------------------------------------------------------------------------
+[Heading]
+  "Why We Built Squired"
+
+[Paragraph 1]
+  "We started Squired to fix a simple problem: agencies that celebrate 5x ROAS
+   while the founder's bank balance shrinks."
+
+[Paragraph 2]
+  "We are founder-led. We treat your ad budget like our own and recommend more
+   spend only after reviewing unit economics, inventory and retention."
+
+[Tag; Paragraphs 3 and 4]
+  REMOVED (location moves to 4.5).
+
+4.3 SIX CORE OPERATING BELIEFS
+--------------------------------------------------------------------------------
+[Section Header]
+  - Heading: "What We Believe"
+  - Tag and lead: REMOVED
+
+[01] "Cash in the Bank Beats Platform ROAS"
+     "We optimize contribution margin, not dashboard numbers."
+[02] "Creative Is the New Targeting"
+     "A steady creative pipeline is a durable edge."
+[03] "First-Order Profit Is Fragile; Retention Compounds"
+     "One-time buyers are fragile. Repeat buyers build margin."
+[04] "No Junior Handoffs"
+     "You work directly with the founder."
+[05] "Attribution Must Be Blended and Honest"
+     "We judge blended MER and new-customer growth, not channel credit."
+[06] "Eliminate Waste Early"
+     "We stop what doesn't work: weak terms, tired creative, leaky pages."
+
+4.4 FOUNDER PROFILE
+--------------------------------------------------------------------------------
+  - Badge: "AR — Founder & Lead"
+  - Tag: "Founder-Led"
+  - Name & Role: Anirban Roy, Founder & Lead Growth Architect
+  - Biography: "More than five years across Shopify, Amazon, Flipkart, Meta and Google.
+                Hands-on in daily execution, creative direction and margin modeling."
+  - Location Footnote: REMOVED
+
+4.5 WHERE WE WORK
+--------------------------------------------------------------------------------
+[Heading]
+  "Where We Work"
+
+[Description]
+  "Based in Kolkata. Serving brands across India and international markets."
+
+[Headquarters Box]
+  REMOVED (duplicates the footer).
+
+4.6 CLOSING PARTNERSHIP BAND
+--------------------------------------------------------------------------------
+[Heading]
+  "Work directly with the founder."
+
+[Lead]
+  "Tell us your targets. We will review your store and reply within 48 hours."
+
+[Button]
+  "Book a Growth Audit ->" (contact.html)
+
+[Tag]
+  REMOVED
+
+================================================================================
+5. CONTACT & GROWTH BRIEF PAGE (contact.html)
+================================================================================
+
+5.1 INTRO
+--------------------------------------------------------------------------------
+[Heading]
+  "Start a Conversation"
+
+[Lead]
+  "Tell us about your brand and targets. We reply within 48 hours."
+
+[Tag]
+  REMOVED
+
+5.2 FORM TOGGLE TABS
+--------------------------------------------------------------------------------
+  - Tab 1: "Quick Enquiry"
+  - Tab 2: "Detailed Brief"
+
+5.3 FORM A: QUICK ENQUIRY
+--------------------------------------------------------------------------------
+[Card Heading]  "Quick Enquiry"
+[Card Subtitle] "Takes 30 seconds."
+[Fields]
+  1. Name (Placeholder: "e.g. Rahul Sharma")
+  2. WhatsApp or email (Placeholder: "rahul@brand.com or +91 98...")
+  3. Store or brand link (Placeholder: "yourbrand.com or store link")
+     Help text: REMOVED
+[Submit Button] "Book a Growth Audit"
+
+5.4 FORM B: DETAILED BRIEF (3 STEPS)
+--------------------------------------------------------------------------------
+[Progress Indicator]
+  "Step 1 of 3", "Step 2 of 3", "Step 3 of 3"
+
+--- STEP 1: STOREFRONT ---
+[Step Title] "Storefront"   (subtitle removed)
+[Fields]
+  - "Brand name" (Placeholder: "e.g. Aura Goods")
+  - "Store or catalog link" (Placeholder: "https://...")
+  - "Main platform" (Dropdown): Shopify · Amazon · Flipkart · Omnichannel ·
+    WooCommerce / Custom
+
+--- STEP 2: ECONOMICS ---
+[Step Title] "Economics"   (subtitle removed)
+[Fields]
+  - "Monthly ad spend" (Dropdown; show one currency by visitor geo)
+      India: Under ₹1,00,000 · ₹1,00,000–₹5,00,000 (default) ·
+             ₹5,00,000–₹15,00,000 · ₹15,00,000–₹50,00,000 · ₹50,00,000+
+      International: Under $1.5k · $1.5k–$6k (default) · $6k–$20k ·
+             $20k–$65k · $65k+
+  - "Biggest bottleneck" (Dropdown): High CAC / creative fatigue · High TACoS ·
+    Weak retention · Low landing page CVR · Attribution gaps
+  - "Start timing" (Dropdown): Immediately · Within 30 days · Next quarter
+
+--- STEP 3: CONTACT ---
+[Step Title] "Contact"   (subtitle removed)
+[Fields]
+  - "Name & title" (Placeholder: "e.g. Rahul Sharma, Founder")
+  - "Email or WhatsApp" (Placeholder: "rahul@brand.com or +91 98...")
+  - "Notes (optional)" (Textarea; Placeholder: "Anything else we should know?")
+
+[Navigation Controls]
+  "Back", "Next", "Submit Brief"
+
+5.5 FORM SUBMISSION FEEDBACK & WHATSAPP
+--------------------------------------------------------------------------------
+[Quick Form Success Card]
+  - Heading: "Request Received"
+  - Message: "Thanks, {Name}. We will review your store and reply within 48 hours."
+  - Steps 01-03: REMOVED (shown under 5.6)
+  - Button: "Message us on WhatsApp ->"
+    (Opens: https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20growth%20audit%20request%20for%20my%20brand.)
+
+[Detailed Brief Success Card]
+  - Heading: "Brief Received"
+  - Message: "Thanks, {Name}. We have your brief for {Brand} and will reply
+              within 48 hours at {Email/Phone}."
+  - Steps 01-03: REMOVED
+  - Button: "Message us on WhatsApp ->"
+
+5.6 WHAT HAPPENS NEXT
+--------------------------------------------------------------------------------
+[Heading]
+  "What Happens Next"   (tag removed)
+
+[01] "Store & Ad Review"
+     "We review your storefront, catalog and ads."
+[02] "45-Minute Diagnostic Call"
+     "We share findings and a 90-day plan."
+[03] "Scope Proposal"
+     "If it is a fit, you get a clear scope with targets."
+
+5.7 DIRECT CONTACT CARD
+--------------------------------------------------------------------------------
+  - Heading: "Contact"
+  - Email: anirban@squiredmarketing.com
+  - Phone / WhatsApp: +91 98365 78989
+  - Location: Kolkata, India
+  - Hours: "Mon–Fri, 10 AM–7 PM IST"
+
+5.8 PRIVACY
+--------------------------------------------------------------------------------
+  "We respect your privacy. No spam, and your brand metrics are never shared."
+
+================================================================================
+6. DYNAMIC VARIANT COPY MATRIX (js/config.js)
+================================================================================
+Triggers are unchanged. Each variant swaps hero copy, CTA, problem columns,
+brand field and service order.
+
+--------------------------------------------------------------------------------
+6.1 VARIANT: DEFAULT
+--------------------------------------------------------------------------------
+  - CTA Button: "Book a Growth Audit"
+  - CTA Subtext: "Free 45-minute teardown of your media and margin leaks."
+  - Hero Eyebrow: "Performance & Margin Partner"
+  - Hero Headline: "Profitable scaling for modern commerce brands."
+  - Hero Subhead: "Media buying, creative and retention, built around contribution
+                   margin instead of vanity GMV."
+  - Hero Microcopy: "Founder-led. Live reporting sheets. Reply within 48 hours."
+  - Brand Field Label: "Store or brand link"
+  - Brand Field Placeholder: "yourbrand.com or store link"
+  - Problem 01: "CPA Escalation & Creative Fatigue" — "Audiences tire fast. Costs rise faster than margin."
+  - Problem 02: "Channel Silos & Blind ROAS" — "Every platform claims the sale. The bank balance disagrees."
+  - Problem 03: "One-Time Buyers, No Retention" — "Acquisition costs never earn back without repeat orders."
+  - Service Priority: Paid Social -> Marketplaces -> Retention -> Creative/CRO -> Analytics
+
+--------------------------------------------------------------------------------
+6.2 VARIANT: MARKETPLACE
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=marketplace OR utm_term has amazon, flipkart, acos, tacos
+  - CTA Button: "Request Marketplace Audit"
+  - CTA Subtext: "Amazon and Flipkart ad teardown with a TACoS review."
+  - Hero Eyebrow: "Amazon & Flipkart Growth"
+  - Hero Headline: "Scale marketplace revenue while driving down TACoS."
+  - Hero Subhead: "Cut wasted keyword spend. We fix catalog structure, sponsored ad
+                   efficiency and brand defense."
+  - Hero Microcopy: "TACoS-focused bidding. Strict catalog hygiene. Founder-led."
+  - Brand Field Label: "Primary Storefront/Brand Link (Amazon/Flipkart)"
+  - Brand Field Placeholder: "amazon.in/shops/... or flipkart.com/..."
+  - Problem 01: "Runaway TACoS on Broad Keywords" — "Spend grows. Organic rank does not."
+  - Problem 02: "Weak PDPs & Low Buy Box Share" — "Clicks arrive. Orders do not."
+  - Problem 03: "No Brand Defense" — "Competitors capture your branded demand."
+  - Service Priority: Marketplaces -> Creative/CRO -> Analytics -> Paid Social -> Retention
+
+--------------------------------------------------------------------------------
+6.3 VARIANT: D2C
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=d2c OR utm_term has shopify, meta, facebook, roas, cpa
+  - CTA Button: "Book Growth Diagnostic"
+  - CTA Subtext: "Audit of your Meta and Google funnels and unit economics."
+  - Hero Eyebrow: "D2C Performance & Margin"
+  - Hero Headline: "Break through CAC plateaus on Meta, Google and Shopify."
+  - Hero Subhead: "Faster creative testing, tighter media structure and landing page
+                   CRO that grow contribution margin."
+  - Hero Microcopy: "Founder-led. Daily pacing checks. Margin first."
+  - Brand Field Label: "Website URL & Current Monthly Ad Spend"
+  - Brand Field Placeholder: "brand.com — ₹3,00,000/month"
+  - Problem 01: "Creative Fatigue From Static Pipelines" — "Winning ads fade. Nothing replaces them."
+  - Problem 02: "Landing Page Bottlenecks" — "Paid clicks stall on default themes."
+  - Problem 03: "Flawed Attribution & Cannibalization" — "Channels compete for the same buyers."
+  - Service Priority: Paid Social -> Creative/CRO -> Analytics -> Marketplaces -> Retention
+
+--------------------------------------------------------------------------------
+6.4 VARIANT: RETENTION
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=retention OR utm_term has whatsapp, email flow, repeat, retention
+  - CTA Button: "Get Retention Blueprint"
+  - CTA Subtext: "Roadmap to turn first-time buyers into repeat customers."
+  - Hero Eyebrow: "Retention & Lifecycle"
+  - Hero Headline: "Turn first-time buyers into compounding repeat revenue."
+  - Hero Subhead: "WhatsApp, email and loyalty automations that lift 90-day LTV and
+                   repurchase rates."
+  - Hero Microcopy: "No spam blasts. Segmented flows. Klaviyo and WhatsApp."
+  - Brand Field Label: "Website URL"
+  - Brand Field Placeholder: "https://yourbrand.com"
+  - Problem 01: "Discount Blasts That Burn Your List" — "Heavy offers train buyers to wait."
+  - Problem 02: "Broken Post-Purchase Flows" — "Second orders are lost after checkout."
+  - Problem 03: "WhatsApp Left Untapped" — "A high-engagement channel sits idle."
+  - Service Priority: Retention -> Analytics -> Creative/CRO -> Paid Social -> Marketplaces
+
+================================================================================
+END OF TRIMMED REVISION
+================================================================================

@@ -1,0 +1,1034 @@
+================================================================================
+SQUIRED MARKETING — COMPLETE WEBSITE COPY & CONTENT AUDIT
+================================================================================
+Brand Name Rule : Always "Squired Marketing" (Never "Squared")
+Primary Contact : Anirban Roy (Founder & Lead Growth Architect)
+Email           : anirban@squiredmarketing.com
+Phone / WhatsApp: +91 98365 78989
+Headquarters    : Kolkata, India
+File Purpose    : Central review document containing all headlines, body copy,
+                  subheads, form labels, FAQs, process steps, service blocks,
+                  and dynamic variant copy across the entire website.
+================================================================================
+
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. GLOBAL SITE ELEMENTS (Present on Every Page)
+   - 1.1 Header & Navigation
+   - 1.2 Footer & Direct Contact
+   - 1.3 Mobile Sticky Bottom CTA Bar
+   - 1.4 Global Meta & Structured Data (SEO)
+2. HOME PAGE (index.html)
+   - 2.1 Hero Section
+   - 2.2 Inline Quick Audit Form (Hero & Final Band)
+   - 2.3 Supported Ecosystem / Trust Strip
+   - 2.4 Why Commerce Growth Stalls (3 Diagnostic Columns)
+   - 2.5 What We Do (4-Column Capabilities Preview)
+   - 2.6 How We Work (4-Step Operating Model)
+   - 2.7 What We Measure (Consulting Metrics Framework)
+   - 2.8 Growth Economics Calculator
+   - 2.9 Senior Leadership Card
+   - 2.10 Frequently Asked Questions (FAQ Accordion)
+   - 2.11 Final CTA Band
+3. SERVICES PAGE (services.html)
+   - 3.1 Intro & Lead
+   - 3.2 Service 01: Paid Social & Direct Response
+   - 3.3 Service 02: Marketplace & Paid Search Media
+   - 3.4 Service 03: Retention & Lifecycle Engineering
+   - 3.5 Service 04: Creative Strategy & Conversion CRO
+   - 3.6 Service 05: Growth Analytics & Margin Architecture
+   - 3.7 Closing Diagnostic Band
+4. ABOUT PAGE (about.html)
+   - 4.1 Intro & Mandate
+   - 4.2 Origin Story ("Why We Built Squired")
+   - 4.3 Six Core Operating Beliefs (01 to 06)
+   - 4.4 Senior Leadership Profile (Anirban Roy)
+   - 4.5 Geographic Presence ("Where We Work")
+   - 4.6 Closing Partnership Band
+5. CONTACT & GROWTH BRIEF PAGE (contact.html)
+   - 5.1 Intro & Mandate
+   - 5.2 Form Toggle Tabs
+   - 5.3 Form A: Quick Growth Enquiry
+   - 5.4 Form B: Detailed 3-Step Growth Brief
+   - 5.5 Form Submission Feedback & WhatsApp Escalation
+   - 5.6 What Happens Next (Protocol Steps 01, 02, 03)
+   - 5.7 Direct Contact Card
+   - 5.8 Privacy Assurance
+6. DYNAMIC VARIANT COPY MATRIX (js/config.js)
+   - 6.1 Variant: Default (Commerce Growth Partner)
+   - 6.2 Variant: Marketplace (Amazon & Flipkart Focus)
+   - 6.3 Variant: D2C (Meta, Google & Shopify Focus)
+   - 6.4 Variant: Retention (WhatsApp, Klaviyo & LTV Focus)
+
+
+================================================================================
+1. GLOBAL SITE ELEMENTS (Present on Every Page)
+================================================================================
+
+1.1 HEADER & NAVIGATION
+--------------------------------------------------------------------------------
+[Logo]
+  - Image: assets/logo.png
+  - Alt Text: "Squired Marketing"
+  - Link: index.html
+
+[Desktop Navigation Links]
+  - Home      -> index.html
+  - Services  -> services.html
+  - About     -> about.html
+  - Contact   -> contact.html
+
+[Header Primary Action Button]
+  - Text: "Book a Growth Audit"
+  - Target: contact.html (or #quick-form-card on homepage)
+
+[Mobile Drawer Menu]
+  - Home
+  - Services
+  - About
+  - Contact
+  - Mobile Menu Button: "Book a Growth Audit"
+
+
+1.2 FOOTER & DIRECT CONTACT
+================================================================================
+[Brand Column]
+  - Logo: assets/logo-white.png
+  - Blurb: "Specialist performance & retention growth consultancy. Built for
+            commerce brands that value contribution margin over empty vanity metrics."
+
+[Navigation Column]
+  - Heading: "Navigation"
+  - Home            -> index.html
+  - Services        -> services.html
+  - About Us        -> about.html
+  - Contact & Brief -> contact.html
+
+[Direct Contact Column]
+  - Heading: "Direct Contact"
+  - Email: anirban@squiredmarketing.com (mailto link)
+  - Phone: +91 98365 78989 (tel link)
+  - Location: Kolkata, India
+
+[Bottom Copyright Bar]
+  - Left: "(c) 2026 Squired Marketing. All rights reserved."
+  - Right: "Kolkata  -  Performance & Margin Engineering"
+
+
+1.3 MOBILE STICKY BOTTOM CTA BAR
+================================================================================
+  - Location: Fixed at bottom of mobile viewports.
+  - Button Text: "Book a Growth Audit"
+  - Behavior: Smooth-scrolls to the storefront quick audit form and pulses the card.
+
+
+1.4 GLOBAL META & STRUCTURED DATA (SEO)
+================================================================================
+[Meta Title (Home)]
+  "Squired Marketing | Performance & Retention Growth Partner"
+
+[Meta Description (Home)]
+  "Squired Marketing is a specialist performance, marketplace, and retention
+   growth consultancy for modern commerce brands. We engineer profitable
+   contribution margins."
+
+[OpenGraph Tags]
+  - og:title: "Squired Marketing | Performance & Margin Partner"
+  - og:description: "Profitable scaling for modern commerce brands. We engineer
+                     aggressive media buying, creative testing, and retention systems."
+  - og:image: https://squiredmarketing.com/assets/logo.png
+  - og:type: website
+
+[Schema.org Organization JSON-LD]
+  - Name: Squired Marketing
+  - Email: anirban@squiredmarketing.com
+  - Phone: +91 98365 78989
+  - Address Locality: Kolkata, West Bengal, India
+
+
+================================================================================
+2. HOME PAGE (index.html)
+================================================================================
+
+2.1 HERO SECTION
+--------------------------------------------------------------------------------
+[Eyebrow Tag]
+  "Specialist Performance & Margin Partner"
+
+[Main Headline]
+  "Profitable scaling for modern commerce brands."
+
+[Subhead]
+  "We combine aggressive media buying, creative science, and retention engineering
+   to build sustainable contribution margin — not just vanity top-line GMV."
+
+[Call-to-Action Group]
+  - Primary Button: "Book a Growth Audit" -> links to #quick-form-card
+  - Secondary Text Link: "View service scopes ->" -> links to services.html
+
+[Microcopy Line]
+  "Zero junior account reps. Transparent live sheets. 48-hour response SLA."
+
+[Proof Bar] (Auto-hidden until verified client data is entered)
+  - Metric 1: Capital Managed
+  - Metric 2: Blended Return
+  - Metric 3: Retention Lift
+
+
+2.2 INLINE QUICK AUDIT FORM (Hero Right Column & Final Band)
+--------------------------------------------------------------------------------
+[Card Heading]
+  "Request Storefront Audit"
+
+[Card Subtitle]
+  "Receive actionable margin observations in 48 hours."
+
+[Field 1: Name]
+  - Label: "Full Name"
+  - Placeholder: "e.g. Rahul Sharma"
+
+[Field 2: Contact]
+  - Label: "WhatsApp or Work Email"
+  - Placeholder: "rahul@brand.com or +91 98..."
+
+[Field 3: Brand Link] (Dynamically adapted by variant)
+  - Label: "Brand link or store URL"
+  - Placeholder: "yourbrand.com or store link"
+  - Help Text: "Where can our analysts review your storefront?"
+
+[Submit Button]
+  - Text: "Book a Growth Audit"
+
+
+2.3 SUPPORTED COMMERCE ECOSYSTEM (TRUST STRIP)
+--------------------------------------------------------------------------------
+[Section Tag]
+  "Supported Commerce Ecosystem"
+
+[Pills Rendered (India Geo)]:
+  - Shopify Plus (Commerce Engine)
+  - Meta Ads (Direct Response)
+  - Google Performance Max (Intent Capture)
+  - Amazon Advertising (Marketplace Scale)
+  - Flipkart Ads (Retail Media)
+  - WhatsApp Business API (Retention Flows)
+
+[Pills Rendered (International Geo)]:
+  - Shopify Plus (Commerce Engine)
+  - Meta Ads (Direct Response)
+  - Google Ads (Search & Shopping)
+  - Amazon Advertising (Sponsored Ads)
+  - Klaviyo (Retention & SMS)
+
+
+2.4 WHY COMMERCE GROWTH STALLS (3 DIAGNOSTIC COLUMNS)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Economics Diagnostic"
+  - Heading: "Why Commerce Growth Stalls"
+  - Lead: "Scaling ad spend without fixing unit economics breaks the business.
+           Here is what we diagnose first:"
+
+[Column 01]
+  - Number: "01"
+  - Tag: "Rising CAC"
+  - Heading: "CPA Escalation & Creative Exhaustion"
+  - Body: "Ad networks exhaust audience pools in 7-14 days. Without a systematic
+           creative production engine, customer acquisition costs rise faster
+           than gross margin."
+
+[Column 02]
+  - Number: "02"
+  - Tag: "Margin Erosion"
+  - Heading: "Channel Silos & Blind ROAS Reporting"
+  - Body: "Meta claims the sale, Google takes credit, and marketplaces cannibalize
+           direct traffic. In-platform ROAS looks strong while cash in the bank
+           shrinks."
+
+[Column 03]
+  - Number: "03"
+  - Tag: "Depressed LTV"
+  - Heading: "First-Order Bleed With Zero Retention"
+  - Body: "Paying high acquisition costs for one-time buyers is unsustainable.
+           Without automated retention funnels, repeat revenue fails to subsidize
+           new customer growth."
+
+
+2.5 WHAT WE DO (4-COLUMN CAPABILITIES PREVIEW)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Specialist Capabilities"
+  - Heading: "What We Do"
+  - Lead: "Integrated growth execution across media buying, creative velocity,
+           and customer lifetime value."
+
+(Displays the top 4 services dynamically ordered by visitor variant;
+ each card displays: Number, Category Tag, Title, Summary, Primary Metric, Link)
+
+
+2.6 HOW WE WORK (4-STEP OPERATING MODEL)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Operating Model"
+  - Heading: "How We Work"
+  - Lead: "A rigorous 4-step framework engineered to defend margins and compound cash flow."
+
+[Step 01]
+  - Number: "01"
+  - Title: "Deep-Dive Diagnostic & Margin Audit"
+  - Description: "We audit ad accounts, creative archives, tracking, and unit
+                  economics to find capital leaks and profitable SKU opportunities."
+
+[Step 02]
+  - Number: "02"
+  - Title: "Growth Blueprint & Unit Economics"
+  - Description: "We set strict targets for CAC, MER, and contribution margin,
+                  mapping a 90-day creative, media, and retention sprint."
+
+[Step 03]
+  - Number: "03"
+  - Title: "Sprint Execution & High-Velocity Testing"
+  - Description: "We rebuild campaign architectures, launch fresh creative angles,
+                  deploy conversion landers, and activate retention automations."
+
+[Step 04]
+  - Number: "04"
+  - Title: "Scale, Defend & Compounding Margin"
+  - Description: "As clear winners emerge, we allocate capital to expand volume
+                  while defending blended contribution margin and cohort retention."
+
+
+2.7 WHAT WE MEASURE (ACCOUNTABILITY MATRIX)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Accountability Matrix"
+  - Heading: "What We Measure"
+  - Lead: "We reject vanity platform screenshots. Our performance is measured
+           against real commercial viability."
+
+[Metric 1: Contribution Margin (CM)]
+  "Net revenue minus COGS, shipping, payment gateway fees, and ad spend.
+   Our primary compass for true business viability."
+
+[Metric 2: Marketing Efficiency Ratio (MER)]
+  "Total top-line revenue divided by total marketing spend.
+   Eliminates cross-channel attribution double-counting."
+
+[Metric 3: New Customer CAC (nCAC)]
+  "Total paid ad spend divided strictly by new, non-repeat buyers.
+   Ensures acquisition isn't secretly relying on existing customers."
+
+[Metric 4: 60-Day & 90-Day Cohort LTV]
+  "Cumulative gross margin generated by a customer cohort over time.
+   Dictates how aggressively we can bid upfront."
+
+[Metric 5: Total ACOS / TACoS]
+  "Total ad spend on marketplaces divided by total marketplace revenue.
+   The truest indicator of organic momentum."
+
+[Metric 6: Return-To-Origin (RTO) Rate]
+  "Percentage of shipped COD orders that fail delivery.
+   Monitored closely to protect cash flow and fulfillment overhead."
+
+
+2.8 GROWTH ECONOMICS CALCULATOR
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Economics Modeling"
+  - Heading: "Model Your Efficiency Lift"
+  - Lead: "Calculate the compounding impact of a conservative 10% efficiency gain
+           across your current ad spend."
+
+[Inputs]
+  - Field 1: "Monthly Ad Spend" (Slider & Number Input: default ₹1,00,000 / $5,000)
+  - Field 2: "Current Blended ROAS" (or Current ACOS in marketplace variant)
+
+[Outputs]
+  - Metric 1: "Estimated Monthly Efficiency Lift"
+  - Metric 2: "Projected Total Revenue (Post-Optimization)"
+
+[Methodology Disclaimer Note]
+  "Illustrative estimate based on a conservative 10% efficiency gain on spend
+   efficiency and contribution margin. Squired validates full economics during
+   the diagnostic audit."
+
+
+2.9 SENIOR LEADERSHIP CARD
+--------------------------------------------------------------------------------
+[Avatar Initials Badge]
+  "AR — Founder & Lead"
+
+[Section Tag]
+  "Senior-Led Partnership"
+
+[Name & Role]
+  Anirban Roy
+  Founder & Lead Growth Architect
+
+[Biography]
+  "Anirban Roy is the Founder and Lead Growth Architect at Squired Marketing with
+   over a decade of hands-on experience deploying millions in profitable ad spend
+   across Shopify, Amazon, Flipkart, Meta, and Google. He remains deeply embedded
+   in daily media execution, creative direction, and unit-economic modeling."
+
+[Location Footnote]
+  "Headquarters: Kolkata — Partnering with brands nationwide and globally."
+
+
+2.10 FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "Clarity & Terms"
+  - Heading: "Frequently Asked Questions"
+  - Lead: "Everything you need to know about our partnership model, economics,
+           and engagement structure."
+
+[Q1] How is Squired Marketing different from traditional marketing agencies?
+[A1] Most traditional agencies charge a percentage of spend and pass your
+     account to junior trainees who prioritize vanity metrics like clicks and
+     platform-reported ROAS. At Squired, senior operators manage your brand
+     directly. We focus strictly on Contribution Margin (cash left after ad spend,
+     COGS, and shipping), blended MER, and creative velocity.
+
+[Q2] What monthly ad spend is required to work with Squired?
+[A2] We typically partner with brands spending at least ₹1,00,000 / month
+     (or $3,000 / month internationally) across paid media, or brands with
+     verified product-market fit preparing for rapid scale. This ensures
+     sufficient data density for rapid creative testing and statistical significance.
+
+[Q3] Do you manage both D2C (Shopify) and Marketplaces (Amazon/Flipkart)?
+[A3] Yes. In fact, running D2C and marketplaces together is one of our greatest
+     strategic advantages. We coordinate paid search and social campaigns to
+     prevent cross-channel cannibalization, defend your brand terms, and maximize
+     total blended profitability.
+
+[Q4] How do your contracts and engagement terms work?
+[A4] We begin with a focused 90-day initial engagement. This provides enough
+     runway to conduct the audit, overhaul campaign architecture, deploy creative
+     testing sprints, and demonstrate measurable impact on your unit economics.
+     After 90 days, we operate on a flexible rolling 30-day notice period.
+
+[Q5] Who produces the ad creatives and video assets?
+[A5] We provide comprehensive creative direction, direct-response scripts,
+     hook variations, and graphic design frameworks. For UGC and product filming,
+     we either work with your in-house creator network or coordinate with vetted
+     direct-response creators, handling all brief-writing and post-production editing.
+
+[Q6] How quickly can we launch after signing?
+[A6] Our diagnostic and onboarding sprint takes 7 business days. During this period,
+     we audit your tracking (CAPI, server-side events), build out the initial
+     30-day creative roadmaps, and stage new campaign structures for your review
+     before going live.
+
+
+2.11 FINAL BOTTOM CTA BAND
+--------------------------------------------------------------------------------
+[Left Column Copy]
+  - Tag: "Ready to Eliminate Margin Waste?"
+  - Heading: "Stop paying high acquisition costs for fragile revenue."
+  - Lead: "Get an actionable teardown of your paid media, ad creative fatigue,
+           and retention leaks from a senior growth partner."
+  - Microcopy: "No sales pitch. 45-minute growth diagnostic session. 100% confidential."
+
+[Right Column Quick Form]
+  - Heading: "Start Your Audit"
+  - Subtitle: "Enter your storefront details below."
+  - Fields: Full Name, WhatsApp or Work Email, Brand link or store URL
+  - Button: "Book a Growth Audit"
+
+
+================================================================================
+3. SERVICES PAGE (services.html)
+================================================================================
+
+3.1 INTRO & LEAD
+--------------------------------------------------------------------------------
+[Tag]
+  "Specialist Capabilities"
+
+[Heading]
+  "Execution Scopes Built for Margin"
+
+[Lead Paragraph]
+  "We operate as an integrated growth unit. Every service scope is engineered
+   to expand contribution margin, eliminate customer acquisition waste,
+   and protect cash flow."
+
+
+3.2 SERVICE 01: PAID SOCIAL & DIRECT RESPONSE
+--------------------------------------------------------------------------------
+[Identifiers]
+  - Badge: "Paid Social"
+  - Full Title: "Paid Social & Direct Response"
+
+[Overview]
+  "Aggressive, margin-disciplined customer acquisition across Meta (Instagram &
+   Facebook), TikTok, and YouTube. We build modular campaign architectures that
+   allow algorithms to scale efficiently while controlling first-order customer
+   acquisition costs."
+
+[Execution Scope Includes]
+  - Full-funnel Meta Ads account structure & ASC+ orchestration
+  - Weekly creative testing sprints (hooks, formats, angles)
+  - Granular demographic & interest breakout auditing
+  - Real-time bid capping & dayparting management
+  - Direct response copywriting and script guidelines
+
+[Best For (Ideal Profile)]
+  "D2C brands spending ₹1L to ₹50L+ monthly looking to break past CAC plateaus
+   without sacrificing contribution margin."
+
+[Economics Measured]
+  "New Customer Acquisition Cost (nCAC), First-Order AOV, Contribution Margin,
+   Blended Marketing Efficiency Ratio (MER)."
+
+[Card CTA Link]
+  "Explore Paid Social ->"
+
+
+3.3 SERVICE 02: MARKETPLACE & PAID SEARCH MEDIA
+--------------------------------------------------------------------------------
+[Identifiers]
+  - Badge: "Marketplaces & Search"
+  - Full Title: "Marketplace & Paid Search Media"
+
+[Overview]
+  "Dominate high-intent search queries where purchase decisions happen. We engineer
+   comprehensive Sponsored Ads across Amazon, Flipkart, and Google Performance Max,
+   defending your brand turf and capturing market share from competitors."
+
+[Execution Scope Includes]
+  - Amazon Sponsored Products, Brands & Display advertising
+  - Flipkart PLA (Product Listing Ads) & PCA campaign management
+  - Google Search, Shopping & Performance Max optimization
+  - Ruthless negative keyword harvesting and search-term harvesting
+  - Catalog listing audit, bullet hygiene, and A+ content alignment
+
+[Best For (Ideal Profile)]
+  "Brands selling on Amazon, Flipkart, or Google Shopping needing to scale sales
+   velocity while driving down TACoS."
+
+[Economics Measured]
+  "Advertising Cost of Sales (ACOS), Total Advertising Cost of Sales (TACoS),
+   Share of Voice (SOV), Organic Keyword Rank."
+
+[Card CTA Link]
+  "Explore Marketplace Growth ->"
+
+
+3.4 SERVICE 03: RETENTION & LIFECYCLE ENGINEERING
+--------------------------------------------------------------------------------
+[Identifiers]
+  - Badge: "Retention & Lifecycle"
+  - Full Title: "Retention & Lifecycle Engineering"
+
+[Overview]
+  "Convert costly one-time buyers into high-LTV repeat customers. We design
+   automated, behavior-triggered messaging across WhatsApp Business API,
+   Klaviyo email, and SMS that drive predictable second and third purchases."
+
+[Execution Scope Includes]
+  - Automated WhatsApp Flows (COD verification, abandon checkout, reorder)
+  - Klaviyo post-purchase lifecycle, replenishment & VIP nurture flows
+  - RFM (Recency, Frequency, Monetary) dynamic audience segmentation
+  - Zero-party data capture quizzes and opt-in rate optimization
+  - Cohort repeat purchase rate and LTV analysis
+
+[Best For (Ideal Profile)]
+  "Commerce brands with healthy top-of-funnel traffic where 30-day and 90-day
+   repeat purchase rates remain under 25%."
+
+[Economics Measured]
+  "30/60/90-Day Cohort Repurchase Rate, Customer Lifetime Value (LTV), Flow Revenue %,
+   WhatsApp Open & Conversion Rate."
+
+[Card CTA Link]
+  "Explore Retention Systems ->"
+
+
+3.5 SERVICE 04: CREATIVE STRATEGY & CONVERSION CRO
+--------------------------------------------------------------------------------
+[Identifiers]
+  - Badge: "Creative & CRO"
+  - Full Title: "Creative Strategy & Conversion CRO"
+
+[Overview]
+  "Traffic is only as profitable as the creative that stops the scroll and the
+   landing page that converts the click. We develop high-converting direct-response
+   creative frameworks and build dedicated mobile-first PDPs that multiply on-site
+   conversion rates."
+
+[Execution Scope Includes]
+  - Direct-response visual frameworks (UGC briefs, comparison charts, founder story)
+  - Mobile-first landing page design and headless lander builds
+  - Friction audit: checkout flow, trust signals, payment gateways, and COD verification
+  - Iterative A/B testing: offer structures, bundles, and threshold shipping tiers
+  - Speed optimization: Core Web Vitals, asset compression, under-2s load
+
+[Best For (Ideal Profile)]
+  "Brands driving solid traffic with on-site conversion rates lagging below 2.5%
+   or suffering from high mobile bounce rates."
+
+[Economics Measured]
+  "On-site Conversion Rate (CVR), Average Order Value (AOV), Mobile Bounce Rate,
+   Scroll Depth & Checkout Initiation Rate."
+
+[Card CTA Link]
+  "Explore Creative & CRO ->"
+
+
+3.6 SERVICE 05: GROWTH ANALYTICS & MARGIN ARCHITECTURE
+--------------------------------------------------------------------------------
+[Identifiers]
+  - Badge: "Analytics & Economics"
+  - Full Title: "Growth Analytics & Margin Architecture"
+
+[Overview]
+  "Eliminate attribution blindness and channel squabbling. We set up
+   single-source-of-truth reporting that tracks real cash in the bank,
+   contribution margin after COGS and shipping, and customer cohort payback periods."
+
+[Execution Scope Includes]
+  - Blended MER & Contribution Margin dashboard setup
+  - Server-side tracking (Meta CAPI, Google Server-side GTM, Stape)
+  - First-party attribution auditing and post-purchase surveys
+  - SKU-level profitability and return/RTO rate diagnostics
+  - Weekly executive pacing sheets and margin-defense meetings
+
+[Best For (Ideal Profile)]
+  "Founders and marketing leaders tired of conflicting channel dashboards who
+   require clear unit economics before deploying more capital."
+
+[Economics Measured]
+  "Net Contribution Margin, Cash Flow Velocity, Return-to-Origin (RTO) Rate,
+   First-Order Payback Period."
+
+[Card CTA Link]
+  "Explore Growth Analytics ->"
+
+
+3.7 CLOSING DIAGNOSTIC BAND
+--------------------------------------------------------------------------------
+[Section Tag]
+  "Tailored Growth Scope"
+
+[Heading]
+  "Not sure which scope fits your brand right now?"
+
+[Lead]
+  "We conduct a comprehensive media and unit-economic diagnostic before
+   recommending any service tier. Let our senior team audit your storefront."
+
+[Button]
+  "Book a Growth Audit ->" (links to contact.html)
+
+
+================================================================================
+4. ABOUT PAGE (about.html)
+================================================================================
+
+4.1 INTRO & MANDATE
+--------------------------------------------------------------------------------
+[Tag]
+  "Our Mandate"
+
+[Heading]
+  "About Squired Marketing"
+
+[Lead Paragraph]
+  "A specialist growth consultancy built for modern commerce brands that value
+   contribution margin over empty vanity metrics."
+
+
+4.2 ORIGIN STORY ("WHY WE BUILT SQUIRED")
+--------------------------------------------------------------------------------
+[Tag]
+  "Origin & Mission"
+
+[Heading]
+  "Why We Built Squired"
+
+[Paragraph 1]
+  "Squired Marketing was founded to fix a fundamental flaw in the modern agency
+   model: agencies that celebrate 5x ROAS in screenshots while the founder's
+   bank balance quietly shrinks."
+
+[Paragraph 2]
+  "Most growth agencies operate on churn-and-burn. They assign junior account
+   managers to manage templates, blast generic ad creatives, and take credit
+   for organic sales when algorithms do the heavy lifting."
+
+[Paragraph 3]
+  "We built Squired as a high-conviction, senior-led growth partner. We treat every
+   rupee or dollar of your ad budget as if it were drawn from our own operating
+   accounts. We analyze unit economics, contribution margins, inventory turn rates,
+   and post-purchase retention before recommending budget increases."
+
+[Paragraph 4]
+  "Headquartered in Kolkata, we partner with ambitious D2C brands, marketplace
+   sellers, and consumer enterprises across India and global markets."
+
+
+4.3 SIX CORE OPERATING BELIEFS (01 TO 06)
+--------------------------------------------------------------------------------
+[Section Header]
+  - Tag: "First Principles"
+  - Heading: "What We Believe"
+  - Lead: "Six non-negotiable operational principles that govern every campaign we deploy."
+
+[Belief 01]
+  - Number: "01"
+  - Title: "Cash in the Bank Beats In-Platform ROAS"
+  - Description: "Ad platform dashboards are designed to encourage more ad spend.
+                  We optimize for Contribution Margin and net bank deposits,
+                  never platform-reported vanity numbers."
+
+[Belief 02]
+  - Number: "02"
+  - Title: "Creative is the New Targeting"
+  - Description: "In the era of automated algorithmic delivery, ad creative does
+                  the targeting. A systematic, high-velocity creative production
+                  pipeline is your only durable moat."
+
+[Belief 03]
+  - Number: "03"
+  - Title: "First-Order Profit is Fragile; Retention is Compounding"
+  - Description: "Customer acquisition gets you in the game; retention is how
+                  you win. We build automated WhatsApp and email systems that
+                  transform one-off buyers into long-term gross margin."
+
+[Belief 04]
+  - Number: "04"
+  - Title: "No Junior Account Handoffs"
+  - Description: "You partner directly with senior operators who understand
+                  full-funnel economics, supply chains, and consumer psychology.
+                  No layer of intermediary account managers."
+
+[Belief 05]
+  - Number: "05"
+  - Title: "Attribution Must Be Blended and Honest"
+  - Description: "We don't argue over whether Google or Meta deserves credit for
+                  an order. We evaluate blended MER and new customer acquisition
+                  velocity as one unified commercial machine."
+
+[Belief 06]
+  - Number: "06"
+  - Title: "Ruthless Elimination of Waste"
+  - Description: "We cut non-performing search terms, fatigued ad creatives, and
+                  leaky landing pages without hesitation. Efficiency comes from
+                  stopping what does not work."
+
+
+4.4 SENIOR LEADERSHIP PROFILE
+--------------------------------------------------------------------------------
+[Avatar Initials Badge]
+  "AR — Founder & Lead"
+
+[Section Tag]
+  "Direct Senior Accountability"
+
+[Name & Role]
+  Anirban Roy
+  Founder & Lead Growth Architect
+
+[Biography]
+  "Anirban Roy is the Founder and Lead Growth Architect at Squired Marketing with
+   over a decade of hands-on experience deploying millions in profitable ad spend
+   across Shopify, Amazon, Flipkart, Meta, and Google. He remains deeply embedded
+   in daily account execution, creative direction, and margin modeling."
+
+[Location Footnote]
+  "Location: Operating from Kolkata with a global reach."
+
+
+4.5 GEOGRAPHIC PRESENCE ("WHERE WE WORK")
+--------------------------------------------------------------------------------
+[Tag]
+  "Geographic Presence"
+
+[Heading]
+  "Where We Work"
+
+[Description Paragraph]
+  "Based in Kolkata, West Bengal, India. We serve D2C brands, marketplace merchants,
+   and omnichannel retail brands across Mumbai, Delhi NCR, Bengaluru, Kolkata,
+   and international commerce hubs across North America, the UK, and Southeast Asia."
+
+[Headquarters Box]
+  - Name: Squired Marketing
+  - Address: Kolkata, India
+
+
+4.6 CLOSING PARTNERSHIP BAND
+--------------------------------------------------------------------------------
+[Tag]
+  "Direct Partnership"
+
+[Heading]
+  "Work directly with senior growth architects."
+
+[Lead]
+  "Tell us about your brand economics and targets. We will review your storefront
+   and provide direct, unvarnished feedback within 48 hours."
+
+[Button]
+  "Book a Growth Audit ->" (links to contact.html)
+
+
+================================================================================
+5. CONTACT & GROWTH BRIEF PAGE (contact.html)
+================================================================================
+
+5.1 INTRO & MANDATE
+--------------------------------------------------------------------------------
+[Tag]
+  "Direct Senior Enquiry"
+
+[Heading]
+  "Start a Conversation"
+
+[Lead Paragraph]
+  "Tell us about your brand, current bottlenecks, and growth targets. We will
+   review your storefront and respond with actionable initial thoughts within 48 hours."
+
+
+5.2 FORM TOGGLE TABS
+--------------------------------------------------------------------------------
+  - Tab 1: "Quick Enquiry"
+  - Tab 2: "Detailed Brief (3-Step)"
+
+
+5.3 FORM A: QUICK GROWTH ENQUIRY
+--------------------------------------------------------------------------------
+[Card Heading]
+  "Quick Growth Enquiry"
+
+[Card Subtitle]
+  "Takes 30 seconds. We'll start review immediately."
+
+[Fields]
+  1. Full Name (Placeholder: "e.g. Rahul Sharma")
+  2. WhatsApp or Work Email (Placeholder: "rahul@brand.com or +91 98...")
+  3. Brand link or store URL (Placeholder: "yourbrand.com or store link")
+     Help Text: "Where can our analysts review your storefront?"
+
+[Submit Button]
+  "Book a Growth Audit"
+
+
+5.4 FORM B: DETAILED 3-STEP GROWTH BRIEF
+--------------------------------------------------------------------------------
+[Progress Indicator]
+  "Step 1 of 3", "Step 2 of 3", "Step 3 of 3"
+
+--- STEP 1: STOREFRONT PROFILE ---
+[Step Title]
+  "Step 1: Storefront Profile"
+[Step Subtitle]
+  "Where does your brand currently sell?"
+[Fields]
+  - Field 1: "Brand / Business Name" (Placeholder: "e.g. Aura Goods")
+  - Field 2: "Primary Storefront / Catalog Link" (Placeholder: "https://...")
+  - Field 3: "Core Commerce Platform" (Dropdown):
+      * Shopify / Shopify Plus
+      * Amazon Marketplace (India / US)
+      * Flipkart
+      * Omnichannel (D2C + Marketplaces)
+      * WooCommerce / Custom
+
+--- STEP 2: COMMERCIAL ECONOMICS ---
+[Step Title]
+  "Step 2: Commercial Economics"
+[Step Subtitle]
+  "Help us understand your current capital deployment."
+[Fields]
+  - Field 1: "Monthly Paid Media Spend" (Dropdown):
+      * Under ₹1,00,000 / $1.5k
+      * ₹1,00,000 – ₹5,00,000 / $1.5k–$6k (Default)
+      * ₹5,00,000 – ₹15,00,000 / $6k–$20k
+      * ₹15,00,000 – ₹50,00,000 / $20k–$65k
+      * ₹50,00,000+ / $65k+
+  - Field 2: "Primary Growth Bottleneck" (Dropdown):
+      * High CAC & Ad Creative Fatigue
+      * High TACoS on Amazon / Flipkart
+      * Low Repeat Purchases & Weak Retention
+      * Landing Page CVR Lagging
+      * Attribution Blindness & Margin Erosion
+  - Field 3: "Target Engagement Start" (Dropdown):
+      * Immediately (Within 7-14 days)
+      * Within next 30 days
+      * Next quarter planning
+
+--- STEP 3: DIRECT CONTACT & NOTES ---
+[Step Title]
+  "Step 3: Direct Contact"
+[Step Subtitle]
+  "Who should our senior lead send the audit to?"
+[Fields]
+  - Field 1: "Full Name & Title" (Placeholder: "e.g. Rahul Sharma, Founder")
+  - Field 2: "Work Email / WhatsApp" (Placeholder: "rahul@brand.com or +91 98...")
+  - Field 3: "Specific Context or Notes (Optional)" (Textarea):
+      Placeholder: "Tell us about specific SKUs, margin goals, or recent experiments..."
+
+[Navigation Controls]
+  - "<-- Back" button
+  - "Next Step -->" button
+  - "Submit Detailed Brief" button
+
+
+5.5 FORM SUBMISSION FEEDBACK & WHATSAPP ESCALATION
+================================================================================
+[Quick Form Success Card]
+  - Heading: "Audit Request Received"
+  - Message: "Thank you, {Name}. Here is what happens next:"
+  - Step 01: "Anirban Roy reviews your storefront & ad presence within 24 hours."
+  - Step 02: "We email/WhatsApp you with initial margin observations and schedule a 45-min diagnostic call."
+  - Step 03: "You receive a transparent margin roadmap and execution scope."
+  - Button: "Connect directly on WhatsApp ->"
+    (Opens: https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20growth%20audit%20request%20for%20my%20brand.)
+
+[Detailed Brief Success Card]
+  - Heading: "Comprehensive Brief Received"
+  - Message: "Thank you, {Name}. We have logged your brief for {Brand}."
+  - Step 01: "Anirban Roy is reviewing your storefront and channels."
+  - Step 02: "We will prepare a customized 45-minute growth diagnostic session."
+  - Step 03: "Expect a personal message within 24–48 hours at {Email/Phone}."
+  - Button: "Connect directly on WhatsApp ->"
+
+
+5.6 WHAT HAPPENS NEXT (RIGHT COLUMN PROTOCOL)
+--------------------------------------------------------------------------------
+[Section Tag]
+  "Audit Protocol"
+
+[Heading]
+  "What Happens Next"
+
+[Step 01]
+  - Number: "01"
+  - Title: "Initial Storefront & Media Audit"
+  - Body: "Within 24 hours, our senior growth lead inspects your public storefront,
+           catalog structure, ad creative library, and public listings."
+
+[Step 02]
+  - Number: "02"
+  - Title: "45-Minute Growth Diagnostic Call"
+  - Body: "We walk you through our observations, point out immediate margin leaks
+           or wasted spend, and discuss our 90-day scaling hypothesis."
+
+[Step 03]
+  - Number: "03"
+  - Title: "Tailored Scope & Margin Target Proposal"
+  - Body: "If there is a strong mutual fit, we share a transparent scope of work
+           with defined unit economics and operational SLAs."
+
+
+5.7 DIRECT CONTACT CARD
+--------------------------------------------------------------------------------
+[Card Heading]
+  "Direct Contact"
+
+[Details]
+  - Direct Email: anirban@squiredmarketing.com
+  - Direct Phone / WhatsApp: +91 98365 78989
+  - Headquarters: Kolkata, India
+  - Consulting Hours: Monday – Friday: 10:00 AM – 7:00 PM IST
+
+
+5.8 PRIVACY ASSURANCE
+--------------------------------------------------------------------------------
+  "We respect your privacy. No spam, no sales harassment, and zero sharing of
+   your brand metrics."
+
+
+================================================================================
+6. DYNAMIC VARIANT COPY MATRIX (js/config.js)
+================================================================================
+The site uses a zero-flicker engine that personalizes headlines, problem columns,
+proof bar labels, and form prompts when visitors arrive from specific ad campaigns
+or UTM parameters.
+
+--------------------------------------------------------------------------------
+6.1 VARIANT: DEFAULT (General Commerce Growth)
+--------------------------------------------------------------------------------
+  - Trigger: Default visit or no specific campaign
+  - CTA Button: "Book a Growth Audit"
+  - CTA Subtext: "Free 45-minute teardown of your paid media & margin leaks"
+  - Hero Eyebrow: "Specialist Performance & Margin Partner"
+  - Hero Headline: "Profitable scaling for modern commerce brands."
+  - Hero Subhead: "We combine aggressive media buying, creative science, and
+                   retention engineering to build sustainable contribution
+                   margin — not just vanity top-line GMV."
+  - Hero Microcopy: "Zero junior account reps. Transparent live sheets. 48-hour response SLA."
+  - Brand Field Label: "Brand link or store URL"
+  - Brand Field Placeholder: "yourbrand.com or store link"
+  - Brand Field Help: "Where can our analysts review your current storefront?"
+  - Problem 01: "CPA Escalation & Creative Exhaustion" (Rising CAC)
+  - Problem 02: "Channel Silos & Blind ROAS Reporting" (Margin Erosion)
+  - Problem 03: "First-Order Bleed With Zero Retention" (Depressed LTV)
+  - Service Priority Order: Paid Social -> Marketplaces -> Retention -> Creative/CRO -> Analytics
+
+--------------------------------------------------------------------------------
+6.2 VARIANT: MARKETPLACE (Amazon & Flipkart Focus)
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=marketplace OR utm_term has amazon, flipkart, acos, tacos
+  - CTA Button: "Request Marketplace Audit"
+  - CTA Subtext: "Detailed Amazon & Flipkart advertising teardown and TACoS review"
+  - Hero Eyebrow: "Amazon & Flipkart Growth Specialists"
+  - Hero Headline: "Scale marketplace revenue while driving down TACoS."
+  - Hero Subhead: "Stop burning ad budgets on broad keyword waste. We engineer
+                   high-converting catalog architecture, Sponsored Ads efficiency,
+                   and brand defense across major marketplaces."
+  - Hero Microcopy: "Direct marketplace API integration. TACoS-focused bidding. Strict catalog hygiene."
+  - Brand Field Label: "Primary Storefront/Brand Link (Amazon/Flipkart)"
+  - Brand Field Placeholder: "amazon.in/shops/... or flipkart.com/..."
+  - Brand Field Help: "Provide your brand store or top ASIN/FSN listings for catalog review."
+  - Problem 01: "Runaway TACoS on Broad Keywords" (High TACoS)
+  - Problem 02: "Unoptimized PDPs & Low Buy Box Share" (Sub-par CVR)
+  - Problem 03: "Zero Brand Defense Against Competitors" (Leaked Demand)
+  - Service Priority Order: Marketplaces -> Creative/CRO -> Analytics -> Paid Social -> Retention
+
+--------------------------------------------------------------------------------
+6.3 VARIANT: D2C (Meta, Google & Shopify Performance)
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=d2c OR utm_term has shopify, meta, facebook, roas, cpa
+  - CTA Button: "Book Growth Diagnostic"
+  - CTA Subtext: "Full audit of your Meta/Google funnels, creative velocity & unit economics"
+  - Hero Eyebrow: "D2C Performance & Margin Architecture"
+  - Hero Headline: "Break through CAC plateaus on Meta, Google and Shopify."
+  - Hero Subhead: "We engineer high-velocity creative testing, ruthless media
+                   buying structures, and landing page CRO that expand
+                   contribution margin at scale."
+  - Hero Microcopy: "Founder-led account oversight. Daily pacing monitors. Contribution margin focus."
+  - Brand Field Label: "Website URL & Current Monthly Ad Spend"
+  - Brand Field Placeholder: "brand.com — ₹3,00,000/month"
+  - Brand Field Help: "Include your Shopify store URL and approximate monthly paid ad budget."
+  - Problem 01: "Ad Fatigue from Static Creative Pipelines" (Creative Burnout)
+  - Problem 02: "Landing Page Bottlenecks on Default Themes" (Sub-2% CVR)
+  - Problem 03: "Flawed Attribution & Channel Cannibalization" (Misaligned Spend)
+  - Service Priority Order: Paid Social -> Creative/CRO -> Analytics -> Marketplaces -> Retention
+
+--------------------------------------------------------------------------------
+6.4 VARIANT: RETENTION (WhatsApp, Klaviyo & LTV Focus)
+--------------------------------------------------------------------------------
+  - Trigger: utm_campaign=retention OR utm_term has whatsapp, email flow, repeat, retention
+  - CTA Button: "Get Retention Blueprint"
+  - CTA Subtext: "Actionable roadmap to turn single-order buyers into high-LTV advocates"
+  - Hero Eyebrow: "Retention, WhatsApp & Lifecycle Architecture"
+  - Hero Headline: "Turn first-time buyers into compounding repeat revenue."
+  - Hero Subhead: "Stop letting acquisition costs swallow your gross margin. We build
+                   hyper-segmented WhatsApp, email, and loyalty automations that
+                   increase 90-day LTV and cohort repurchase rates."
+  - Hero Microcopy: "Zero spam broadcast policies. Dynamic segmentation. Direct Klaviyo & WhatsApp API."
+  - Brand Field Label: "Website URL"
+  - Brand Field Placeholder: "https://yourbrand.com"
+  - Brand Field Help: "Enter your brand's storefront so we can evaluate your opt-in & post-purchase touchpoints."
+  - Problem 01: "Generic Discount Blasts That Burn Your List" (List Degradation)
+  - Problem 02: "Broken Post-Purchase Lifecycle Flows" (Lost Repurchase)
+  - Problem 03: "Ignoring High-Converting WhatsApp Sequences" (Untapped Channel)
+  - Service Priority Order: Retention -> Analytics -> Creative/CRO -> Paid Social -> Marketplaces
+
+================================================================================
+END OF CONTENT AUDIT
+================================================================================
+

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact &amp; Growth Brief | Squired Marketing</title>
-  <meta name="description" content="Submit a quick enquiry or detailed growth brief to Squired Marketing. We audit your storefront and respond with actionable margin teardowns in 48 hours.">
+  <meta name="description" content="Performance, marketplace and retention growth for commerce brands, built around contribution margin.">
   <meta name="theme-color" content="#100558">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=4">
@@ -99,10 +99,9 @@
     <!-- 1. Intro Section -->
     <section class="section" style="padding-bottom: var(--space-2xl);">
       <div class="container container-narrow">
-        <span class="section-tag">Direct Senior Enquiry</span>
         <h1 class="section-title">Start a Conversation</h1>
         <p class="section-lead">
-          Tell us about your brand, current bottlenecks, and growth targets. We will review your storefront and respond with actionable initial thoughts within 48 hours.
+          Tell us about your brand and targets. We reply within 48 hours.
         </p>
       </div>
     </section>
@@ -116,7 +115,7 @@
             Quick Enquiry
           </button>
           <button type="button" class="tab-btn" id="contact-tab-detailed" role="tab" aria-selected="false" aria-controls="contact-panel-detailed">
-            Detailed Brief (3-Step)
+            Detailed Brief
           </button>
         </div>
 
@@ -126,8 +125,8 @@
             <!-- PANEL A: Quick Enquiry (3 Fields) -->
             <div id="contact-panel-quick" role="tabpanel" aria-labelledby="contact-tab-quick">
               <div class="hero-form-card">
-                <h2 class="hero-form-title">Quick Growth Enquiry</h2>
-                <p class="hero-form-subtitle">Takes 30 seconds. We'll start review immediately.</p>
+                <h2 class="hero-form-title">Quick Enquiry</h2>
+                <p class="hero-form-subtitle">Takes 30 seconds.</p>
 
                 <form class="js-quick-form" id="contact-quick-form" novalidate>
                   <div class="hp-field" aria-hidden="true">
@@ -137,19 +136,18 @@
 
                   <div class="js-form-body">
                     <div class="form-group">
-                      <label for="cq-name" class="form-label">Full Name</label>
+                      <label for="cq-name" class="form-label">Name</label>
                       <input type="text" id="cq-name" name="client_name" class="form-input" placeholder="e.g. Rahul Sharma" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="cq-contact" class="form-label">WhatsApp or Work Email</label>
+                      <label for="cq-contact" class="form-label">WhatsApp or email</label>
                       <input type="text" id="cq-contact" name="client_contact" class="form-input" placeholder="rahul@brand.com or +91 98..." required>
                     </div>
 
                     <div class="form-group">
-                      <label for="cq-brand" class="form-label js-dynamic-brand-label">Brand link or store URL</label>
+                      <label for="cq-brand" class="form-label js-dynamic-brand-label">Store or brand link</label>
                       <input type="text" id="cq-brand" name="brand_link" class="form-input js-dynamic-brand-input" placeholder="yourbrand.com or store link" required>
-                      <p class="form-help js-dynamic-brand-help">Where can our analysts review your storefront?</p>
                     </div>
 
                     <div class="form-error js-form-error" role="alert"></div>
@@ -165,7 +163,7 @@
               </div>
             </div>
 
-            <!-- PANEL B: Detailed Multi-Step Brief (3 Steps, Max 3 Fields per Step) -->
+            <!-- PANEL B: Detailed Multi-Step Brief -->
             <div id="contact-panel-detailed" role="tabpanel" aria-labelledby="contact-tab-detailed" style="display: none;">
               <div class="hero-form-card">
                 <div class="brief-progress-bar-wrap">
@@ -182,88 +180,85 @@
                   </div>
 
                   <div class="brief-steps-wrapper">
-                    <!-- Step 1: Brand & Storefront -->
+                    <!-- Step 1: Storefront Profile -->
                     <div class="brief-step" id="brief-step-1">
-                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Step 1: Storefront Profile</h3>
-                      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">Where does your brand currently sell?</p>
+                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: var(--space-md);">Storefront</h3>
 
                       <div class="form-group">
-                        <label for="step1-brand" class="form-label">Brand / Business Name</label>
+                        <label for="step1-brand" class="form-label">Brand name</label>
                         <input type="text" id="step1-brand" name="brand_name" class="form-input" placeholder="e.g. Aura Goods" required>
                       </div>
 
                       <div class="form-group">
-                        <label for="step1-url" class="form-label js-dynamic-brand-label">Primary Storefront / Catalog Link</label>
+                        <label for="step1-url" class="form-label js-dynamic-brand-label">Store or catalog link</label>
                         <input type="text" id="step1-url" name="store_url" class="form-input js-dynamic-brand-input" placeholder="https://..." required>
                       </div>
 
                       <div class="form-group">
-                        <label for="step1-platform" class="form-label">Core Commerce Platform</label>
+                        <label for="step1-platform" class="form-label">Main platform</label>
                         <select id="step1-platform" name="primary_platform" class="form-select">
-                          <option value="Shopify / Shopify Plus">Shopify / Shopify Plus</option>
-                          <option value="Amazon India / US">Amazon Marketplace</option>
+                          <option value="Shopify">Shopify</option>
+                          <option value="Amazon">Amazon</option>
                           <option value="Flipkart">Flipkart</option>
-                          <option value="Omnichannel (D2C + Marketplaces)">Omnichannel (D2C + Marketplaces)</option>
+                          <option value="Omnichannel">Omnichannel</option>
                           <option value="WooCommerce / Custom">WooCommerce / Custom</option>
                         </select>
                       </div>
                     </div>
 
-                    <!-- Step 2: Commercial Economics & Targets -->
+                    <!-- Step 2: Economics -->
                     <div class="brief-step" id="brief-step-2" style="display: none;">
-                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Step 2: Commercial Economics</h3>
-                      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">Help us understand your current capital deployment.</p>
+                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: var(--space-md);">Economics</h3>
 
                       <div class="form-group">
-                        <label for="step2-spend" class="form-label">Monthly Paid Media Spend</label>
+                        <label for="step2-spend" class="form-label">Monthly ad spend</label>
                         <select id="step2-spend" name="monthly_spend" class="form-select" required>
-                          <option value="Under ₹1,00,000 / $1.5k">Under ₹1,00,000 / $1.5k</option>
-                          <option value="₹1,00,000 – ₹5,00,000 / $1.5k–$6k" selected>₹1,00,000 – ₹5,00,000 / $1.5k–$6k</option>
-                          <option value="₹5,00,000 – ₹15,00,000 / $6k–$20k">₹5,00,000 – ₹15,00,000 / $6k–$20k</option>
-                          <option value="₹15,00,000 – ₹50,00,000 / $20k–$65k">₹15,00,000 – ₹50,00,000 / $20k–$65k</option>
-                          <option value="₹50,00,000+ / $65k+">₹50,00,000+ / $65k+</option>
+                          <option value="Under ₹1,00,000">Under ₹1,00,000</option>
+                          <option value="₹1,00,000 – ₹5,00,000" selected>₹1,00,000 – ₹5,00,000</option>
+                          <option value="₹5,00,000 – ₹15,00,000">₹5,00,000 – ₹15,00,000</option>
+                          <option value="₹15,00,000 – ₹50,00,000">₹15,00,000 – ₹50,00,000</option>
+                          <option value="₹50,00,000+">₹50,00,000+</option>
                         </select>
                       </div>
 
                       <div class="form-group">
-                        <label for="step2-goal" class="form-label">Primary Growth Bottleneck</label>
+                        <label for="step2-goal" class="form-label">Biggest bottleneck</label>
                         <select id="step2-goal" name="primary_goal" class="form-select">
-                          <option value="High CAC & Ad Creative Fatigue">High CAC &amp; Ad Creative Fatigue</option>
-                          <option value="High TACoS on Amazon / Flipkart">High TACoS on Amazon / Flipkart</option>
-                          <option value="Low Repeat Purchases & Weak Retention">Low Repeat Purchases &amp; Weak Retention</option>
-                          <option value="Landing Page CVR Lagging">Landing Page CVR Lagging</option>
-                          <option value="Attribution Blindness & Margin Erosion">Attribution Blindness &amp; Margin Erosion</option>
+                          <option value="High CAC / creative fatigue">High CAC / creative fatigue</option>
+                          <option value="High TACoS">High TACoS</option>
+                          <option value="Weak retention">Weak retention</option>
+                          <option value="Low landing page CVR">Low landing page CVR</option>
+                          <option value="Attribution gaps">Attribution gaps</option>
                         </select>
                       </div>
 
                       <div class="form-group">
-                        <label for="step2-timeline" class="form-label">Target Engagement Start</label>
+                        <label for="step2-timeline" class="form-label">Start timing</label>
                         <select id="step2-timeline" name="target_timeline" class="form-select">
-                          <option value="Immediately (Within 7-14 days)">Immediately (Within 7-14 days)</option>
-                          <option value="Within next 30 days">Within next 30 days</option>
-                          <option value="Next quarter planning">Next quarter planning</option>
+                          <option value="Immediately">Immediately</option>
+                          <option value="Within 30 days">Within 30 days</option>
+                          <option value="Next quarter">Next quarter</option>
                         </select>
                       </div>
                     </div>
 
-                    <!-- Step 3: Contact & Direct Brief Notes -->
+                    <!-- Step 3: Contact -->
                     <div class="brief-step" id="brief-step-3" style="display: none;">
-                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Step 3: Direct Contact</h3>
-                      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">Who should our senior lead send the audit to?</p>
+                      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-navy); margin-bottom: var(--space-md);">Contact</h3>
 
                       <div class="form-group">
-                        <label for="step3-name" class="form-label">Full Name &amp; Title</label>
+                        <label for="step3-name" class="form-label">Name &amp; title</label>
                         <input type="text" id="step3-name" name="contact_name" class="form-input" placeholder="e.g. Rahul Sharma, Founder" required>
                       </div>
 
                       <div class="form-group">
-                        <label for="step3-email" class="form-label">Work Email / WhatsApp</label>
+                        <label for="step3-email" class="form-label">Email or WhatsApp</label>
                         <input type="text" id="step3-email" name="contact_email" class="form-input" placeholder="rahul@brand.com or +91 98..." required>
                       </div>
 
                       <div class="form-group">
-                        <label for="step3-notes" class="form-label">Specific Context or Notes (Optional)</label>
-                        <textarea id="step3-notes" name="brief_notes" class="form-textarea" rows="3" placeholder="Tell us about specific SKUs, margin goals, or recent experiments..."></textarea>
+                        <label for="step3-notes" class="form-label">Notes (optional)</label>
+                        <textarea id="step3-notes" name="brief_notes" class="form-textarea" rows="3" placeholder="Anything else we should know?"></textarea>
                       </div>
                     </div>
 
@@ -275,10 +270,10 @@
                         &larr; Back
                       </button>
                       <button type="button" class="btn btn-primary" id="brief-next-btn">
-                        Next Step &rarr;
+                        Next &rarr;
                       </button>
                       <button type="submit" class="btn btn-primary" id="brief-submit-btn" style="display: none;">
-                        Submit Detailed Brief
+                        Submit Brief
                       </button>
                     </div>
                   </div>
@@ -290,15 +285,13 @@
 
             <!-- Privacy Line -->
             <p class="privacy-notice">
-              We respect your privacy. No spam, no sales harassment, and zero sharing of your brand metrics.
+              We respect your privacy. No spam, and your brand metrics are never shared.
             </p>
           </div>
 
           <!-- Right: What Happens Next & Direct Details -->
           <div class="contact-info-panel">
-            <!-- 3. What Happens Next (Large Orange Numerals 01, 02, 03) -->
             <div style="margin-bottom: var(--space-2xl);">
-              <span class="section-tag">Audit Protocol</span>
               <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--color-navy); margin-bottom: var(--space-lg);">
                 What Happens Next
               </h2>
@@ -307,9 +300,9 @@
                 <div style="display: flex; gap: 16px; align-items: flex-start;">
                   <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-orange); line-height: 1;">01</span>
                   <div>
-                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Initial Storefront &amp; Media Audit</h3>
+                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Store &amp; Ad Review</h3>
                     <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
-                      Within 24 hours, our senior growth lead inspects your public storefront, catalog structure, ad creative library, and public listings.
+                      We review your storefront, catalog and ads.
                     </p>
                   </div>
                 </div>
@@ -317,9 +310,9 @@
                 <div style="display: flex; gap: 16px; align-items: flex-start;">
                   <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-orange); line-height: 1;">02</span>
                   <div>
-                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">45-Minute Growth Diagnostic Call</h3>
+                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">45-Minute Diagnostic Call</h3>
                     <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
-                      We walk you through our observations, point out immediate margin leaks or wasted spend, and discuss our 90-day scaling hypothesis.
+                      We share findings and a 90-day plan.
                     </p>
                   </div>
                 </div>
@@ -327,18 +320,18 @@
                 <div style="display: flex; gap: 16px; align-items: flex-start;">
                   <span style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-orange); line-height: 1;">03</span>
                   <div>
-                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Tailored Scope &amp; Margin Target Proposal</h3>
+                    <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-navy); margin-bottom: 4px;">Scope Proposal</h3>
                     <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5;">
-                      If there is a strong mutual fit, we share a transparent scope of work with defined unit economics and operational SLAs.
+                      If it is a fit, you get a clear scope with targets.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- 4. Direct Details -->
+            <!-- Direct Contact -->
             <div class="direct-details-box">
-              <h3 class="direct-details-title">Direct Contact</h3>
+              <h3 class="direct-details-title">Contact</h3>
               <div class="direct-details-list">
                 <div class="direct-detail-item">
                   <span class="detail-label">Direct Email</span>
@@ -353,12 +346,12 @@
                   </a>
                 </div>
                 <div class="direct-detail-item">
-                  <span class="detail-label">Headquarters</span>
+                  <span class="detail-label">Location</span>
                   <span class="detail-val">Kolkata, India</span>
                 </div>
                 <div class="direct-detail-item">
-                  <span class="detail-label">Consulting Hours</span>
-                  <span class="detail-val">Monday – Friday: 10:00 AM – 7:00 PM IST</span>
+                  <span class="detail-label">Hours</span>
+                  <span class="detail-val">Mon–Fri, 10 AM–7 PM IST</span>
                 </div>
               </div>
             </div>
@@ -385,7 +378,7 @@
             <img src="assets/logo-white.png?v=2" alt="Squired Marketing" class="site-logo-img site-logo-footer" width="180" height="52">
           </a>
           <p>
-            Specialist performance &amp; retention growth consultancy. Built for commerce brands that value contribution margin over empty vanity metrics.
+            Performance and retention growth for commerce brands. Contribution margin over vanity metrics.
           </p>
         </div>
 
@@ -414,7 +407,7 @@
         <div style="display:flex; gap: 16px;">
           <span>Kolkata</span>
           <span>·</span>
-          <span>Performance &amp; Margin Engineering</span>
+          <span>Performance &amp; Margin</span>
         </div>
       </div>
     </div>
