@@ -1,0 +1,5 @@
+# Local development & deploy packages
+*.zip
+scratch/
+.DS_Store
+node_modules/

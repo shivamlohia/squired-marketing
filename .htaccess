@@ -3,19 +3,26 @@
 # Tailored for Hostinger Hosting
 # ========================================================
 
-# 1. Force HTTPS
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteBase /
+
+  # 1. Force HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
 
-# 2. Clean URLs (Allow /services to resolve to services.html)
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+  # 2. Strip /index.html -> /
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html[?\s] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # 3. Strip .html extension from URL bar (301 redirect to clean URL)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html[?\s] [NC]
+  RewriteRule ^([^.]+)\.html$ /$1 [R=301,L,QSA]
+
+  # 4. Internally resolve clean extensionless URL to .html file
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}\.html -f
-  RewriteRule ^(.*)$ $1.html [L]
+  RewriteRule ^(.*)$ $1.html [L,QSA]
 </IfModule>
 
 # 3. Enable GZIP / Deflate Compression
