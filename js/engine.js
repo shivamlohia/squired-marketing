@@ -286,6 +286,27 @@
         page: window.location.pathname
       });
     }
+
+    // 10. Automatically resolve GitHub Pages repository subfolder paths
+    normalizeRepoLinks();
+  }
+
+  // Auto-detect GitHub Pages or repository subfolder hosting and normalize root-relative links
+  function normalizeRepoLinks() {
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    if (window.location.hostname.endsWith('github.io') && pathSegments.length > 0) {
+      const repoName = pathSegments[0];
+      const repoBase = '/' + repoName + '/';
+
+      document.querySelectorAll('a[href^="/"]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href === '/') {
+          a.setAttribute('href', repoBase);
+        } else if (href.startsWith('/') && !href.startsWith(repoBase)) {
+          a.setAttribute('href', '/' + repoName + href);
+        }
+      });
+    }
   }
 
   // Re-order service items according to variant priority
@@ -785,6 +806,8 @@
       handleHashChange();
       window.addEventListener('hashchange', handleHashChange);
     }
+
+    normalizeRepoLinks();
   }
 
   // Platform trust strip
