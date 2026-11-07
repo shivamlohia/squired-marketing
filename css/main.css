@@ -1018,40 +1018,56 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
 }
 
-/* ---------------- Services Preview (Home 4 Columns) Modern Interactive ---------------- */
+/* ---------------- Services Preview (Home 4 Columns) Horizontal Expanding Deck ---------------- */
 .services-preview-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
-}
-
-.services-preview-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
+  display: flex;
+  gap: var(--space-lg);
   align-items: stretch;
+  width: 100%;
 }
 
 .service-preview-card {
   background: var(--color-white);
-  padding: var(--space-xl);
+  padding: 26px 22px;
   border-radius: 8px;
   border: 1px solid var(--color-navy-divider);
   border-bottom: 3px solid var(--color-navy-divider);
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.28s ease;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 410px;
+  box-sizing: border-box;
+
+  /* Horizontal Flex Accordion sizing */
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease, 
+              border-bottom-color 0.3s ease, 
+              box-shadow 0.35s ease, 
+              transform 0.35s ease,
+              opacity 0.3s ease;
 }
 
-.service-preview-card:hover,
-.service-preview-card:focus-within {
-  transform: translateY(-3px);
-  border-color: rgba(16, 5, 88, 0.18);
-  border-bottom-color: var(--color-orange);
-  box-shadow: 0 14px 32px rgba(16, 5, 88, 0.08);
+@media (min-width: 901px) {
+  /* When hovering anywhere on the services deck, compress non-hovered cards */
+  .services-preview-grid:hover .service-preview-card {
+    flex: 0.73 1 0;
+    opacity: 0.88;
+  }
+
+  /* The actively hovered card expands horizontally */
+  .services-preview-grid .service-preview-card:hover,
+  .services-preview-grid .service-preview-card:focus-within {
+    flex: 1.82 1 0;
+    opacity: 1;
+    border-color: rgba(16, 5, 88, 0.18);
+    border-bottom-color: var(--color-orange);
+    box-shadow: 0 16px 36px rgba(16, 5, 88, 0.09);
+    transform: translateY(-2px);
+  }
 }
 
 .service-preview-top {
@@ -1091,22 +1107,22 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 2.8em;
 }
 
-/* Progressive detail reveal on hover */
+/* Horizontal expansion reveals key execution scope smoothly without vertical reflow */
 .service-preview-drawer {
-  max-height: 0;
   opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 0.25s ease, 
-              margin-top 0.25s ease;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.32s ease 0.05s, transform 0.32s ease 0.05s;
+  margin-bottom: var(--space-sm);
 }
 
-.service-preview-card:hover .service-preview-drawer,
-.service-preview-card:focus-within .service-preview-drawer {
-  max-height: 160px;
-  opacity: 1;
-  margin-top: var(--space-xs);
-  margin-bottom: var(--space-sm);
+@media (min-width: 901px) {
+  .service-preview-card:hover .service-preview-drawer,
+  .service-preview-card:focus-within .service-preview-drawer {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
 .service-drawer-header {
@@ -1134,6 +1150,9 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 6px;
   line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-preview-scope-list svg {
@@ -1150,11 +1169,8 @@ h1, h2, h3, h4, h5, h6 {
   gap: 6px;
   margin-top: auto;
   padding-top: var(--space-sm);
+  border-top: 1px dashed var(--color-navy-divider);
   transition: gap 0.2s ease, color 0.2s ease;
-}
-
-.service-preview-link svg {
-  transition: transform 0.2s ease;
 }
 
 .service-preview-card:hover .service-preview-link {
@@ -2906,9 +2922,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
   }
-  .services-preview-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .process-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2921,6 +2934,23 @@ h1, h2, h3, h4, h5, h6 {
   }
   .contact-layout-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 769px) {
+  .services-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  .service-preview-card {
+    flex: unset;
+    min-height: auto;
+  }
+  .service-preview-drawer {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
   }
 }
 
