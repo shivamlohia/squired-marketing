@@ -2868,15 +2868,35 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px var(--space-md);
     border-top: 1px solid var(--color-navy-divider);
     box-shadow: 0 -4px 16px rgba(16, 5, 88, 0.08);
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    will-change: transform, opacity;
   }
+
+  .mobile-sticky-cta-bar.is-hidden {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .mobile-sticky-cta-bar .btn-primary {
     width: 100%;
     padding: 14px;
     font-size: 1rem;
   }
+
   /* Offset footer so sticky bar does not cover content */
   body {
     padding-bottom: 72px;
+  }
+
+  body.page-contact {
+    padding-bottom: 0;
+  }
+
+  body.page-contact .mobile-sticky-cta-bar {
+    display: none !important;
   }
 }
 
@@ -2905,8 +2925,70 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  /* Mobile Horizontal Snap-Scroll Carousels for Home Sections */
   .problem-grid,
-  .metrics-framework-grid,
+  .services-preview-grid,
+  .process-grid,
+  .metrics-framework-grid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 14px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
+    padding-bottom: 16px;
+    align-items: stretch;
+  }
+
+  .problem-grid::-webkit-scrollbar,
+  .services-preview-grid::-webkit-scrollbar,
+  .process-grid::-webkit-scrollbar,
+  .metrics-framework-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .problem-col,
+  .service-preview-card,
+  .process-step,
+  .metric-framework-item {
+    flex: 0 0 84%;
+    width: 84%;
+    max-width: 320px;
+    min-width: 260px;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  /* Compact padding for cards on mobile touchscreens */
+  .problem-col,
+  .service-preview-card,
+  .metric-framework-item {
+    padding: 20px 18px;
+  }
+
+  .process-step {
+    padding: 20px 18px;
+    background: var(--color-white);
+    border: 1px solid var(--color-navy-divider);
+    box-shadow: 0 2px 10px rgba(16, 5, 88, 0.04);
+  }
+
+  /* Section header spacing tightened on mobile */
+  .section-header {
+    margin-bottom: 18px;
+  }
+
+  /* Retain single-column stacking only for non-carousel components */
   .calc-grid,
   .founder-card,
   .beliefs-grid,
@@ -2919,16 +3001,12 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-lg);
   }
 
-  .services-preview-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .process-grid {
-    grid-template-columns: 1fr;
-  }
-
   .calc-box {
-    padding: var(--space-xl);
+    padding: 20px 18px;
+  }
+
+  .hero-form-card {
+    padding: 20px 18px;
   }
 
   .founder-avatar-box {

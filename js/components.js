@@ -716,23 +716,65 @@
       });
     });
 
-    // Sticky bottom bar CTA action
-    const stickyBottomBar = document.getElementById('mobile-sticky-cta-bar');
-    if (stickyBottomBar) {
-      const heroForm = document.querySelector('.hero-form-card');
-      const stickyBtn = stickyBottomBar.querySelector('.js-sticky-cta-btn');
+    // Smart Sticky Bottom Bar
+    initSmartStickyCtaBar();
+  }
 
-      if (stickyBtn) {
-        stickyBtn.addEventListener('click', (e) => {
-          if (heroForm) {
-            e.preventDefault();
-            heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            heroForm.classList.add('highlight-pulse');
-            setTimeout(() => heroForm.classList.remove('highlight-pulse'), 1500);
-            heroForm.querySelector('input')?.focus();
+  function initSmartStickyCtaBar() {
+    const stickyBottomBar = document.getElementById('mobile-sticky-cta-bar');
+    if (!stickyBottomBar) return;
+
+    // Completely suppress sticky bar on Contact page where form is already primary
+    const isContactPage = window.location.pathname.includes('/contact') || 
+                          document.getElementById('contact-forms-area') !== null ||
+                          document.body.classList.contains('page-contact');
+    if (isContactPage) {
+      stickyBottomBar.style.display = 'none';
+      return;
+    }
+
+    const heroForm = document.querySelector('.hero-form-card');
+    const stickyBtn = stickyBottomBar.querySelector('.js-sticky-cta-btn') || stickyBottomBar.querySelector('a');
+
+    if (stickyBtn && heroForm) {
+      stickyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        heroForm.classList.add('highlight-pulse');
+        setTimeout(() => heroForm.classList.remove('highlight-pulse'), 1500);
+        heroForm.querySelector('input')?.focus();
+      });
+    }
+
+    // Auto-hide sticky bar whenever Hero or an on-page CTA / audit form is in view
+    const inPageCtaTargets = document.querySelectorAll(
+      '#hero, .hero-section, .hero-form-card, #hero-primary-cta, .hero-cta-group, #hero-cta-btn, #final-cta, .closing-band, .calc-cta-wrap, .service-stage-cta'
+    );
+
+    if (inPageCtaTargets.length > 0 && 'IntersectionObserver' in window) {
+      const visibleTargets = new Set();
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            visibleTargets.add(entry.target);
+          } else {
+            visibleTargets.delete(entry.target);
           }
         });
-      }
+
+        // Hide sticky bar if any prominent in-page CTA is visible
+        if (visibleTargets.size > 0) {
+          stickyBottomBar.classList.add('is-hidden');
+        } else {
+          stickyBottomBar.classList.remove('is-hidden');
+        }
+      }, {
+        root: null,
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0.05
+      });
+
+      inPageCtaTargets.forEach(el => observer.observe(el));
     }
   }
 
