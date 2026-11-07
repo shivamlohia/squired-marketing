@@ -331,7 +331,7 @@
             variant: payload.variant
           });
 
-          // Show inline success state with "what happens next"
+          // Show inline success state
           if (form.querySelector('.js-form-body')) {
             form.querySelector('.js-form-body').style.display = 'none';
           }
@@ -342,16 +342,11 @@
                 <div class="success-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
-                <h3>Audit Request Received</h3>
-                <p>Thank you, <strong>${payload.name}</strong>. Here is what happens next:</p>
-                <div class="next-steps-list">
-                  <div class="step-row"><span class="step-num">01</span><span>Anirban Roy reviews your storefront & ad presence within 24 hours.</span></div>
-                  <div class="step-row"><span class="step-num">02</span><span>We email/WhatsApp you with initial margin observations and schedule a 45-min diagnostic call.</span></div>
-                  <div class="step-row"><span class="step-num">03</span><span>You receive a transparent margin roadmap and execution scope.</span></div>
-                </div>
+                <h3>Request Received</h3>
+                <p>Thanks, <strong>${payload.name}</strong>. We will review your store and reply within 48 hours.</p>
                 <div style="margin-top: 18px;">
                   <a href="https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20growth%20audit%20request%20for%20my%20brand." target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.85rem; padding:8px 14px; width:100%;">
-                    <span>Connect directly on WhatsApp &rarr;</span>
+                    <span>Message us on WhatsApp &rarr;</span>
                   </a>
                 </div>
               </div>
@@ -568,16 +563,11 @@
               <div class="success-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
-              <h3>Comprehensive Brief Received</h3>
-              <p>Thank you, <strong>${payload.contactName}</strong>. We have logged your brief for <strong>${payload.brandName}</strong>.</p>
-              <div class="next-steps-list">
-                <div class="step-row"><span class="step-num">01</span><span>Anirban Roy is reviewing your storefront and channels.</span></div>
-                <div class="step-row"><span class="step-num">02</span><span>We will prepare a customized 45-minute growth diagnostic session.</span></div>
-                <div class="step-row"><span class="step-num">03</span><span>Expect a personal message within 24–48 hours at <strong>${payload.contactEmail}</strong>.</span></div>
-              </div>
+              <h3>Brief Received</h3>
+              <p>Thanks, <strong>${payload.contactName}</strong>. We have your brief for <strong>${payload.brandName}</strong> and will reply within 48 hours at <strong>${payload.contactEmail}</strong>.</p>
               <div style="margin-top: 18px;">
                 <a href="https://wa.me/919836578989?text=Hi%20Anirban,%20I%20just%20submitted%20a%20detailed%20growth%20brief%20for%20my%20brand." target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.85rem; padding:8px 14px; width:100%;">
-                  <span>Connect directly on WhatsApp &rarr;</span>
+                  <span>Message us on WhatsApp &rarr;</span>
                 </a>
               </div>
             </div>
