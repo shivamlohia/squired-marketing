@@ -309,7 +309,6 @@
         <div class="service-preview-card" tabindex="0">
           <div class="service-preview-top">
             <span class="service-preview-num">0${idx + 1}</span>
-            <span class="service-tag">${srv.shortTitle}</span>
           </div>
           <h3 class="service-preview-title">${srv.title}</h3>
           <p class="service-preview-desc">${srv.homeSummary || srv.description}</p>
@@ -342,10 +341,10 @@
       });
 
       fullServicesContainer.innerHTML = ordered.map((srv, idx) => `
-        <article class="service-block" id="${srv.id}">
+        <article class="service-block" id="${srv.id}" tabindex="0">
           <div class="service-block-header">
             <span class="service-block-num">0${idx + 1}</span>
-            <div>
+            <div class="service-block-header-info">
               <h2 class="service-block-title">${srv.title}</h2>
               <div class="service-block-badge">${srv.shortTitle}</div>
             </div>
@@ -353,40 +352,117 @@
           
           <p class="service-block-lead">${srv.description}</p>
 
-          <div class="service-block-details">
-            <div class="service-includes-col">
-              <h3 class="service-subheading">Scope</h3>
-              <ul class="service-includes-list">
-                ${srv.includes.map(inc => `
-                  <li>
-                    <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span>${inc}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
+          <div class="service-block-trigger" role="button" aria-expanded="false" tabindex="0">
+            <span class="trigger-label">Execution Scope &amp; Economics</span>
+            <span class="trigger-action">
+              <span class="trigger-hint-text">Hover or click to view full deliverables</span>
+              <svg class="trigger-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
 
-            <div class="service-meta-col">
-              <div class="service-meta-card">
-                <h4 class="meta-card-title">Best For</h4>
-                <p class="meta-card-text">${srv.bestFor}</p>
+          <div class="service-block-drawer">
+            <div class="service-block-details">
+              <div class="service-includes-col">
+                <h3 class="service-subheading">Scope</h3>
+                <ul class="service-includes-list">
+                  ${srv.includes.map(inc => `
+                    <li>
+                      <svg aria-hidden="true" class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>${inc}</span>
+                    </li>
+                  `).join('')}
+                </ul>
               </div>
 
-              <div class="service-meta-card">
-                <h4 class="meta-card-title">Measures</h4>
-                <p class="meta-card-text">${srv.weMeasure}</p>
-              </div>
+              <div class="service-meta-col">
+                <div class="service-meta-card">
+                  <h4 class="meta-card-title">Best For</h4>
+                  <p class="meta-card-text">${srv.bestFor}</p>
+                </div>
 
-              <div class="service-cta-wrap">
-                <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                  <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                <div class="service-meta-card">
+                  <h4 class="meta-card-title">Measures</h4>
+                  <p class="meta-card-text">${srv.weMeasure}</p>
+                </div>
+
+                <div class="service-cta-wrap">
+                  <a href="contact.html?service=${srv.id}" class="btn btn-primary js-cta-btn">
+                    <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </article>
       `).join('');
+
+      // Setup interactive click/tap toggles for touch & persistent reading
+      const serviceBlocks = fullServicesContainer.querySelectorAll('.service-block');
+      serviceBlocks.forEach(block => {
+        const trigger = block.querySelector('.service-block-trigger');
+        const toggleExpand = (e) => {
+          if (e.target.closest('a') || (e.target.closest('button') && !e.target.closest('.service-block-trigger'))) return;
+          block.classList.toggle('is-expanded');
+          const isExp = block.classList.contains('is-expanded');
+          if (trigger) {
+            trigger.setAttribute('aria-expanded', isExp ? 'true' : 'false');
+            const hint = trigger.querySelector('.trigger-hint-text');
+            if (hint) hint.textContent = isExp ? 'Click to collapse deliverables' : 'Hover or click to view full deliverables';
+          }
+        };
+
+        if (trigger) {
+          trigger.addEventListener('click', toggleExpand);
+          trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleExpand(e);
+            }
+          });
+        }
+      });
+
+      // Expand All / Collapse All functionality
+      const toggleAllBtn = document.getElementById('btn-toggle-all-services');
+      const toggleAllText = document.getElementById('toggle-all-text');
+      if (toggleAllBtn && serviceBlocks.length > 0) {
+        let allExpanded = false;
+        toggleAllBtn.addEventListener('click', () => {
+          allExpanded = !allExpanded;
+          serviceBlocks.forEach(b => {
+            if (allExpanded) {
+              b.classList.add('is-expanded');
+            } else {
+              b.classList.remove('is-expanded');
+            }
+            const trig = b.querySelector('.service-block-trigger');
+            if (trig) {
+              trig.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+              const hint = trig.querySelector('.trigger-hint-text');
+              if (hint) hint.textContent = allExpanded ? 'Click to collapse deliverables' : 'Hover or click to view full deliverables';
+            }
+          });
+          toggleAllBtn.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+          toggleAllBtn.classList.toggle('active', allExpanded);
+          if (toggleAllText) toggleAllText.textContent = allExpanded ? 'Collapse all scopes' : 'Expand all scopes';
+        });
+      }
+
+      // If URL hash points to a specific service, open it immediately
+      if (window.location.hash) {
+        const hashId = window.location.hash.substring(1);
+        const targetBlock = document.getElementById(hashId);
+        if (targetBlock) {
+          targetBlock.classList.add('is-expanded');
+          const trig = targetBlock.querySelector('.service-block-trigger');
+          if (trig) {
+            trig.setAttribute('aria-expanded', 'true');
+            const hint = trig.querySelector('.trigger-hint-text');
+            if (hint) hint.textContent = 'Click to collapse deliverables';
+          }
+        }
+      }
     }
   }
 
