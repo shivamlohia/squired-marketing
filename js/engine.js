@@ -447,13 +447,6 @@
                               <p class="spec-text">${srv.weMeasure}</p>
                             </div>
                           </div>
-
-                          <div class="service-cta-wrap">
-                            <a href="/contact?service=${srv.id}" class="btn btn-primary js-cta-btn">
-                              <span class="js-cta-text">${window.SQUIRED_CONFIG?.variants[activeVariant]?.ctaText || 'Book a Growth Audit'}</span>
-                              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </a>
-                          </div>
                         </div>
                       </div>
                     </article>

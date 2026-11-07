@@ -718,6 +718,41 @@
 
     // Smart Sticky Bottom Bar
     initSmartStickyCtaBar();
+
+    // Auto-reveal Header CTA when Hero CTA scrolls out of view on Home
+    initHomeHeaderCtaAutoReveal();
+  }
+
+  function initHomeHeaderCtaAutoReveal() {
+    const navCtaBtn = document.getElementById('nav-cta-btn');
+    const heroCtaBtn = document.getElementById('hero-primary-cta');
+
+    if (!navCtaBtn || !heroCtaBtn) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navCtaBtn.classList.add('nav-cta-hidden');
+          } else {
+            navCtaBtn.classList.remove('nav-cta-hidden');
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.1
+      });
+
+      observer.observe(heroCtaBtn);
+    } else {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY < 260) {
+          navCtaBtn.classList.add('nav-cta-hidden');
+        } else {
+          navCtaBtn.classList.remove('nav-cta-hidden');
+        }
+      }, { passive: true });
+    }
   }
 
   function initSmartStickyCtaBar() {
