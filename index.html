@@ -310,6 +310,21 @@
         </div>
 
         <div class="calculator-box">
+          <!-- Calculator Mode Selector (ROAS vs TACoS) -->
+          <div class="calc-mode-selector" role="tablist" aria-label="Select Calculation Metric">
+            <span class="calc-mode-label">Model your growth by:</span>
+            <div class="calc-mode-pills">
+              <button type="button" class="calc-mode-btn active" id="calc-mode-roas" role="tab" aria-selected="true" data-mode="roas">
+                <span class="mode-dot"></span>
+                <strong>D2C / Store (ROAS)</strong>
+              </button>
+              <button type="button" class="calc-mode-btn" id="calc-mode-tacos" role="tab" aria-selected="false" data-mode="tacos">
+                <span class="mode-dot"></span>
+                <strong>Marketplaces (TACoS)</strong>
+              </button>
+            </div>
+          </div>
+
           <div class="calc-grid">
             <div class="calc-inputs-col">
               <div class="calc-input-group">
@@ -322,13 +337,22 @@
 
               <div class="calc-input-group">
                 <div class="calc-label-row">
-                  <label for="calc-metric-input" class="form-label" style="margin:0;" id="calc-metric-label">Current Blended ROAS</label>
+                  <div class="calc-label-with-tip">
+                    <label for="calc-metric-input" class="form-label" style="margin:0;" id="calc-metric-label">Current Blended ROAS</label>
+                    <span class="tooltip-trigger" id="calc-metric-tip-icon" tabindex="0" aria-label="What does this mean?">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                      <span class="tooltip-bubble" id="calc-metric-tooltip">
+                        <strong>ROAS (Return on Ad Spend)</strong> = Total Revenue ÷ Ad Spend. A 3.0x ROAS means ₹300 revenue for every ₹100 spent on advertising.
+                      </span>
+                    </span>
+                  </div>
                   <div style="display:flex; align-items:center; gap:4px;">
                     <input type="number" id="calc-metric-input" step="0.1" class="calc-input-num" style="width:80px;" aria-label="Current metric value">
                     <span id="calc-metric-unit" style="font-weight:700;">x</span>
                   </div>
                 </div>
-                <input type="range" id="calc-metric-slider" class="range-slider" aria-label="Adjust current ROAS or ACOS">
+                <input type="range" id="calc-metric-slider" class="range-slider" aria-label="Adjust current ROAS or TACoS">
+                <p class="calc-metric-explainer" id="calc-metric-explainer">Revenue generated per rupee or dollar of ad spend.</p>
               </div>
             </div>
 

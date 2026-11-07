@@ -306,14 +306,27 @@
 
       const topFour = ordered.slice(0, 4);
       homeServicesContainer.innerHTML = topFour.map((srv, idx) => `
-        <div class="service-preview-card">
+        <div class="service-preview-card" tabindex="0">
           <div class="service-preview-top">
             <span class="service-preview-num">0${idx + 1}</span>
+            <span class="service-tag">${srv.shortTitle}</span>
           </div>
           <h3 class="service-preview-title">${srv.title}</h3>
           <p class="service-preview-desc">${srv.homeSummary || srv.description}</p>
+          <div class="service-preview-drawer">
+            <div class="service-drawer-header">Key Execution Focus</div>
+            <ul class="service-preview-scope-list">
+              ${srv.includes.slice(0, 3).map(inc => `
+                <li>
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E56315" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>${inc}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
           <a href="services.html#${srv.id}" class="service-preview-link">
-            View scope &rarr;
+            <span>View scope</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       `).join('');

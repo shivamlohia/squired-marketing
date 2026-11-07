@@ -39,7 +39,7 @@
     const config = window.SQUIRED_CONFIG;
     const geo = window.SquiredEngine ? window.SquiredEngine.getGeo() : 'india';
     const variant = window.SquiredEngine ? window.SquiredEngine.getVariant() : 'default';
-    const isMarketplace = variant === 'marketplace';
+    let currentMode = (variant === 'marketplace') ? 'tacos' : 'roas';
 
     const geoDefaults = geo === 'international' ? config.calculator.defaults.usd : config.calculator.defaults.inr;
     const improvementPct = config.calculator.improvementPct || 10;
@@ -51,9 +51,13 @@
     const metricInput = document.getElementById('calc-metric-input');
     const metricLabel = document.getElementById('calc-metric-label');
     const metricUnit = document.getElementById('calc-metric-unit');
+    const metricExplainer = document.getElementById('calc-metric-explainer');
+    const metricTooltip = document.getElementById('calc-metric-tooltip');
     const outputLift = document.getElementById('calc-output-lift');
     const outputRevenue = document.getElementById('calc-output-revenue');
     const outputNote = document.getElementById('calc-note');
+    const roasBtn = document.getElementById('calc-mode-roas');
+    const tacosBtn = document.getElementById('calc-mode-tacos');
 
     if (!spendSlider || !spendInput || !metricSlider || !metricInput) return;
 
@@ -64,23 +68,65 @@
     spendSlider.value = geoDefaults.defaultSpend;
     spendInput.value = geoDefaults.defaultSpend;
 
-    // Set Metric ranges: ROAS or ACOS
-    if (isMarketplace) {
-      if (metricLabel) metricLabel.textContent = 'Current Marketplace TACoS / ACOS';
-      if (metricUnit) metricUnit.textContent = '%';
-      metricSlider.min = 10;
-      metricSlider.max = 70;
-      metricSlider.step = 1;
-      metricSlider.value = Math.round(config.calculator.defaults.defaultAcos);
-      metricInput.value = Math.round(config.calculator.defaults.defaultAcos);
-    } else {
-      if (metricLabel) metricLabel.textContent = 'Current Blended ROAS';
-      if (metricUnit) metricUnit.textContent = 'x';
-      metricSlider.min = 1.0;
-      metricSlider.max = 8.0;
-      metricSlider.step = 0.1;
-      metricSlider.value = config.calculator.defaults.defaultRoas.toFixed(1);
-      metricInput.value = config.calculator.defaults.defaultRoas.toFixed(1);
+    function updateMetricMode(mode) {
+      currentMode = mode;
+
+      if (roasBtn && tacosBtn) {
+        if (mode === 'tacos') {
+          tacosBtn.classList.add('active');
+          tacosBtn.setAttribute('aria-selected', 'true');
+          roasBtn.classList.remove('active');
+          roasBtn.setAttribute('aria-selected', 'false');
+        } else {
+          roasBtn.classList.add('active');
+          roasBtn.setAttribute('aria-selected', 'true');
+          tacosBtn.classList.remove('active');
+          tacosBtn.setAttribute('aria-selected', 'false');
+        }
+      }
+
+      if (mode === 'tacos') {
+        if (metricLabel) metricLabel.textContent = 'Current Marketplace TACoS';
+        if (metricUnit) metricUnit.textContent = '%';
+        if (metricExplainer) metricExplainer.textContent = 'Total ad spend ÷ Total marketplace sales (Amazon / Flipkart).';
+        if (metricTooltip) {
+          metricTooltip.innerHTML = '<strong>TACoS (Total ACOS)</strong> = Total Ad Spend ÷ Total Marketplace Sales. A 25% TACoS means 25% of your total revenue is spent on ads. Lower TACoS indicates stronger organic momentum.';
+        }
+        metricSlider.min = 10;
+        metricSlider.max = 60;
+        metricSlider.step = 1;
+        const defaultAcos = Math.round(config.calculator.defaults.defaultAcos) || 25;
+        metricSlider.value = defaultAcos;
+        metricInput.value = defaultAcos;
+      } else {
+        if (metricLabel) metricLabel.textContent = 'Current Blended ROAS';
+        if (metricUnit) metricUnit.textContent = 'x';
+        if (metricExplainer) metricExplainer.textContent = 'Total revenue ÷ Total ad spend across channels.';
+        if (metricTooltip) {
+          metricTooltip.innerHTML = '<strong>ROAS (Return on Ad Spend)</strong> = Total Revenue ÷ Ad Spend. A 3.0x ROAS means ₹300 revenue for every ₹100 spent on advertising.';
+        }
+        metricSlider.min = 1.0;
+        metricSlider.max = 8.0;
+        metricSlider.step = 0.1;
+        const defaultRoas = config.calculator.defaults.defaultRoas || 3.0;
+        metricSlider.value = defaultRoas.toFixed(1);
+        metricInput.value = defaultRoas.toFixed(1);
+      }
+
+      calculate();
+    }
+
+    if (roasBtn) {
+      roasBtn.addEventListener('click', () => {
+        updateMetricMode('roas');
+        trackEvent('calculator_mode_change', { mode: 'roas' });
+      });
+    }
+    if (tacosBtn) {
+      tacosBtn.addEventListener('click', () => {
+        updateMetricMode('tacos');
+        trackEvent('calculator_mode_change', { mode: 'tacos' });
+      });
     }
 
     if (outputNote) {
@@ -89,18 +135,19 @@
 
     function calculate() {
       const spend = parseFloat(spendInput.value) || geoDefaults.defaultSpend;
-      let roas;
+      let totalRevenue = 0;
+      let additionalLift = 0;
 
-      if (isMarketplace) {
-        const acos = parseFloat(metricInput.value) || config.calculator.defaults.defaultAcos;
-        // ROAS = 1 / (ACOS / 100)
-        roas = acos > 0 ? (100 / acos) : 3.0;
+      if (currentMode === 'tacos') {
+        const tacos = parseFloat(metricInput.value) || 25;
+        // Total Marketplace Revenue = spend / (tacos / 100)
+        totalRevenue = tacos > 0 ? (spend / (tacos / 100)) : (spend * 4);
+        additionalLift = totalRevenue * (improvementPct / 100);
       } else {
-        roas = parseFloat(metricInput.value) || config.calculator.defaults.defaultRoas;
+        const roas = parseFloat(metricInput.value) || config.calculator.defaults.defaultRoas;
+        totalRevenue = spend * roas;
+        additionalLift = totalRevenue * (improvementPct / 100);
       }
-
-      const totalRevenue = spend * roas;
-      const additionalLift = totalRevenue * (improvementPct / 100);
 
       if (outputLift) {
         outputLift.textContent = window.SquiredEngine.formatCurrency(additionalLift, geo);
@@ -109,6 +156,9 @@
         outputRevenue.textContent = window.SquiredEngine.formatCurrency(totalRevenue + additionalLift, geo);
       }
     }
+
+    // Initialize with active mode
+    updateMetricMode(currentMode);
 
     // Spend Sync
     spendSlider.addEventListener('input', () => {
@@ -134,7 +184,7 @@
     });
     metricInput.addEventListener('change', () => {
       let val = parseFloat(metricInput.value);
-      if (isNaN(val)) val = isMarketplace ? config.calculator.defaults.defaultAcos : config.calculator.defaults.defaultRoas;
+      if (isNaN(val)) val = currentMode === 'tacos' ? 25 : config.calculator.defaults.defaultRoas;
       metricInput.value = val;
       metricSlider.value = val;
       calculate();
