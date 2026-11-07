@@ -1173,7 +1173,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* ---------------- Services Page: Desktop Split Explorer (Hover-Reveal) ---------------- */
+/* ---------------- Services Page: Desktop Split Explorer (Zero Layout Shift) ---------------- */
 .services-desktop-explorer {
   display: block;
   width: 100%;
@@ -1185,9 +1185,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .services-explorer-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 320px 1fr;
   gap: var(--space-xl);
-  max-width: 1040px;
+  max-width: 1080px;
   margin: 0 auto;
   align-items: stretch;
 }
@@ -1195,7 +1195,7 @@ h1, h2, h3, h4, h5, h6 {
 .services-tabs-col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   height: 100%;
 }
 
@@ -1204,7 +1204,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   padding: 12px 18px;
   background: var(--color-white);
   border: 1px solid var(--color-navy-divider);
@@ -1212,7 +1212,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-tab-btn:hover {
@@ -1225,7 +1225,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-white);
   border-color: rgba(16, 5, 88, 0.2);
   border-left-color: var(--color-orange);
-  box-shadow: 0 8px 20px rgba(16, 5, 88, 0.07);
+  box-shadow: 0 6px 18px rgba(16, 5, 88, 0.06);
 }
 
 .service-tab-num {
@@ -1272,12 +1272,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-orange);
 }
 
-/* Right Detail Column: scaled down to match the exact size of the 5-option left column */
+/* Right Detail Column: Common rock-solid stage with pre-rendered panels (ZERO layout shift) */
 .services-detail-col {
   height: 100%;
 }
 
-.service-detail-card {
+.desktop-panels-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.desktop-service-panel {
+  grid-area: 1 / 1;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1286,31 +1295,31 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--color-navy-divider);
   border-top: 5px solid var(--color-orange);
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 22px 28px;
   box-shadow: 0 8px 24px rgba(16, 5, 88, 0.06);
-  animation: fadeInCard 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.16s ease, visibility 0.16s ease;
 }
 
-@keyframes fadeInCard {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.desktop-service-panel.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
 }
 
-.service-detail-header {
+.desktop-service-panel .service-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2px;
 }
 
-.service-detail-badge {
+.desktop-service-panel .service-detail-badge {
   display: inline-block;
   font-size: 0.6875rem;
   font-weight: 700;
@@ -1320,46 +1329,46 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2px;
 }
 
-.service-detail-title {
-  font-size: 1.25rem;
+.desktop-service-panel .service-detail-title {
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--color-navy);
   line-height: 1.2;
   margin: 0;
 }
 
-.service-detail-num {
+.desktop-service-panel .service-detail-num {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 800;
   color: var(--color-orange);
   opacity: 0.9;
   line-height: 1;
 }
 
-.service-detail-lead {
-  font-size: 0.84rem;
+.desktop-service-panel .service-detail-lead {
+  font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.45;
   margin-top: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.service-detail-grid {
+.desktop-service-panel .service-detail-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 14px;
+  grid-template-columns: 1.2fr 0.88fr;
+  gap: 18px;
   padding-top: 10px;
   border-top: 1px dashed var(--color-navy-divider);
   flex: 1 1 auto;
 }
 
-.services-desktop-explorer .service-scope-col {
+.desktop-service-panel .service-scope-col {
   display: flex;
   flex-direction: column;
 }
 
-.services-desktop-explorer .service-subheading {
+.desktop-service-panel .service-subheading {
   font-size: 0.72rem;
   font-weight: 800;
   color: var(--color-navy);
@@ -1368,45 +1377,45 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 8px;
 }
 
-.services-desktop-explorer .service-includes-list {
+.desktop-service-panel .service-includes-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
   margin: 0;
   padding: 0;
 }
 
-.services-desktop-explorer .service-includes-list li {
+.desktop-service-panel .service-includes-list li {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
-  font-size: 0.78rem;
+  gap: 8px;
+  font-size: 0.8125rem;
   line-height: 1.35;
   color: var(--color-navy);
 }
 
-.services-desktop-explorer .service-includes-list .check-icon {
+.desktop-service-panel .service-includes-list .check-icon {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
-.services-desktop-explorer .service-meta-col {
+.desktop-service-panel .service-meta-col {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 6px;
 }
 
-.services-desktop-explorer .service-meta-card {
+.desktop-service-panel .service-meta-card {
   background: var(--color-navy-tint);
   padding: 8px 12px;
   border-radius: 6px;
 }
 
-.services-desktop-explorer .meta-card-title {
+.desktop-service-panel .meta-card-title {
   font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -1415,23 +1424,23 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2px;
 }
 
-.services-desktop-explorer .meta-card-text {
+.desktop-service-panel .meta-card-text {
   font-size: 0.75rem;
   color: var(--color-navy);
   line-height: 1.35;
   margin: 0;
 }
 
-.services-desktop-explorer .service-cta-wrap {
+.desktop-service-panel .service-cta-wrap {
   margin-top: 6px;
 }
 
-.services-desktop-explorer .service-cta-wrap .btn {
+.desktop-service-panel .service-cta-wrap .btn {
   width: 100%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 14px;
+  padding: 8px 16px;
   font-size: 0.8125rem;
   font-weight: 700;
 }
