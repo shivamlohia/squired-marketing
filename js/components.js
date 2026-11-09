@@ -349,7 +349,7 @@
           _subject: `New Squired Growth Audit: ${brandInput.value.trim()} (${nameInput.value.trim()})`,
           _template: 'table',
           _captcha: 'false',
-          _cc: window.SQUIRED_CONFIG?.formCc || 'shivam@squiredmarketing.com',
+          ...(window.SQUIRED_CONFIG?.formCc ? { _cc: window.SQUIRED_CONFIG.formCc } : {}),
           ...getHiddenFieldData()
         };
 
@@ -361,7 +361,7 @@
 
         try {
           // Attempt POST to configured endpoint
-          const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/anirban@squiredmarketing.com';
+          const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/shivamlohia72@gmail.com';
           try {
             await fetch(endpoint, {
               method: 'POST',
@@ -574,7 +574,7 @@
         _subject: `New Detailed Squired Brief: ${briefData.brandName} (${briefData.contactName})`,
         _template: 'table',
         _captcha: 'false',
-        _cc: window.SQUIRED_CONFIG?.formCc || 'shivam@squiredmarketing.com',
+        ...(window.SQUIRED_CONFIG?.formCc ? { _cc: window.SQUIRED_CONFIG.formCc } : {}),
         ...getHiddenFieldData()
       };
 
@@ -585,7 +585,7 @@
       }
 
       try {
-        const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/anirban@squiredmarketing.com';
+        const endpoint = window.SQUIRED_CONFIG?.formEndpoint || 'https://formsubmit.co/ajax/shivamlohia72@gmail.com';
         try {
           await fetch(endpoint, {
             method: 'POST',

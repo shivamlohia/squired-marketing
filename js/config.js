@@ -24,9 +24,8 @@ const CONFIG = {
     }
   },
 
-  // Form endpoint (Direct FormSubmit AJAX endpoint delivering straight to Anirban's inbox + CC to Shivam)
-  formEndpoint: "https://formsubmit.co/ajax/anirban@squiredmarketing.com",
-  formCc: "shivam@squiredmarketing.com",
+  // Form endpoint (Direct FormSubmit AJAX endpoint delivering straight to shivamlohia72@gmail.com for testing)
+  formEndpoint: "https://formsubmit.co/ajax/shivamlohia72@gmail.com",
 
   // Calculator Configuration
   calculator: {
